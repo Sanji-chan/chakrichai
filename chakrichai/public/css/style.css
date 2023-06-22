@@ -1,0 +1,277 @@
+/* Common CSS */
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+    color:#8199e7 !important;
+    transition: 0.7s;
+    font-weight: 600;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+ul,
+ol {
+    list-style-type: none;
+}
+
+.clr {
+    clear: both;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin-top: 0;
+    margin-bottom: 0px;
+}
+
+label {
+    margin-top: 0;
+    margin-bottom: 0px;
+}
+
+.row-header {
+    font-size: 32px;
+    color: #94a8e9;
+    font-weight: 600;
+    font-family: ;
+    position: relative;
+    padding-top: 5%;
+    padding-bottom: 2.5%;
+
+}
+
+.content-header {
+    font-size: 24px;
+    color: ;
+    font-weight: ;
+    font-family: ;
+}
+
+p {
+    font-size: 16px;
+    color: ;
+    font-weight: ;
+    font-family: ;
+
+}
+
+.main-button {
+    font-size: 16px;
+    padding: 2% 10%;
+    background: #eeaeca;
+    color: #fff;
+    border: 2px solid #eeaeca;
+    transition: all linear .3s;
+    display: block;
+    /* border-radius: 10%; */
+}
+
+.main-button:hover {
+    background: #fff;
+    color: #eeaeca;
+    border: 2px solid #eeaeca;
+}
+
+
+/*font-family: 'Roboto', sans-serif;*/
+/* font-family: 'Open Sans', sans-serif;*/
+
+/*COMMON CSS END*/
+
+
+/*NAVBAR/HEADER START*/
+
+.navbar-light .navbar-nav .nav-link {
+    color: ;
+    font-size: ;
+    transition: all linear .3s;
+}
+
+.navbar-light .navbar-nav .nav-link:hover {
+    color: ;
+    transition: all linear .3s;
+}
+
+/*STICKY HEADER START*/
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    /*    z-index: 9999;*/
+    transition: all linear .5s;
+    background: #fff;
+}
+
+.navbar-bg {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: #fff;
+    animation: menu .5s;
+}
+
+@keyframes menu {
+    from {
+        top: -50px;
+    }
+
+    to {
+        top: 0px;
+    }
+}
+
+/*STICKY HEADER END*/
+
+/*NAVBAR/HEADER END*/
+
+
+/*BANNER PART START*/
+#banner-bg {
+    background: url(../images/banner-bg.jpeg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    /*    padding-top: 200px;*/
+    /*    padding-bottom: 200px;*/
+}
+
+.banner-text {
+    color: aliceblue;
+    text-align: left;
+}
+
+.banner-overly {
+    width: 100%;
+    background: rgba(17, 18, 21, 0.53);
+    padding-top: 200px;
+    padding-bottom: 200px;
+}
+
+/*BANNER PART END*/
+
+/*SERVICE PART START*/
+
+#service-bg {
+    padding-top: 120px;
+    padding-bottom: 120px;
+}
+
+.service-text {
+
+}
+
+/*SERVICE PART END*/
+
+
+/*FOOTER PART START*/
+.footer h6{
+    color: #8199e7;
+}
+
+/*COPYRIGHT PART START*/
+.copyright-text {
+    /* color: ; */
+    font-size: 12px;
+}
+
+/*COPYRIGHT PART END*/
+
+
+
+/* LOGIN START */
+
+
+
+.login-bg{
+justify-content: center;
+padding: 7% 0%;
+}
+.login{
+    border-radius: 1rem;
+    
+    box-shadow: 0px 10px 30px -3px rgba(0,0,0,0.1);
+}
+.login-text{
+    color:#fff;
+    height: 100%;
+    text-align: left;
+    padding: 10% 5%;
+    border-radius: 1rem 0 0 1rem;
+    background: rgb(238,174,202);
+    background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+}
+.login-text h3{
+    font-weight: 600;
+    font-family: ;
+    font-size: 48px;
+}
+
+.line{
+    align-items: center;
+    border-bottom: 1px solid #dadde1;
+    display: flex;
+    margin: 20px 16px;
+    text-align: center;
+  }
+  
+.icon-btn{
+    border: 2px solid #94a8e91a;
+    border-radius: 50%;
+    background-color: #fff;
+    padding: 10px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    color:rgb(238,174,202);
+  }
+
+  .icon-btn:hover{
+    transition: .7s;
+    background: #94a8e91a;
+    color:#fff;
+  }
+  .sec-button{
+    font-size: 16px;
+    padding: 2% 10%;
+    background: #fff; 
+    color: #eeaeca;
+    border: 2px solid #fff;
+    transition: all linear .7s;
+    display: block;
+  }
+
+.sec-button:hover {
+    background: #fafafbf3; 
+    border: 2px solid  #94a8e91a; 
+}
+
+/* REGISTER START   */
+.register-bg{
+    justify-content: center;
+    padding: 7% 0%;
+}
+
+.reg-text{
+    color:#fff;
+    height: 100%;
+    text-align: left;
+    padding: 10% 5%;
+    border-radius: 0 1rem 1rem 0;
+    background: rgb(238,174,202);
+    background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+}
+.reg-text h3{
+    font-weight: 600;
+    font-size: 48px;
+}

@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Chakrichai') }}</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
@@ -15,13 +15,22 @@
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+
+    {{-- <link rel="stylesheet" href=".css/style.css"> --}}
+    
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css" >
+
+    {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.4.0/css/responsive.dataTables.min.css">   --}}
+
 </head>
-<body>
+<body class="d-flex flex-column min-vh-200">
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    {{ config('app.name', 'Chakrichai') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -29,8 +38,16 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
-
+                    <ul class="navbar-nav m-auto col-lg-4">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Blog</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -72,9 +89,164 @@
             </div>
         </nav>
 
+
+
+
+
+
+
         <main class="py-4">
             @yield('content')
         </main>
+
+
+        <footer class="footer-bg text-center" style="background-color: #fafafbf3; ">
+            <!-- Section: Links  -->
+            <section class= "footer">
+              <div class="container-fluid text-center text-md-start mt-5">
+                <!-- Grid row -->
+                <div class="row mt-3">
+                  <!-- Grid column -->
+                  <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                    <!-- Content -->
+                    <h6 class="text-uppercase fw-bold mb-4" >
+                      <i class="fas fa-gem me-3 text-secondary"></i>Chakri Chai
+                    </h6>
+                    <p>
+                      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perferendis, quod!
+                    </p>
+                  </div>
+                  <!-- Grid column -->
+          
+                  <!-- Grid column -->
+                  <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+                    <!-- Links -->
+                    <h6 class="text-uppercase fw-bold mb-4" >
+                      Products
+                    </h6>
+                    <p>
+                      <a href="#!" class="text-reset">Angular</a>
+                    </p>
+                    <p>
+                      <a href="#!" class="text-reset">React</a>
+                    </p>
+                    <p>
+                      <a href="#!" class="text-reset">Vue</a>
+                    </p>
+                    <p>
+                      <a href="#!" class="text-reset">Laravel</a>
+                    </p>
+                  </div>
+                  <!-- Grid column -->
+          
+                  <!-- Grid column -->
+                  <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                    <!-- Links -->
+                    <h6 class="text-uppercase fw-bold mb-4">
+                      Important links
+                    </h6>
+                    <p>
+                      <a href="#!" class="text-reset">Pricing</a>
+                    </p>
+                    <p>
+                      <a href="#!" class="text-reset">Settings</a>
+                    </p>
+                    <p>
+                      <a href="#!" class="text-reset">Orders</a>
+                    </p>
+                    <p>
+                      <a href="#!" class="text-reset">Help</a>
+                    </p>
+                  </div>
+                  <!-- Grid column -->
+          
+                  <!-- Grid column -->
+                  <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                    <!-- Links -->
+                    <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
+                    <p><i class="fas fa-home me-3 text-secondary"></i> Dhaka, Bangladesh 1216</p>
+                    <p>
+                      <i class="fas fa-envelope me-3 text-secondary"></i>
+                      chakrichai@gmail.com
+                    </p>
+                    <p><i class="fas fa-phone me-3 text-secondary"></i> + 88 01 253 236 114</p>
+                    <p><i class="fas fa-print me-3 text-secondary"></i> + 88 01 012 141 785</p>
+                  </div>
+                  <!-- Grid column -->
+                </div>
+                <!-- Grid row -->
+              </div>
+          </section>
+          <!-- Grid container -->
+        
+          </div>
+        
+          <section class="d-flex justify-content-center justify-content-lg-between p-4">
+        
+              <!-- Right -->
+              <div class="container">
+                  <div class="row">
+                        <!-- left -->
+                  <div class="col-lg-5 m-auto text-dark">
+                      <span>Get connected with us on social networks:</span>
+                  </div>
+                  <!-- Section: Social media -->
+                  <div class="col-lg 6 ml-auto">
+                      <!-- Facebook -->
+                      <a class="btn btn-link btn-floating btn-lg" href="#!" role="button">
+                          <i class="fab fa-facebook-f"></i>
+                      </a>
+              
+                      <!-- Twitter -->
+                      <a class="btn btn-link btn-floating btn-lg" href="#!" role="button">
+                      <i class="fab fa-twitter"></i> 
+                      </a>
+              
+                      <!-- Google -->
+                      <a class="btn btn-link btn-floating btn-lg" href="#!" role="button">
+                          <i class="fab fa-google"></i>
+                      </a>
+              
+                      <!-- Instagram -->
+                      <a class="btn btn-link btn-floating btn-lg" href="#!" role="button"> 
+                          <i class="fab fa-instagram"></i>
+                      </a>
+              
+                      <!-- Linkedin -->
+                      <a class="btn btn-link btn-floating btn-lg" href="#!" role="button"><i class="fab fa-linkedin"></i>
+                      </a>
+                      <!-- Github -->
+                      <a class="btn btn-link btn-floating btn-lg" href="#!" role="button">
+                          <i class="fab fa-github"></i>
+                      </a>
+                  </div>
+                <!-- Section: Social media -->
+        
+                  </div>
+              <!-- Right -->
+            </section>
+            <!-- Section: Social media -->
+        
+          <!-- Copyright -->
+          <div class="text-center text-dark pt-3 pb-2 border-top">
+              <h6 class="copyright-text">©2023 Chakri Chai</h6>
+          </div>
+          <!-- Copyright -->
+        </footer>
+        
+        <!--FOOTER PART END-->
+        
+        <!--JS LINKS-->
+        
+        <!-- Bootstrap js cdn -->
+        <!-- <script src="js/jquery-1.12.4.min.js"></script> -->
+        
+        {{-- <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/responsive/2.4.0/js/dataTables.responsive.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>
+        <script src="js/Font-Awesome.js"></script> --}}
+ 
     </div>
 </body>
 </html>
