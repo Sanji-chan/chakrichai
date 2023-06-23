@@ -15,14 +15,10 @@
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
-
-    {{-- <link rel="stylesheet" href=".css/style.css"> --}}
     
     <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css" >
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
 
-    {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.4.0/css/responsive.dataTables.min.css">   --}}
 
 </head>
 <body class="d-flex flex-column min-vh-200">
@@ -228,24 +224,13 @@
             <!-- Section: Social media -->
         
           <!-- Copyright -->
-          <div class="text-center text-dark pt-3 pb-2 border-top">
-              <h6 class="copyright-text">©2023 Chakri Chai</h6>
+          <div class="text-center text-dark pt-3 pb-3 border-top">
+              <h6 class="copyright-text">©2023 ChakriChai</h6>
           </div>
           <!-- Copyright -->
         </footer>
         
         <!--FOOTER PART END-->
-        
-        <!--JS LINKS-->
-        
-        <!-- Bootstrap js cdn -->
-        <!-- <script src="js/jquery-1.12.4.min.js"></script> -->
-        
-        {{-- <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
-        <script src="https://cdn.datatables.net/responsive/2.4.0/js/dataTables.responsive.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>
-        <script src="js/Font-Awesome.js"></script> --}}
  
     </div>
 </body>

@@ -82,7 +82,7 @@
         <div class="row justify-content-md-center" >
             <div class=" login col col-lg-10 d-flex" style="padding: 0">
 
-                <div class="col col-lg-5 m-auto">
+                <div class="col col-lg-5 m-auto pb-4">
                     <div>
                         <h3 class="row-header mb-4 mt-4 text-center">Register Here</h3>
                     </div>
