@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-{{-- <section class = "restpassword-bg">
+<section class = "restpassword-bg">
     <div class="container">
-        <div class="row justify-content-center">
+        <div class="row justify-content-md-center">
             <div class="col-md-8">
-                <div class="card">
+                <div class="">
                     <div>
                         <h3 class="row-header mb-4 mt-4 text-center">{{ __('Reset Password') }}</h3>
                     </div>
@@ -66,11 +66,8 @@
             </div>
         </div>
     </div>
-</section> --}}
+</section> 
 
-<section>
 
-    <h1>Hello world</h1>
-</section>
 
 @endsection

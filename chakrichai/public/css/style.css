@@ -44,7 +44,6 @@ label {
     font-size: 32px;
     color: #94a8e9;
     font-weight: 600;
-    font-family: ;
     position: relative;
     padding-top: 5%;
     padding-bottom: 2.5%;
@@ -52,10 +51,10 @@ label {
 }
 
 .content-header {
-    font-size: 24px;
-    color: ;
-    font-weight: ;
-    font-family: ;
+    font-size: 20px;
+    color: #94a8e9;
+    font-weight: 400;
+
 }
 
 p {
@@ -167,9 +166,9 @@ p {
     padding-bottom: 120px;
 }
 
-.service-text {
+/* .service-text {
 
-}
+} */
 
 /*SERVICE PART END*/
 
@@ -279,4 +278,9 @@ padding: 7% 0%;
 .restpassword-bg{
     justify-content: center;
     padding: 7% 0%;
+}
+.resetpassword{
+    border-radius: 1rem;
+    box-shadow: 0px 10px 30px -3px rgba(0,0,0,0.1);
+    padding: 3%;
 }
