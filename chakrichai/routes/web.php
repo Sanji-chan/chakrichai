@@ -1,7 +1,7 @@
 <?php
-
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\ForgotPasswordManager;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,3 +20,11 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get("/email", [ForgotPasswordManager::class, "forgotPassword"])
+    ->name("forgot.password");
+Route::post("/email", [ForgotPasswordManager::class, "forgotPasswordPost"])
+    ->name("forgot.password.post");
+Route::get("/reset/{token}", [ForgotPasswordManager::class, "resetPassword"])
+    ->name("reset.password");
+Route::post("/reset", [ForgotPasswordManager::class, "resetPasswordPost"]) 
+    ->name("reset.password.post");
