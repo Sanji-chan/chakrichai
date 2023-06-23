@@ -71,10 +71,10 @@
             </div>
         </div>
     </div>
-</div> --}}
-<section class = "login-bg">
+</div>--}}
 
 
+<section class = "login-bg"> 
 <div class="container">
 
     <div class="row justify-content-md-center" >
