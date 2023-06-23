@@ -115,7 +115,7 @@
 
 
                         <!-- Submit button -->
-                        <button type="submit" class="mb-2 m-auto btn-primary main-button btn-block">Sign in</button>
+                        <button type="submit" class="mb-2 m-auto btn-primary main-button btn-block">Sign up</button>
                     </form>
 
                    
