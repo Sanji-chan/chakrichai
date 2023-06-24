@@ -136,7 +136,7 @@
                         <i class="fab fa-facebook-f"></i>
                     </a>
 
-                    <a class="icon-btn mx-1">
+                    <a href="{{ route('googleAuth') }}" class="icon-btn mx-1">
                         <i class="fab fa-google"></i>
                     <a>
 
