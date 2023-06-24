@@ -3,21 +3,38 @@
 @section('content')
 
 {{-- This is the original content do not remove for now--}}
-{{-- <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
+<section class = "login-bg">
+
+
+<div class="container">
+
+    <div class="row justify-content-md-center" >
+        <div class=" login col col-lg-10 d-flex" style="padding: 0">
+            <div class="login-text col col-md-6" >
+                <h3>
+                    Welcome back!
+                </h3>
+                <p>Lorem ipsum dolor sit amet consectetur.</p>
+                <!-- Register buttons -->
+                <p>Not a member? </p>
+
+                @if (Route::has('register'))
+                <button type="submit" class="mb-2 btn-primary sec-button btn-block">
+                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register Here') }}</a>                
+                </button>
+                @endif
+
+
+                </div>
+
+                <form method="POST" action="{{ route('login') }}">
                         @csrf
 
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                    <div class="col col-lg-10 m-auto">
+                    
+                        <div class="col-md-6">
+                                <input placeholder = "Email Address" id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -72,29 +89,12 @@
         </div>
     </div>
 </div> --}}
-<section class = "login-bg">
 
 
-<div class="container">
-
-    <div class="row justify-content-md-center" >
-        <div class=" login col col-lg-10 d-flex" style="padding: 0">
-            <div class="login-text col col-md-6" >
-                <h3>
-                    Welcome back!
-                </h3>
-                <p>Lorem ipsum dolor sit amet consectetur.</p>
-                <!-- Register buttons -->
-                <p>Not a member? </p>
-
-                @if (Route::has('register'))
-                <button type="submit" class="mb-2 btn-primary sec-button btn-block">
-                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register Here') }}</a>                
-                </button>
-                @endif
 
 
-                </div>
+
+
             <div class="col col-md-5 m-auto">
                 <div>
                     <h3 class="row-header mb-4 mt-4 text-center">Login Here</h3>
