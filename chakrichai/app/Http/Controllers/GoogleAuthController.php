@@ -24,10 +24,10 @@ class GoogleAuthController extends Controller
                 ]);
                 $user = User::where('google_id', $google_user->id)->first();
                 Auth::login($user);
-                return redirect('login');
+                return redirect()->to(route("login"));
             }else{
                 Auth::login($user);
-                return redirect('login');
+                return redirect()->to(route("login"));
             }
 
     }
