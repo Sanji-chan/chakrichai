@@ -59,9 +59,9 @@ label {
 
 p {
     font-size: 16px;
-    color: ;
+    /* color: ;
     font-weight: ;
-    font-family: ;
+    font-family: ; */
 
 }
 
@@ -92,13 +92,13 @@ p {
 /*NAVBAR/HEADER START*/
 
 .navbar-light .navbar-nav .nav-link {
-    color: ;
-    font-size: ;
+    /* color: ;
+    font-size: ; */
     transition: all linear .3s;
 }
 
 .navbar-light .navbar-nav .nav-link:hover {
-    color: ;
+    /* color: ; */
     transition: all linear .3s;
 }
 
@@ -212,7 +212,7 @@ padding: 7% 0%;
 }
 .login-text h3{
     font-weight: 600;
-    font-family: ;
+    /* font-family: ; */
     font-size: 48px;
 }
 

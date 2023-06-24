@@ -64,4 +64,3 @@
 
 
 @endsection
-{{-- @extends('layouts.footer') --}}

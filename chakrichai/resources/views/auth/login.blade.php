@@ -71,10 +71,10 @@
             </div>
         </div>
     </div>
-</div> --}}
-<section class = "login-bg">
+</div>--}}
 
 
+<section class = "login-bg"> 
 <div class="container">
 
     <div class="row justify-content-md-center" >
@@ -95,7 +95,7 @@
 
 
                 </div>
-            <div class="col col-md-5 m-auto">
+            <div class="col col-md-5 m-auto pb-4">
                 <div>
                     <h3 class="row-header mb-4 mt-4 text-center">Login Here</h3>
 
@@ -136,7 +136,7 @@
                         <i class="fab fa-facebook-f"></i>
                     </a>
 
-                    <a class="icon-btn mx-1">
+                    <a href="{{ route('googleAuth') }}" class="icon-btn mx-1">
                         <i class="fab fa-google"></i>
                     <a>
 
