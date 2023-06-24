@@ -18,10 +18,12 @@ Route::get('/', function () {
     return view('home');
 });
 
-Auth::routes();
+Auth::routes(
+    ['verify'=>true]
+);
 
 // Routes for forgot password and reset password
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('verified');
 Route::get("/email", [ForgotPasswordManager::class, "forgotPassword"])
     ->name("forgot.password");
 Route::post("/email", [ForgotPasswordManager::class, "forgotPasswordPost"])

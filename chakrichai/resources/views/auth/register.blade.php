@@ -11,7 +11,7 @@
                 <div class="col col-lg-5 m-auto">
                     <div>
                         <h3 class="row-header mb-4 mt-4 text-center">Register Here</h3>
-                    </div>                    
+                    </div>                
                     
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
@@ -73,7 +73,7 @@
                         <a class="icon-btn mx-1">
                             <i class="fab fa-facebook-f"></i>
                         </a>
-                        <a class="icon-btn mx-1">
+                        <a href="{{ route('googleAuth') }}" class="icon-btn mx-1">
                             <i class="fab fa-google"></i>
                         <a>
 

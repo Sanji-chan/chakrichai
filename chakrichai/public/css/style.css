@@ -44,7 +44,6 @@ label {
     font-size: 32px;
     color: #94a8e9;
     font-weight: 600;
-    position: relative;
     padding-top: 5%;
     padding-bottom: 2.5%;
 
@@ -59,9 +58,6 @@ label {
 
 p {
     font-size: 16px;
-    /* color: ;
-    font-weight: ;
-    font-family: ; */
 
 }
 
@@ -92,8 +88,6 @@ p {
 /*NAVBAR/HEADER START*/
 
 .navbar-light .navbar-nav .nav-link {
-    /* color: ;
-    font-size: ; */
     transition: all linear .3s;
 }
 
@@ -166,9 +160,6 @@ p {
     padding-bottom: 120px;
 }
 
-/* .service-text {
-
-} */
 
 /*SERVICE PART END*/
 
