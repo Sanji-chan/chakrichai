@@ -17,18 +17,49 @@ class GoogleAuthController extends Controller
             $user = User::where('google_id', $google_user->id)->first(); // check if user exists in DB
             // echo($google_user->id);
             try{
-                if (!$user){
-                    $new_user = User::insert([
-                        'name'=>$google_user->name,
-                        'email'=>$google_user->email, 
-                        'google_id'=>$google_user->id
+                    if (!$user){
+                        $role = 1;
+                        if (strpos($google_user->email, "g.bracu.ac.bd") != false){
+                            $role = 2;
+                        }
+            
+                        $new_user = User::insert([
+                            'name'=>$google_user->name,
+                            'email'=>$google_user->email, 
+                            'google_id'=>$google_user->id,
+                            'role' => $role
                     ]);
+
                     $user = User::where('google_id', $google_user->id)->first();
                     Auth::login($user);
-                    return redirect()->to(route("login"));
+                    // return redirect()->to(route("login"));
+                    if (auth()->user()->role == 'admin') 
+                    {
+                       return redirect()->route('admin.home');
+                    }
+                    else if (auth()->user()->role == 'buyer') 
+                    {
+                        return redirect()->route('buyer.home');
+                    }
+                    else
+                    {
+                        return redirect()->route('seller.home');
+                    }
                 }else{
                     Auth::login($user);
-                    return redirect()->to(route("login"));
+                    // return redirect()->to(route("login"));
+                    if (auth()->user()->role == 'admin') 
+                    {
+                       return redirect()->route('admin.home');
+                    }
+                    else if (auth()->user()->role == 'buyer') 
+                    {
+                        return redirect()->route('buyer.home');
+                    }
+                    else
+                    {
+                        return redirect()->route('seller.home');
+                    }
                 }
             }
             catch(\Throwable $th){

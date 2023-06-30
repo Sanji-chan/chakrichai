@@ -45,8 +45,15 @@
                     </ul>
                     @else
                       <ul class="navbar-nav m-auto col-lg-4">
+                        @php
+                              $userRoute = Auth::user()->role.'/home';
+                              
+                        @endphp
+
+                          {{-- <a href="{{ $userRoute }}">View User</a> --}}
+
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/home') }}">Home</a>
+                            <a class="nav-link" href="{{ url($userRoute) }}">Home</a>
                         </li>
                       </ul>
                       <form class="navbar-nav ms-auto col-lg-4" method="GET" action="#">

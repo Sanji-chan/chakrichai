@@ -3,6 +3,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ForgotPasswordManager;
 use App\Http\Controllers\GoogleAuthController;
+use App\Http\Controllers\UserRoleMiddleware;
+use App\Http\Controllers\HomeController;
 // use App\Http\Controllers\Auth;
 /*
 |--------------------------------------------------------------------------
@@ -24,14 +26,30 @@ Route::get('/', function () {
 Auth::routes(
     ['verify'=>true]
 );
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('verified');
 
 // Login home
-Route::get('/home', function () {
-    return view('dashboard');   
-} )->middleware(['auth', 'verified']);
+// Route::get('/home', function () {
+//     return view('dashboard');   
+// } )->middleware(['auth', 'verified']);
+
+// Route Admin
+Route::middleware(['auth','user-role:admin'])->group(function(){
+    Route::get("/admin/home",[HomeController::class, 'adminHome'])
+    ->name("admin.home")->middleware(['auth', 'verified']);
+});
+// Route User
+Route::middleware(['auth','user-role:buyer'])->group(function(){
+    Route::get("/buyer/home",[HomeController::class, 'buyerHome'])
+    ->name("buyer.home")->middleware(['auth', 'verified']);
+});
+// Route Editor
+Route::middleware(['auth','user-role:seller'])->group(function(){
+    Route::get("/seller/home",[HomeController::class, 'sellerHome'])
+    ->name("seller.home")->middleware(['auth', 'verified']);
+});
 
 // Forgot password and Reset password routes
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('verified');
 Route::get("/email", [ForgotPasswordManager::class, "forgotPassword"])
     ->name("forgot.password");
 Route::post("/email", [ForgotPasswordManager::class, "forgotPasswordPost"])
