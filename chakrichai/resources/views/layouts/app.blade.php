@@ -34,22 +34,38 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
+                    @guest
                     <ul class="navbar-nav m-auto col-lg-4">
-                        <li class="nav-item">
-                            <a class="nav-link" href="/">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Profile</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Blog</a>
-                        </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="/">Home</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="#">Blog</a>
+                      </li>
                     </ul>
+                    @else
+                      <ul class="navbar-nav m-auto col-lg-4">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/home') }}">Home</a>
+                        </li>
+                      </ul>
+                      <form class="navbar-nav ms-auto col-lg-4" method="GET" action="#">
+                          @csrf
+                              <div class="search-bar text-center" style="display: flex;">
+                                <input id="search" type="text" class="form-control" name="search" value="{{ old('search') }}" required>
+                                <button type="submit" class="m-auto btn-primary main-button btn">
+                                    {{ __('Search') }}
+                                </button>
+                              </div>  
+                      </form>
+                    @endguest
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
                         @guest
+
+
                             @if (Route::has('login'))
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -73,10 +89,21 @@
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
-
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
+                                    <a class="dropdown-item" href="#"
+                                       {{-- onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();" --}} 
+                                                     >
+                                        {{ __('Profile') }}
+                                    </a>
+                                    <a class="dropdown-item" href="#"
+                                    {{-- onclick="event.preventDefault();
+                                                  document.getElementById('logout-form').submit();" --}} 
+                                                  >
+                                     {{ __('Settings') }}
+                                 </a>
                                 </div>
                             </li>
                         @endguest
