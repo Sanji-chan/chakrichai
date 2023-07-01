@@ -1,7 +1,11 @@
 <?php
-
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\ForgotPasswordManager;
+use App\Http\Controllers\GoogleAuthController;
+use App\Http\Controllers\UserRoleMiddleware;
+use App\Http\Controllers\HomeController;
+// use App\Http\Controllers\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,10 +17,53 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Home route
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
-Auth::routes();
+// Verification route
+Auth::routes(
+    ['verify'=>true]
+);
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('verified');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Login home
+// Route::get('/home', function () {
+//     return view('dashboard');   
+// } )->middleware(['auth', 'verified']);
+
+// Route Admin
+Route::middleware(['auth','user-role:admin'])->group(function(){
+    Route::get("/admin/home",[HomeController::class, 'adminHome'])
+    ->name("admin.home")->middleware(['auth', 'verified']);
+});
+// Route User
+Route::middleware(['auth','user-role:buyer'])->group(function(){
+    Route::get("/buyer/home",[HomeController::class, 'buyerHome'])
+    ->name("buyer.home")->middleware(['auth', 'verified']);
+});
+// Route Editor
+Route::middleware(['auth','user-role:seller'])->group(function(){
+    Route::get("/seller/home",[HomeController::class, 'sellerHome'])
+    ->name("seller.home")->middleware(['auth', 'verified']);
+});
+
+// Forgot password and Reset password routes
+Route::get("/email", [ForgotPasswordManager::class, "forgotPassword"])
+    ->name("forgot.password");
+Route::post("/email", [ForgotPasswordManager::class, "forgotPasswordPost"])
+    ->name("forgot.password.post");
+Route::get("/reset/{token}", [ForgotPasswordManager::class, "resetPassword"])
+    ->name("reset.password");
+Route::post("/reset", [ForgotPasswordManager::class, "resetPasswordPost"]) 
+    ->name("reset.password.post");
+
+// Google Auth routes
+Route::get('auth/google', [GoogleAuthController::class, 'redirect'])->name('googleAuth');
+Route::get('auth/google/callback', [GoogleAuthController::class, 'callbackgoogle'])->name('callbackGoogle');
+
+
+
+// Profile route
+// Route::get('home/profile')
