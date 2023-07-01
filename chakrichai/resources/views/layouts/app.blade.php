@@ -21,7 +21,7 @@
 
 
 </head>
-<body class="d-flex flex-column min-vh-200">
+<body class="d-flex flex-column  bg-white min-vh-200">
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container-fluid">
@@ -44,27 +44,28 @@
                       </li>
                     </ul>
                     @else
-                      <ul class="navbar-nav m-auto col-lg-4">
+                      <form class="navbar-nav ms-auto col-lg-4 " method="GET" action="#">
+                          @csrf
+                              <div class="input-group">
+                                <input type="search" class="form-control" style="border: None;" placeholder="Search" aria-label="Search" aria-describedby="search-addon"/>
+                                <button class="border-0 btn" id="search-addon"><i class="fas fa-search" style="color: #eeaeca;"></i></button>
+                              </div>
+                      </form>
+                      <ul class="navbar-nav justify-content-end col-lg-6">
                         @php
                               $userRoute = Auth::user()->role.'/home';
                               
                         @endphp
 
-                          {{-- <a href="{{ $userRoute }}">View User</a> --}}
-
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url($userRoute) }}">Home</a>
                         </li>
+                        
+                        <li class="nav-item">
+                          <a class="nav-link" href="#">Messages</a>
+                        </li>
+
                       </ul>
-                      <form class="navbar-nav ms-auto col-lg-4" method="GET" action="#">
-                          @csrf
-                              <div class="search-bar text-center" style="display: flex;">
-                                <input id="search" type="text" class="form-control" name="search" value="{{ old('search') }}" required>
-                                <button type="submit" class="m-auto btn-primary main-button btn">
-                                    {{ __('Search') }}
-                                </button>
-                              </div>  
-                      </form>
                     @endguest
 
                     <!-- Right Side Of Navbar -->
@@ -91,26 +92,21 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
+
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
-                                    <a class="dropdown-item" href="#"
-                                       {{-- onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();" --}} 
-                                                     >
+                                    <a class="dropdown-item" href="{{ route('profile.show') }}">
                                         {{ __('Profile') }}
                                     </a>
-                                    <a class="dropdown-item" href="#"
-                                    {{-- onclick="event.preventDefault();
-                                                  document.getElementById('logout-form').submit();" --}} 
-                                                  >
-                                     {{ __('Settings') }}
-                                 </a>
+                                    <a class="dropdown-item" href="#">
+                                        {{ __('Settings') }}
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
                                 </div>
                             </li>
                         @endguest
@@ -130,7 +126,7 @@
         </main>
 
 
-        <footer class="footer-bg text-center" style="background-color: #fafafbf3; ">
+        <footer class="footer-bg text-center   bg-white">
             <!-- Section: Links  -->
             <section class= "footer">
               <div class="container-fluid text-center text-md-start mt-5">

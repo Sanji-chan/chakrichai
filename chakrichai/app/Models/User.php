@@ -49,4 +49,9 @@ class User extends Authenticatable implements MustVerifyEmail
             get: fn ($value) =>  ["admin", "buyer", "seller"][$value],
         );
     }
+
+    public function profile()
+    {
+        return $this->hasOne(UserProfile::class);
+    }
 }

@@ -5,6 +5,7 @@ use App\Http\Controllers\ForgotPasswordManager;
 use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\UserRoleMiddleware;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProfileController;
 // use App\Http\Controllers\Auth;
 /*
 |--------------------------------------------------------------------------
@@ -18,14 +19,11 @@ use App\Http\Controllers\HomeController;
 */
 
 // Home route
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', function () {return view('home');});
 
 // Verification route
-Auth::routes(
-    ['verify'=>true]
-);
+Auth::routes(['verify'=>true]);
+
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('verified');
 
 // Login home
@@ -49,6 +47,16 @@ Route::middleware(['auth','user-role:seller'])->group(function(){
     ->name("seller.home")->middleware(['auth', 'verified']);
 });
 
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
+    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::post('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
+});
+
+
+
+
 // Forgot password and Reset password routes
 Route::get("/email", [ForgotPasswordManager::class, "forgotPassword"])
     ->name("forgot.password");
@@ -63,7 +71,3 @@ Route::post("/reset", [ForgotPasswordManager::class, "resetPasswordPost"])
 Route::get('auth/google', [GoogleAuthController::class, 'redirect'])->name('googleAuth');
 Route::get('auth/google/callback', [GoogleAuthController::class, 'callbackgoogle'])->name('callbackGoogle');
 
-
-
-// Profile route
-// Route::get('home/profile')
