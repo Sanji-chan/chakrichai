@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\Models\UserProfile;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -53,11 +54,9 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'role' => 1  // defalut role buyer
+            'role' => [1]  // defalut role buyer
         ]);
-        // if (strpos($data['email'], "g.bracu.ac.bd")){
-        //     $data['role'] = 1;
-        // }
+    
     }
 
     /**
@@ -72,11 +71,19 @@ class RegisterController extends Controller
         if (strpos($data['email'], "g.bracu.ac.bd") != false){
             $role = 2;
         }
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'role' => $role
         ]);
+        
+        $profile = UserProfile::create([
+            'user_id' => $user->id,
+            'bio' => 'Sample bio for User ' . $user->id,
+            // Add other attributes and their values here
+        ]);
+        return $user;
     }
+
 }

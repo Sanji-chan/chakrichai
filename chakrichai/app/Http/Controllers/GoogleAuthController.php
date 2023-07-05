@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\UserProfile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
@@ -28,9 +29,16 @@ class GoogleAuthController extends Controller
                             'email'=>$google_user->email, 
                             'google_id'=>$google_user->id,
                             'role' => $role
-                    ]);
+                         ]);
 
                     $user = User::where('google_id', $google_user->id)->first();
+
+                    $profile = UserProfile::create([
+                        'user_id' => $user->id,
+                        'bio' => 'Sample bio for User ' . $user->id,
+                        // Add other attributes and their values here
+                    ]);
+
                     Auth::login($user);
                     // return redirect()->to(route("login"));
                     if (auth()->user()->role == 'admin') 
@@ -45,7 +53,8 @@ class GoogleAuthController extends Controller
                     {
                         return redirect()->route('seller.home');
                     }
-                }else{
+                                }
+                else{
                     Auth::login($user);
                     // return redirect()->to(route("login"));
                     if (auth()->user()->role == 'admin') 

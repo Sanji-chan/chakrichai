@@ -14,17 +14,22 @@ return new class extends Migration
         Schema::create('user_profiles', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->tinyInteger('role');
-            $table->string('user_name');
+
             // Add other profile fields as needed
             $table->string('position')->nullable();
             $table->string('education')->nullable();
-            $table->string('dob')->nullable();;
+            $table->string('contact')->nullable();
+            $table->string('address')->nullable();
+            $table->string('dob')->nullable();
+
+            $table->string('bio')->nullable();
+            $table->string('facebooklink')->nullable();
+            $table->string('githublink')->nullable();
+            $table->string('instagramlink')->nullable();
+            $table->string('linkedinlink')->nullable();
             $table->timestamps();
     
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('user_name')->references('name')->on('users')->onDelete('cascade');
-            $table->foreign('role')->references('role')->on('users')->onDelete('cascade');
         });
     }
 

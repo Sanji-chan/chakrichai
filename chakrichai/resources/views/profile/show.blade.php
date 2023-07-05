@@ -12,7 +12,7 @@
             <div class="card-body text-center">
               <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
                 class="rounded-circle img-fluid mt-3" style="width: 150px; border: 5px solid #a5a4a423;">
-              <h5 class="mt-3">{{ $profile->user_name }}</h5>
+              <h5 class="mt-3">{{ $profile->name }}</h5>
               <p class="text-muted mb-1">{{ $profile->position }}</p>
               <div class="d-flex justify-content-center mb-2">
                 <a href="{{ route('profile.edit') }}">
@@ -33,7 +33,7 @@
                   <p class="mb-0">Email</p>
                 </div>
                 <div class="col-sm-9">
-                  <p class="text-muted mb-0">example@example.com</p>
+                  <p class="text-muted mb-0">{{ $profile->email }}</p>
                 </div>
               </div>
               <hr>
@@ -42,7 +42,7 @@
                   <p class="mb-0">Phone</p>
                 </div>
                 <div class="col-sm-9">
-                  <p class="text-muted mb-0">(097) 234-5678</p>
+                  <p class="text-muted mb-0">{{ $profile->contact }}</p>
                 </div>
               </div>
               <hr>
@@ -51,7 +51,7 @@
                   <p class="mb-0">Address</p>
                 </div>
                 <div class="col-sm-9">
-                  <p class="text-muted mb-0">Bay Area, San Francisco, CA</p>
+                  <p class="text-muted mb-0">{{ $profile->address }}</p>
                 </div>
               </div>
             </div>
@@ -96,9 +96,6 @@
           </div>
         </div>
 
-
-
-
         <div class="col-lg-8">
             <div class="row mb-4 ">
                 <div class="card mb-4 mb-lg-0">
@@ -117,7 +114,7 @@
                         
                     </div>
                     <div class="card-body col justify-content-end ">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident dolorem assumenda quis possimus ipsa accusantium ab, magni soluta vel officia quos sit. Ipsam perferendis soluta possimus aperiam laboriosam cupiditate quod.</p>
+                        <p>{{ $profile->bio }}</p>
                         {{-- <form action="#">
                             <div class="">
                                 <input type="search" class="form-control mb-2 rounded" placeholder="Post a job request..." aria-label="Post" aria-describedby="post-addon"/>

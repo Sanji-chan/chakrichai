@@ -4,14 +4,38 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use App\Models\User;
 
 class ProfileController extends Controller
 {
     public function show()
     {
-        $profile = Auth::user()->profile;
+        // $profile = Auth::user()->profile;
 
-        return view('profile.show', compact('profile'));
+
+        $profiles = DB::table('users')
+            ->join('user_profiles', 'user_profiles.user_id', '=', 'users.id')
+            ->select('user_profiles.*', 'users.name', 'users.email', 'users.role')
+            ->get();
+
+        foreach ($profiles as $profile) {
+            if ($profile->user_id == Auth::user()->id){
+                // $profileName = $profile->name;
+                // $profileEmail = $profile->email;
+                return view('profile.show', compact('profile'));
+            }
+        }
+            // Access other profile and user attributes as needed
+
+            // $user = User::find(Auth::user()->id);
+            // $profile = $user->profile;
+            // $profile = $user;
+
+            // return view('profile.show', compact('profile'));
+
+
+        
     }
 
     public function edit()
@@ -34,7 +58,14 @@ class ProfileController extends Controller
         if ($this->canEditProfile($profile)) {
             // Validate the request data
             $validatedData = $request->validate([
-                'user_name' => 'required',
+                'position' => 'required',
+                'education' => 'required',
+                'contact' => 'required',
+                'address' => 'required',
+                'dob' => 'required'
+                // ,
+                // '' => 'required',
+                // '' => 'required'
                 // Add validation rules for other profile fields
             ]);
 

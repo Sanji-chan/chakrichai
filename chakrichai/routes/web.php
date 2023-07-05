@@ -27,9 +27,9 @@ Auth::routes(['verify'=>true]);
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('verified');
 
 // Login home
-// Route::get('/home', function () {
-//     return view('dashboard');   
-// } )->middleware(['auth', 'verified']);
+Route::get('/home', function () {
+    return view('dashboard');   
+} )->middleware(['auth', 'verified']);
 
 // Route Admin
 Route::middleware(['auth','user-role:admin'])->group(function(){

@@ -22,10 +22,13 @@ class ProfileFactory extends Factory
     
     public function definition(): array
     {
-        $factory->define(Profile::class, function (Faker $faker) {
+        $factory->define(UserProfile::class, function (Faker $faker) {
             return [
-                'user_id' => factory(User::class)->create()->id,
-                // Add other profile attributes as needed
+                'user_id' => function () {
+                    return factory(App\Models\User::class)->create()->id;
+                },
+                'bio' => $faker->sentence,
+                // Add other attributes and their values here
             ];
         });
     }

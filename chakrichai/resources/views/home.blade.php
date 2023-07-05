@@ -132,7 +132,6 @@
                       <textarea class="form-control"  placeholder="Message" rows="2"></textarea>
                     </div>
 
-                  
                     <!-- Submit button -->
                     <button type="submit" class="btn btn-primary main-button btn-block mb-4 ">Send</button>
                   </form>

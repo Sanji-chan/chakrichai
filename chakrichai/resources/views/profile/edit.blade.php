@@ -10,7 +10,11 @@
             @csrf
             <!-- Add form fields for editing profile information -->
             <div class="form-group">
-                <input type="text" class="form-control" id="full_name" name="full_name" value="{{ $profile->user_name }}">
+                <input type="text" class="form-control" id="position" name="position" placeholder="Work position" value="{{ $profile->position }}">
+                <input type="text" class="form-control" id="education" name="education" placeholder="Education" value="{{ $profile->education }}">
+                <input type="text" class="form-control" id="contact" name="contact" placeholder="contact" value="{{ $profile->contact}}">
+                <input type="text" class="form-control" id="address" name="address" placeholder="Address" value="{{ $profile->address }}">
+                <input type="text" class="form-control" id="dob" name="dob" placeholder="Date of birth" value="{{ $profile->dob }}">
             </div>
             <!-- Add other form fields as needed -->
 
@@ -107,16 +111,6 @@
               </div>
             </div>
           </div>
-
-
-
-
-
-
-
-
-
-
 
         </div>
     </div>
