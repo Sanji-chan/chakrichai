@@ -99,7 +99,7 @@
                                     <a class="dropdown-item" href="{{ route('profile.show') }}">
                                         {{ __('Profile') }}
                                     </a>
-                                    <a class="dropdown-item" href="#">
+                                    <a class="dropdown-item" href="{{ route('profile.edit') }}">
                                         {{ __('Settings') }}
                                     </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
@@ -263,5 +263,6 @@
         <!--FOOTER PART END-->
  
     </div>
+ 
 </body>
 </html>

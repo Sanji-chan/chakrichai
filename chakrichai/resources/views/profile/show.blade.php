@@ -63,31 +63,21 @@
                  
                  <div class="text-center">
                     <!-- Facebook -->
-                    <a class="btn btn-link btn-floating btn-lg" href="#!" role="button">
+                    <a class="btn btn-link btn-floating btn-lg" href="{{ $profile->facebooklink }}" role="button">
                         <i class="text-center fab fa-facebook-f"></i>
                     </a>
             
-                    <!-- Twitter -->
-                    <a class="btn btn-link btn-floating btn-lg" href="#!" role="button">
-                    <i class="text-center fab fa-twitter"></i> 
-                    </a>
-            
-                    <!-- Google -->
-                    <a class="btn btn-link btn-floating btn-lg" href="#!" role="button">
-                        <i class="text-center fab fa-google"></i>
-                    </a>
-            
                     <!-- Instagram -->
-                    <a class="btn btn-link btn-floating btn-lg" href="#!" role="button"> 
+                    <a class="btn btn-link btn-floating btn-lg" href="{{ $profile->instagramlink }}" role="button"> 
                         <i class=" text-center fab fa-instagram"></i>
                     </a>
             
                     <!-- Linkedin -->
-                    <a class="btn btn-link btn-floating btn-lg" href="#!" role="button">
+                    <a class="btn btn-link btn-floating btn-lg" href="{{ $profile->linkedinlink }}" role="button">
                         <i class="text-center fab fa-linkedin"></i>
                     </a>
                     <!-- Github -->
-                    <a class="btn btn-link btn-floating btn-lg" href="#!" role="button">
+                    <a class="btn btn-link btn-floating btn-lg" href="{{ $profile->githublink }}" role="button">
                         <i class="text-center fab fa-github"></i>
                     </a>
                 </div>

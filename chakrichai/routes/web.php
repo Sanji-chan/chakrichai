@@ -27,9 +27,9 @@ Auth::routes(['verify'=>true]);
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('verified');
 
 // Login home
-Route::get('/home', function () {
-    return view('dashboard');   
-} )->middleware(['auth', 'verified']);
+// Route::get('/home', function () {
+//     return view('dashboard');   
+// } )->middleware(['auth', 'verified']);
 
 // Route Admin
 Route::middleware(['auth','user-role:admin'])->group(function(){
@@ -45,6 +45,7 @@ Route::middleware(['auth','user-role:buyer'])->group(function(){
 Route::middleware(['auth','user-role:seller'])->group(function(){
     Route::get("/seller/home",[HomeController::class, 'sellerHome'])
     ->name("seller.home")->middleware(['auth', 'verified']);
+    
 });
 
 
@@ -52,6 +53,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
     Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::post('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
+    Route::post('/profile/update_social', [ProfileController::class, 'update_social'])->name('profile.update_social');
 });
 
 

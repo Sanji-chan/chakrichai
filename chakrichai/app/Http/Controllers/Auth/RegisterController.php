@@ -80,7 +80,7 @@ class RegisterController extends Controller
         
         $profile = UserProfile::create([
             'user_id' => $user->id,
-            'bio' => 'Sample bio for User ' . $user->id,
+            'bio' => 'No bio added for User ' . $user->id,
             // Add other attributes and their values here
         ]);
         return $user;

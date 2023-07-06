@@ -38,6 +38,8 @@ h6 {
 label {
     margin-top: 0;
     margin-bottom: 0px;
+    color: #10101088;
+    font-size: 14px;
 }
 
 .row-header {
@@ -58,6 +60,7 @@ label {
 
 p {
     font-size: 16px;
+    color: #10101088;
 
 }
 
@@ -97,6 +100,22 @@ p {
 .card-header{
     background: #fff !important;
 }
+.list-group-item{
+    position: static !important;  
+    background: #fff !important;  
+    /* border: None !important; */
+    border-radius: None !important;
+}
+
+.list-group-item.active{
+    background-color: #8199e7 !important;
+    border-color:  #8199e7 !important;
+    color: #fff !important;
+
+}
+.form-control{
+    background-color: #fff  !important;
+}
 
 /*font-family: 'Roboto', sans-serif;*/
 /* font-family: 'Open Sans', sans-serif;*/
@@ -120,7 +139,7 @@ p {
     position: fixed;
     top: 0;
     width: 100%;
-    /*    z-index: 9999;*/
+    z-index: 9999;
     transition: all linear .5s;
     background: #fff;
 }
