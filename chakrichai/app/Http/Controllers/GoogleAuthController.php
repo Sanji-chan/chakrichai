@@ -28,7 +28,8 @@ class GoogleAuthController extends Controller
                             'name'=>$google_user->name,
                             'email'=>$google_user->email, 
                             'google_id'=>$google_user->id,
-                            'role' => $role
+                            'role' => $role,
+                            'google2fa_secret' => null,
                          ]);
 
                     $user = User::where('google_id', $google_user->id)->first();

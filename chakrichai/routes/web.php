@@ -1,12 +1,14 @@
 <?php
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ForgotPasswordManager;
 use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\UserRoleMiddleware;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
-// use App\Http\Controllers\Auth;
+use App\Http\Controllers\Auth\RegisterController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,10 +16,22 @@ use App\Http\Controllers\ProfileController;
 */
 
 // Home route
-Route::get('/', function () {return view('home');});
+
 
 // Verification route
 Auth::routes(['verify'=>true]);
+Route::get('/', function () {return view('home');});
+
+// 2FA
+Route::middleware(['2fa'])->group(function () {
+    Route::get('/', [HomeController::class, 'index'])->name('home');
+    Route::post('/2fa', function () {
+        return redirect(route('home'));
+    })->name('2fa');
+});
+  
+Route::get('/complete-registration', [RegisterController::class, 'completeRegistration'])
+    ->name('complete.registration');
 
 // Route Admin
 Route::middleware(['auth','user-role:admin'])->group(function(){
@@ -60,9 +74,6 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/profile/update_active_status', [ProfileController::class, 'update_active_status'])
         ->name('profile.update_active_status');
 });
-
-
-
 
 // Forgot password and Reset password routes
 Route::get("/email", [ForgotPasswordManager::class, "forgotPassword"])

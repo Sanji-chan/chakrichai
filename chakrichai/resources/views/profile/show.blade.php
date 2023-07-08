@@ -13,7 +13,16 @@
               <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
                 class="rounded-circle img-fluid mt-3" style="width: 150px; border: 5px solid #a5a4a423;">
               <h5 class="mt-3">{{ $profile->name }}</h5>
-              <p class="text-muted mb-1">{{ $profile->position }}</p>
+              <p class="text-muted mb-1">
+                @if ($profile->role == 1)
+                    {{ __("Buyer") }}
+                @elseif ($profile->role == 2)
+                    {{ __("Seller") }}
+                @else 
+                    {{ __("Admin") }}
+                @endif
+              
+              </p>
               <div class="d-flex justify-content-center mb-2">
                 <a href="{{ route('profile.edit') }}">
                     <button type="button" class="btn btn-primary" style="background: #eeaeca; border: 1px solid #eeaeca;">Edit Profile</button>
@@ -54,6 +63,17 @@
                   <p class="text-muted mb-0">{{ $profile->address }}</p>
                 </div>
               </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">DOB</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">{{ $profile->dob }}</p>
+                </div>
+              </div>
+
+
             </div>
           </div>
 

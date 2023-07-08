@@ -21,6 +21,23 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+    public function index(){
+        return view('home');
+        // if (auth()->user()->role == 'admin') 
+        // {
+        //   return redirect()->route('admin.home');
+        // }
+        // else if (auth()->user()->role == 'buyer') 
+        // {
+        //   return redirect()->route('buyer.home');
+        // }
+        // else
+        // {
+        //   return redirect()->route('seller.home');
+        // }
+        
+    }
+    
     public function adminHome()
     {
         return view('dashboard', ["msg"=>"Admin dashboard"]);

@@ -9,6 +9,7 @@ use App\Models\UserProfile;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -23,7 +24,9 @@ class RegisterController extends Controller
     |
     */
 
-    use RegistersUsers;
+    use RegistersUsers {
+        register as registration;
+    }
 
     /**
      * Where to redirect users after registration.
@@ -31,7 +34,7 @@ class RegisterController extends Controller
      * @var string
      */
     protected $redirectTo = RouteServiceProvider::HOME;
-
+    // protected $redirectTo = '/home';
     /**
      * Create a new controller instance.
      *
@@ -71,11 +74,13 @@ class RegisterController extends Controller
         if (strpos($data['email'], "g.bracu.ac.bd") != false){
             $role = 2;
         }
+        // return response()->json($data);
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'role' => $role
+            'role' => $role,
+            'google2fa_secret' => $data['google2fa_secret'],
         ]);
         
         $profile = UserProfile::create([
@@ -84,6 +89,42 @@ class RegisterController extends Controller
             // Add other attributes and their values here
         ]);
         return $user;
+    }
+    /**
+     * Write code on Method
+     *
+     * @return response()
+     */
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+  
+        $google2fa = app('pragmarx.google2fa');
+  
+        $registration_data = $request->all();
+  
+        $registration_data["google2fa_secret"] = $google2fa->generateSecretKey();
+  
+        $request->session()->put('registration_data', $registration_data);
+  
+        $QR_Image = $google2fa->getQRCodeInline(
+            config('app.name'),
+            $registration_data['email'],
+            $registration_data['google2fa_secret']
+        );
+          
+        return view('google2fa.register', ['QR_Image' => $QR_Image, 'secret' => $registration_data['google2fa_secret']]);
+    }
+  
+    /**
+     * Write code on Method
+     *
+     * @return response()
+     */
+    public function completeRegistration(Request $request)
+    {       
+        $request->merge(session('registration_data'));
+        return $this->registration($request);
     }
 
 }

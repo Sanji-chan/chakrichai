@@ -36,7 +36,6 @@
                 <div class="col-sm-5 mt-5">
                     <p> 
                       Lorem ipsum, dolor sit adipisicing elit. Quia exercitationem quas corporis animi, illo?
-                      
                     </p>
                 </div>
               
@@ -48,16 +47,16 @@
               <form action="{{ route('profile.update') }}" class="m-3" method="POST">
                   @csrf
                   <div class="form-group">
-                      <label for="">Work Position</label>
-                      <input type="text" class="form-control mb-3" id="position" name="position" placeholder="{{ $profile->position }}" value="{{ $profile->position }}">
-                      <label for="">Education</label>
-                      <input type="text" class="form-control  mb-3" id="education" name="education" placeholder="{{ $profile->education }}" value="{{ $profile->education }}">
-                      <label for="">Contact</label>
-                      <input type="phone" class="form-control mb-3" id="contact" name="contact" placeholder="contact" value="{{ $profile->contact}}">
-                      <label for="">Address</label>
-                      <input type="text" class="form-control mb-3" id="address" name="address" placeholder="Address" value="{{ $profile->address }}">
-                      <label for="">Date of birth</label>
-                      <input type="text" class="form-control mb-3" id="dob" name="dob" placeholder="Date of birth" value="{{ $profile->dob }}">
+                      <label for="position">Work Position</label>
+                      <input type="text" class="form-control mb-3" id="position" name="position"  value="{{ $profile->position }}">
+                      <label for="education">Education</label>
+                      <input type="text" class="form-control  mb-3" id="education" name="education"  value="{{ $profile->education }}">
+                      <label for="contact">Contact</label>
+                      <input type="tel" class="form-control mb-3" id="contact" name="contact" value="{{ $profile->contact}}">
+                      <label for="address">Address</label>
+                      <input type="text" class="form-control mb-3" id="address" name="address" value="{{ $profile->address }}">
+                      <label for="dob">Date of birth</label>
+                      <input type="date" class="form-control mb-3" id="dob" name="dob" value="{{ $profile->dob }}">
                   </div>
                   <button type="submit" class="btn btn-primary main-button">Update</button>
               </form>
