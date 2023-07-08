@@ -55,7 +55,7 @@ class UserController extends Controller
         }
         else
         {
-            echo "No results found";
+            return redirect()->back()->with('message','Please input a valid search');
         }
         
     }
