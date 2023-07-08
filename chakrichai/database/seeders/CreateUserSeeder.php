@@ -16,18 +16,21 @@ class CreateUserSeeder extends Seeder
             [
                'name'=>'Admin',
                'email'=>'admin@chakrichai.com',
+               'email_verified_at' => '2023-07-05 14:28:43',
                'role'=> 0,
                'password'=> bcrypt('123456'),
             ],
             [
                'name'=>'Buyer',
                'email'=>'buyer@chakrichai.com',
+               'email_verified_at' => '2023-07-05 14:28:43',
                'role'=> 1,
                'password'=> bcrypt('123456'),
             ],
             [
                'name'=>'Seller',
                'email'=>'seller@chakrichai.com',
+               'email_verified_at' => '2023-07-05 14:28:43',
                'role'=> 2,
                'password'=> bcrypt('123456'),
             ],

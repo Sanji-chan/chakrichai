@@ -11,11 +11,6 @@ use App\Http\Controllers\ProfileController;
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
 */
 
 // Home route
@@ -24,36 +19,46 @@ Route::get('/', function () {return view('home');});
 // Verification route
 Auth::routes(['verify'=>true]);
 
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('verified');
-
-// Login home
-// Route::get('/home', function () {
-//     return view('dashboard');   
-// } )->middleware(['auth', 'verified']);
-
 // Route Admin
 Route::middleware(['auth','user-role:admin'])->group(function(){
     Route::get("/admin/home",[HomeController::class, 'adminHome'])
-    ->name("admin.home")->middleware(['auth', 'verified']);
+        ->name("admin.home")->middleware(['auth', 'verified']);
 });
 // Route User
 Route::middleware(['auth','user-role:buyer'])->group(function(){
     Route::get("/buyer/home",[HomeController::class, 'buyerHome'])
-    ->name("buyer.home")->middleware(['auth', 'verified']);
+        ->name("buyer.home")->middleware(['auth', 'verified']);
 });
 // Route Editor
 Route::middleware(['auth','user-role:seller'])->group(function(){
     Route::get("/seller/home",[HomeController::class, 'sellerHome'])
-    ->name("seller.home")->middleware(['auth', 'verified']);
-    
+        ->name("seller.home")->middleware(['auth', 'verified']);
 });
 
-
+// Profile routes
 Route::middleware(['auth'])->group(function () {
-    Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
-    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::post('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
-    Route::post('/profile/update_social', [ProfileController::class, 'update_social'])->name('profile.update_social');
+    Route::get('/profile', [ProfileController::class, 'show'])
+        ->name('profile.show');
+
+    Route::get('/profile/edit', [ProfileController::class, 'edit'])
+        ->name('profile.edit');
+    Route::post('/profile/update', [ProfileController::class, 'update'])
+        ->name('profile.update');
+
+    Route::get('/profile/edit_bio', [ProfileController::class, 'edit_bio'])
+        ->name('profile.edit_bio');
+    Route::post('/profile/update_bio', [ProfileController::class, 'update_bio'])
+        ->name('profile.update_bio');
+
+    Route::get('/profile/edit_social', [ProfileController::class, 'edit_social'])
+        ->name('profile.edit_social');
+    Route::post('/profile/update_social', [ProfileController::class, 'update_social'])
+        ->name('profile.update_social');
+
+    Route::get('/profile/edit_active_status', [ProfileController::class, 'edit_active_status'])
+        ->name('profile.edit_active_status');
+    Route::post('/profile/update_active_status', [ProfileController::class, 'update_active_status'])
+        ->name('profile.update_active_status');
 });
 
 
@@ -70,6 +75,8 @@ Route::post("/reset", [ForgotPasswordManager::class, "resetPasswordPost"])
     ->name("reset.password.post");
 
 // Google Auth routes
-Route::get('auth/google', [GoogleAuthController::class, 'redirect'])->name('googleAuth');
-Route::get('auth/google/callback', [GoogleAuthController::class, 'callbackgoogle'])->name('callbackGoogle');
+Route::get('auth/google', [GoogleAuthController::class, 'redirect'])
+    ->name('googleAuth');
+Route::get('auth/google/callback', [GoogleAuthController::class, 'callbackgoogle'])
+    ->name('callbackGoogle');
 
