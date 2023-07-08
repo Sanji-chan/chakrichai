@@ -59,8 +59,7 @@
 
           <!-- Social media card-->
           <div class="card mb-4">
-            <div class="card-body col-lg m-auto">
-                 
+                  <div class="card-body col-lg m-auto">
                  <div class="text-center">
                     <!-- Facebook -->
                     <a class="btn btn-link btn-floating btn-lg" href="{{ $profile->facebooklink }}" role="button">
@@ -97,7 +96,7 @@
                             @if ($profile->user_id === Auth::id())
                                 {{-- <a href="{{ route('profile.edit') }}">Edit Profile</a> --}}
                                 <div style="display:inline-block">
-                                    <a href="#"><i class="fas fa-edit"></i></a>
+                                    <a href="{{ route('profile.edit_bio') }}"><i class="fas fa-edit"></i></a>
                                 </div>  
                             @endif
                         @endauth
@@ -105,12 +104,7 @@
                     </div>
                     <div class="card-body col justify-content-end ">
                         <p>{{ $profile->bio }}</p>
-                        {{-- <form action="#">
-                            <div class="">
-                                <input type="search" class="form-control mb-2 rounded" placeholder="Post a job request..." aria-label="Post" aria-describedby="post-addon"/>
-                                <a href="#"><button class="btn btn-primary">Post</button></a>
-                            </div>
-                        </form> --}}
+                       
                     </div>
                 </div>
               </div>
@@ -121,8 +115,7 @@
                     <form action="#">
                         <div class="">
                             <textarea class="form-control mb-2 rounded "  placeholder="Post a job request..." rows="3"></textarea>
-                            {{-- <input type="search" class="form-control mb-2 rounded" rows="3" placeholder="Post a job request..." aria-label="Post" aria-describedby="post-addon"/> --}}
-                            <a href="#"><button class="btn btn-primary secondary-button" >Post</button></a>
+                            <a href="#"><button  class="btn btn-primary secondary-button" >Post</button></a>
                         </div>
                     </form>
                 </div>
