@@ -5,6 +5,7 @@ use App\Http\Controllers\ForgotPasswordManager;
 use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\UserRoleMiddleware;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
 // use App\Http\Controllers\Auth;
 /*
@@ -46,6 +47,10 @@ Route::middleware(['auth','user-role:seller'])->group(function(){
     Route::get("/seller/home",[HomeController::class, 'sellerHome'])
     ->name("seller.home")->middleware(['auth', 'verified']);
     
+});
+Route::middleware(['auth'])->group(function(){
+    Route::get("/search",[UserController::class, 'searchUsers'])
+    ->name("search")->middleware(['auth', 'verified']); 
 });
 
 
