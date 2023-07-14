@@ -21,16 +21,20 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+    public function index(){
+        return view('home');
+    }
+    
     public function adminHome()
     {
-        return view('dashboard', ["msg"=>"Admin dashboard"]);
+        return view('dashboard.admin', ["msg"=>"Admin dashboard"]);
     }
     public function buyerHome()
     {
-        return view('dashboard',["msg"=> "Buyer dashboard"]);
+        return view('dashboard.buyer',["msg"=> "Buyer dashboard"]);
     }
     public function sellerHome()
     {
-        return view('dashboard', ["msg"=> "Seller dashboard"]);
+        return view('dashboard.seller', ["msg"=> "Seller dashboard"]);
     }
 }

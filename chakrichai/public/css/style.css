@@ -38,13 +38,15 @@ h6 {
 label {
     margin-top: 0;
     margin-bottom: 0px;
+    color: #10101088;
+    font-size: 14px;
 }
 
 .row-header {
     font-size: 32px;
     color: #94a8e9;
     font-weight: 600;
-    padding-top: 5%;
+    padding-top: 2%;
     padding-bottom: 2.5%;
 
 }
@@ -58,6 +60,8 @@ label {
 
 p {
     font-size: 16px;
+    color: #10101088;
+    padding: None !important;
 
 }
 
@@ -78,6 +82,41 @@ p {
     border: 2px solid #eeaeca;
 }
 
+.secondary-button{
+    background-color: #fff;
+    color: #8199e7;
+    border:1px solid #8199e7;
+    transition: .5s;
+}
+.secondary-button:hover{
+    background-color: #8199e7; 
+    border:1px solid #8199e7;
+    color: #fff; 
+}
+.card{
+    background: #fff !important;
+    position: static !important;
+}
+
+.card-header{
+    background: #fff !important;
+}
+.list-group-item{
+    position: static !important;  
+    background: #fff !important;  
+    /* border: None !important; */
+    border-radius: None !important;
+}
+
+.list-group-item.active{
+    background-color: #8199e7 !important;
+    border-color:  #8199e7 !important;
+    color: #fff !important;
+
+}
+.form-control{
+    background-color: #fff  !important;
+}
 
 /*font-family: 'Roboto', sans-serif;*/
 /* font-family: 'Open Sans', sans-serif;*/
@@ -101,7 +140,7 @@ p {
     position: fixed;
     top: 0;
     width: 100%;
-    /*    z-index: 9999;*/
+    z-index: 9999;
     transition: all linear .5s;
     background: #fff;
 }
@@ -124,6 +163,10 @@ p {
     }
 }
 
+.dropdown-item.active, .dropdown-item:active{
+    background: #8199E7 !important;
+    color: #fff !important;
+}
 /*STICKY HEADER END*/
 
 /*NAVBAR/HEADER END*/
@@ -131,24 +174,60 @@ p {
 
 /*BANNER PART START*/
 #banner-bg {
-    background: url(../images/banner-bg.jpeg);
+    background: url(../images/banner.jpg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    /*    padding-top: 200px;*/
-    /*    padding-bottom: 200px;*/
+    /* padding-top: 300px;
+    padding-bottom: 300px; */
+}
+.banner2-bg{
+     background: url(../images/banner2.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    padding-top: 200px;
+    padding-bottom: 200px;
 }
 
 .banner-text {
-    color: aliceblue;
+    color: #ffffff;
+    
+    /* color:#8199e7; */
     text-align: left;
 }
 
+
+.banner-text  h1 {
+    text-transform: uppercase;
+    font-weight: 800;
+    overflow: hidden; /* Ensures the content is not revealed until the animation */
+    border-right: .15em solid #8199e7; /* The typwriter cursor */
+    white-space: nowrap; /* Keeps the content on a single line */
+    margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+    letter-spacing: .15em; /* Adjust as needed */
+    animation: 
+      typing 3.5s steps(40, end),
+      blink-caret .75s step-end infinite;
+  }
+  
+  /* The typing effect */
+  @keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+  }
+  
+  /* The typewriter cursor effect */
+  @keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: #8199e7; }
+  }
+
 .banner-overly {
     width: 100%;
-    background: rgba(17, 18, 21, 0.53);
-    padding-top: 200px;
-    padding-bottom: 200px;
+    background: rgba(130, 130, 132, 0.241);
+    padding-top: 250px;
+    padding-bottom: 250px;
 }
 
 /*BANNER PART END*/
@@ -156,7 +235,7 @@ p {
 /*SERVICE PART START*/
 
 #service-bg {
-    padding-top: 120px;
+    padding-top: 80px;
     padding-bottom: 120px;
 }
 
@@ -278,6 +357,11 @@ padding: 7% 0%;
 
 /* dasboard */
 .dashboard-bg{
+    justify-content: center;
+    padding: 7% 0%;
+}
+
+.profile-bg{
     justify-content: center;
     padding: 7% 0%;
 }

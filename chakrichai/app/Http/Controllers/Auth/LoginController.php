@@ -50,18 +50,19 @@ class LoginController extends Controller
      
         if(auth()->attempt(array('email' => $input['email'], 'password' => $input['password'])))
         {
-            if (auth()->user()->role == 'admin') 
-            {
-              return redirect()->route('admin.home');
-            }
-            else if (auth()->user()->role == 'buyer') 
-            {
-              return redirect()->route('buyer.home');
-            }
-            else
-            {
-              return redirect()->route('seller.home');
-            }
+            // if (auth()->user()->role == 'admin') 
+            // {
+            //   return redirect()->route('admin.home');
+            // }
+            // else if (auth()->user()->role == 'buyer') 
+            // {
+            //   return redirect()->route('buyer.home');
+            // }
+            // else
+            // {
+            //   return redirect()->route('seller.home');
+            // }
+            return redirect()->route('home');
         }
         else
         {
