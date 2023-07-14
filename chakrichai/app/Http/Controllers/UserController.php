@@ -47,6 +47,8 @@ class UserController extends Controller
                 ->orWhere("user_profiles.position","like","%$request->search%")
                 ->orWhere("user_profiles.education","like","%$request->search%")
                 ->get();
+
+                
             }
             
             return view("search",compact("searchUsers"));
