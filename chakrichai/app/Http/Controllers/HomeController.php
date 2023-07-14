@@ -23,31 +23,18 @@ class HomeController extends Controller
      */
     public function index(){
         return view('home');
-        // if (auth()->user()->role == 'admin') 
-        // {
-        //   return redirect()->route('admin.home');
-        // }
-        // else if (auth()->user()->role == 'buyer') 
-        // {
-        //   return redirect()->route('buyer.home');
-        // }
-        // else
-        // {
-        //   return redirect()->route('seller.home');
-        // }
-        
     }
     
     public function adminHome()
     {
-        return view('dashboard', ["msg"=>"Admin dashboard"]);
+        return view('dashboard.admin', ["msg"=>"Admin dashboard"]);
     }
     public function buyerHome()
     {
-        return view('dashboard',["msg"=> "Buyer dashboard"]);
+        return view('dashboard.buyer',["msg"=> "Buyer dashboard"]);
     }
     public function sellerHome()
     {
-        return view('dashboard', ["msg"=> "Seller dashboard"]);
+        return view('dashboard.seller', ["msg"=> "Seller dashboard"]);
     }
 }

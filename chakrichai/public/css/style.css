@@ -163,6 +163,10 @@ p {
     }
 }
 
+.dropdown-item.active, .dropdown-item:active{
+    background: #8199E7 !important;
+    color: #fff !important;
+}
 /*STICKY HEADER END*/
 
 /*NAVBAR/HEADER END*/

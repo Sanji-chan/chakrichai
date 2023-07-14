@@ -79,7 +79,9 @@
 
           <!-- Social media card-->
           <div class="card mb-4">
-                  <div class="card-body col-lg m-auto">
+            
+                <div class="card-body col-lg m-auto">
+                    
                  <div class="text-center">
                     <!-- Facebook -->
                     <a class="btn btn-link btn-floating btn-lg" href="{{ $profile->facebooklink }}" role="button">
@@ -99,8 +101,9 @@
                     <a class="btn btn-link btn-floating btn-lg" href="{{ $profile->githublink }}" role="button">
                         <i class="text-center fab fa-github"></i>
                     </a>
+                    
                 </div>
-
+ 
             </div>
           </div>
         </div>
@@ -128,7 +131,8 @@
                     </div>
                 </div>
               </div>
-          <div class="row">
+              
+          {{-- <div class="row">
             <div class="card mb-4 mb-lg-0">
                 <div class="card-header m-2 bg-light"><h4>Post/Find a job section</h4></div>
                 <div class="card-body col justify-content-end ">
@@ -140,7 +144,8 @@
                     </form>
                 </div>
             </div>
-          </div>
+          </div> --}}
+
         </div>
 
 
