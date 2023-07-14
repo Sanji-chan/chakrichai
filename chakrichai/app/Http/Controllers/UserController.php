@@ -51,6 +51,10 @@ class UserController extends Controller
             
             return view("search",compact("searchUsers"));
         }
-        
+        else
+        {
+            return redirect()->back();
+
+        }
     }
 }
