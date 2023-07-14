@@ -49,6 +49,8 @@ Route::middleware(['auth','user-role:seller'])->group(function(){
     Route::get("/seller/home",[HomeController::class, 'sellerHome'])
         ->name("seller.home")->middleware(['auth', 'verified']);
 });
+
+// Search user routes
 Route::middleware(['auth'])->group(function(){
     Route::get("/search",[UserController::class, 'searchUsers'])
     ->name("search")->middleware(['auth', 'verified']); 
@@ -95,4 +97,6 @@ Route::get('auth/google', [GoogleAuthController::class, 'redirect'])
     ->name('googleAuth');
 Route::get('auth/google/callback', [GoogleAuthController::class, 'callbackgoogle'])
     ->name('callbackGoogle');
+Route::get('auth/google/create', [GoogleAuthController::class, 'google_create'])
+    ->name('googlecreate');
 

@@ -56,7 +56,7 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasOne(UserProfile::class);
     }
     protected function google2faSecret(): Attribute
-    {
+    {   
         return new Attribute(
             get: fn ($value) =>  decrypt($value),
             set: fn ($value) =>  encrypt($value),

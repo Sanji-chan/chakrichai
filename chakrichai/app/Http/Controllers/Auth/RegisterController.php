@@ -100,7 +100,7 @@ class RegisterController extends Controller
         $this->validator($request->all())->validate();
   
         $google2fa = app('pragmarx.google2fa');
-  
+
         $registration_data = $request->all();
   
         $registration_data["google2fa_secret"] = $google2fa->generateSecretKey();
@@ -113,7 +113,7 @@ class RegisterController extends Controller
             $registration_data['google2fa_secret']
         );
           
-        return view('google2fa.register', ['QR_Image' => $QR_Image, 'secret' => $registration_data['google2fa_secret']]);
+        return view('google2fa.register', ['QR_Image' => $QR_Image, 'secret' => $registration_data['google2fa_secret'], 'google' => false]);
     }
   
     /**
@@ -124,6 +124,7 @@ class RegisterController extends Controller
     public function completeRegistration(Request $request)
     {       
         $request->merge(session('registration_data'));
+        return response()->json($request);
         return $this->registration($request);
     }
 
