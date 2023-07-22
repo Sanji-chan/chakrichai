@@ -9,7 +9,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Auth\RegisterController;
-
+use App\Http\Controllers\PostController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -100,3 +100,30 @@ Route::get('auth/google/callback', [GoogleAuthController::class, 'callbackgoogle
 Route::get('auth/google/create', [GoogleAuthController::class, 'google_create'])
     ->name('googlecreate');
 
+// Post routes
+Route::middleware(['auth'])->group(function () {
+    Route::get('/posts', [PostController::class, 'index'])
+        ->name('posts.index');
+    Route::get('/posts/create', [PostController::class, 'create'])
+        ->name('posts.create');
+    Route::post('/posts', [PostController::class, 'store'])
+        ->name('posts.store');
+    Route::get('/posts/{post}', [PostController::class, 'show'])
+        ->name('posts.show');
+    Route::get('/posts/{post}/edit', [PostController::class, 'edit'])
+        ->name('posts.edit');
+    Route::post('/posts/{post}', [PostController::class, 'update'])
+        ->name('posts.update');
+    Route::delete('/posts/{post}', [PostController::class, 'destroy'])
+        ->name('posts.destroy');
+
+
+
+});
+            // GET /posts - index - posts.index
+            // GET /posts/create - create - posts.create
+            // POST /posts - store - posts.store
+            // GET /posts/{post} - show - posts.show
+            // GET /posts/{post}/edit - edit - posts.edit
+            // PUT/PATCH /posts/{post} - update - posts.update
+            // DELETE /posts/{post} - destroy - posts.destroy

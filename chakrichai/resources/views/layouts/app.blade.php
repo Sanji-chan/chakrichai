@@ -47,7 +47,7 @@
                       <form class="navbar-nav ms-auto col-lg-4 " method="GET" action="{{ url('search') }}">
                           @csrf
                               <div class="input-group">
-                                <input type="text" name="search" value= "{{ Request::get('search') }}" class="form-control" style="border: None;" placeholder="Search" aria-label="Search" aria-describedby="search-addon"/>
+                                <input type="text" name="search" value= "{{ Request::get('search') }}" class="form-control" style="border: None;" placeholder="Search User" aria-label="Search" aria-describedby="search-addon"/>
                                 <button type="submit" class="border-0 btn" id="search-addon"><i class="fas fa-search" style="color: #eeaeca;"></i></button>
                               </div>
                       </form>
@@ -59,6 +59,9 @@
 
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url($userRoute) }}">Home</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="{{ route('posts.index') }}">Job posts</a>
                         </li>
                         
                         <li class="nav-item">

@@ -60,6 +60,10 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url($userRoute) }}">Home</a>
                         </li>
+                       
+                        <li class="nav-item">
+                          <a class="nav-link" href="route{{ 'posts.index' }}">Job posts</a>
+                        </li>
                         
                         <li class="nav-item">
                           <a class="nav-link" href="#">Messages</a>

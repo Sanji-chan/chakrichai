@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Post;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 class HomeController extends Controller
 {
     /**
@@ -30,11 +32,19 @@ class HomeController extends Controller
         return view('dashboard.admin', ["msg"=>"Admin dashboard"]);
     }
     public function buyerHome()
-    {
-        return view('dashboard.buyer',["msg"=> "Buyer dashboard"]);
+    {   $user_id = Auth::user()->id;
+        
+        $posts= Post::where('user_id', Auth::id())->latest()->paginate(5);
+        
+        // return response()->json($posts);
+        // return view('posts.index', compact('posts'));
+        return view('dashboard.buyer',["msg"=> "Buyer dashboard"], compact('posts'));
     }
     public function sellerHome()
     {
-        return view('dashboard.seller', ["msg"=> "Seller dashboard"]);
+        $user_id = Auth::user()->id;
+        
+        $posts= Post::where('user_id', Auth::id())->latest()->paginate(5);
+        return view('dashboard.seller', ["msg"=> "Seller dashboard"], compact('posts'));
     }
 }

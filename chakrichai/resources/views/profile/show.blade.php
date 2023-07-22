@@ -9,9 +9,10 @@
         {{-- user image card --}}
         <div class="col-lg-4">
           <div class="card mb-4">
-            <div class="card-body text-center">
-              <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
-                class="rounded-circle img-fluid mt-3" style="width: 150px; border: 5px solid #a5a4a423;">
+            <div class="card-body m-auto text-center">
+              {{-- <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
+                class="rounded-circle img-fluid mt-3" style="width: 150px; border: 5px solid #a5a4a423;"> --}}
+              <div class="user_img m-auto img-fluid"></div>
               <h5 class="mt-3">{{ $profile->name }}</h5>
               <p class="text-muted mb-1">
                 @if ($profile->role == 1)
