@@ -21,8 +21,10 @@
             <div class="row">
              
                 <div class="col-sm-3">
-                  <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
+                  {{-- <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
                   class="rounded-circle img-fluid mt-3" style="width: 150px; border: 2px solid #a5a4a423;">
+                 --}}
+                 <div class="user_img m-auto img-fluid"></div>
                 </div>
                 <div class="col-sm-4">
                   <h5 class="mt-4" style="color: #eeaeca;">{{ $profile->name }}</h5>

@@ -8,7 +8,8 @@
         <div class="row mt-4">
             <div class="col-lg-12">
         
-            
+
+
             <div class="card mb-4 mb-lg-0">
                 <div class="card-header m-2">
                     <div class="col-4" style="display:inline-block">
@@ -61,9 +62,9 @@
                                                     class="rounded-circle"
                                                     />
                                                 <div class="ms-3">
-                                                    <a href="#"> <p class="fw-bold mb-1">{{ $post->title }}</p></a>
+                                                    <a href="{{ route('posts.show', $post->slug) }}"> {{ $post->title }}</a>
                                                 
-                                                <p class="text-muted mb-0">{{ $post->created_at }}</p>
+                                                <p class="text-muted mb-0" style="font-size: 14px">Posted at: {{ $post->created_at }}</p>
                                                 </div>
                                             </div>
                                         </td>

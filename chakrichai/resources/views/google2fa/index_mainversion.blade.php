@@ -52,7 +52,7 @@
           
                                 <div class="form-group">
                                     <div class="col-md-6 col-md-offset-4 mt-3">
-                                        <button type="submit" class="btn btn-primary">
+                                        <button type="submit"  class="btn btn-primary secondary-button" style="background: #eeaeca; border: 1px solid #eeaeca; color: #fff;">
                                             Login
                                         </button>
                                     </div>

@@ -2,6 +2,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\Authenticate;
 use App\Http\Controllers\ForgotPasswordManager;
 use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\UserRoleMiddleware;
@@ -10,6 +11,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\ApplicationController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,6 +24,12 @@ use App\Http\Controllers\PostController;
 // Verification route
 Auth::routes(['verify'=>true]);
 Route::get('/', function () {return view('home');});
+
+
+Route::group(['middleware' => ['guest']], function () {
+    //only guests can access these routes
+    Route::get('/', [HomeController::class, 'index'])->name('home');
+});
 
 // 2FA
 Route::middleware(['2fa'])->group(function () {
@@ -58,6 +66,7 @@ Route::middleware(['auth'])->group(function(){
 
 // Profile routes
 Route::middleware(['auth'])->group(function () {
+
     Route::get('/profile', [ProfileController::class, 'show'])
         ->name('profile.show');
 
@@ -100,7 +109,7 @@ Route::get('auth/google/callback', [GoogleAuthController::class, 'callbackgoogle
 Route::get('auth/google/create', [GoogleAuthController::class, 'google_create'])
     ->name('googlecreate');
 
-// Post routes
+// Job Post routes
 Route::middleware(['auth'])->group(function () {
     Route::get('/posts', [PostController::class, 'index'])
         ->name('posts.index');
@@ -116,14 +125,21 @@ Route::middleware(['auth'])->group(function () {
         ->name('posts.update');
     Route::delete('/posts/{post}', [PostController::class, 'destroy'])
         ->name('posts.destroy');
-
-
-
 });
-            // GET /posts - index - posts.index
-            // GET /posts/create - create - posts.create
-            // POST /posts - store - posts.store
-            // GET /posts/{post} - show - posts.show
-            // GET /posts/{post}/edit - edit - posts.edit
-            // PUT/PATCH /posts/{post} - update - posts.update
-            // DELETE /posts/{post} - destroy - posts.destroy
+
+// Job Application routes
+Route::middleware(['auth'])->group(function () {
+    Route::get('/applications/create', [ApplicationController::class, 'create'])
+        ->name('applications.create');
+    Route::post('/applications', [ApplicationController::class, 'store'])
+        ->name('applications.store');
+    Route::get('/applications/{application}', [ApplicationController::class, 'show'])
+        ->name('applications.show');
+    // Route::get('/applications/{application}/editstatus', [ApplicationController::class, 'editstatus'])
+    //     ->name('applications.editstatus');
+    Route::post('/applications/{application}', [ApplicationController::class, 'updatestatus'])
+        ->name('applications.updatestatus');
+    Route::delete('/applications/{post}', [ApplicationController::class, 'destroy'])
+        ->name('applications.destroy');
+});
+        

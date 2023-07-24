@@ -5,14 +5,16 @@
 
 <div class="row">
     
-    
     <div class="card mb-4 mb-lg-0">
-        <div class="card-header m-2"><h4>Applicants</h4></div>
-        <div class="card-body m-auto">
+        <div class="card-header m-2"><h4>Your applications</h4></div>
+        <div class="card-body ">
 
-            @if ($posts->isEmpty())
-                <div class="empty_img img-fluid m-auto"></div>
-                <p class="m-auto text-center">No applications found</p>
+            @if ($applications->isEmpty())
+            <div class="empty_img img-fluid m-auto"></div>
+            <p class="m-auto text-center">No applications found
+                <br>
+                <a class="m-auto text-center" href="{{ route("posts.index") }}">Find jobs</a>
+            </p>
             @else
                 <table  class="table align-middle mb-0">
                     <thead>
@@ -27,7 +29,7 @@
                           </thead>
                     </thead>
                     <tbody>
-                        @foreach ($posts as $post)
+                        @foreach ($applications as $application)
                             <tr>
                                 <td>
                                     <div class="d-flex align-items-center">
@@ -38,44 +40,39 @@
                                             class="rounded-circle"
                                             />
                                         <div class="ms-3">
-                                            <a href="#"> <p class="fw-bold mb-1">{{ $post->title }}</p></a>
+                                            <a href="#"> <p class="fw-bold mb-1">{{ $application->name }}</p></a>
                                         
-                                        <p class="text-muted mb-0">{{ $post->created_at }}</p>
+                                        <p class="text-muted mb-0">{{ $application->Uni_name }}</p>
                                         </div>
                                     </div>
                                 </td>
                                 <td>
-                                    <p class="fw-normal mb-1"> {{ $post->end_date }} </p>
+                                    <p class="fw-normal mb-1"> {{ $application->post_id }} </p>
                                 </td>
                                 <td>
-                                    <p class="fw-normal mb-1"> {{ $post->price }} Tk</p>
+                                    <p class="fw-normal mb-1"> {{ $application->resume }} </p>
                                 </td>
                                 <td>
-                                    <form action="#">
-                                        <select  class="form-control mb-3" id="status" name="status" required>
-                                            <option value="active" {{ old('status') === 'Pending' ? 'selected' : '' }}>Pending</option>
-                                            <option value="completed" {{ old('status') === 'Accepted' ? 'selected' : '' }}>Accepted</option>
-                                            <option value="pending" {{ old('status') === 'Rejected' ? 'selected' : '' }}>Rejected</option>
-                                        </select>
-                                    </form>
+                                    <p class="fw-normal mb-1"> {{ $application->status }} </p>
                                 </td>
                             
 
-                                <td>
-                                    <a href="{{ route('posts.show', $post->slug) }}">View</a>
+                             <td>
+                                    <a href="{{ route('applications.show', $application->slug) }}">View</a>
                                     
-                                    @if (Auth::user()->id == $post->user_id)
-                                    <form action="{{ route('posts.destroy', $post->id) }}" method="POST">
+                                    {{-- @if (Auth::user()->id == $post->user_id) --}}
+                                    <form action="{{ route('applications.destroy', $application->id) }}" method="POST">
                                         @csrf
-                                        
+                                        @method('DELETE')
                                         <button type="submit"  class="btn btn-primary secondary-button" style="background: #eeaeca; border: 1px solid #eeaeca; color: #fff;">Delete</button>
                                     </form>
-                                    @endif
+                                    {{-- @endif --}}
                                 </td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
+                <a class="m-auto text-center" href="{{ route("posts.index") }}">Find jobs</a>
             @endif
         </div>
     </div>

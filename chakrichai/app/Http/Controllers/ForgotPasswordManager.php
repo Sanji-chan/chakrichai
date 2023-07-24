@@ -1,6 +1,5 @@
 <?php
 namespace app\Http\Controllers;
-// use App\Http\Controllers\Controller;
 use App\Models\User; 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -70,6 +69,6 @@ class ForgotPasswordManager extends Controller
         // remove generated token from password_rest table
         DB::table('password_resets')
             ->where(["email"=>$request->email])->delete();
-        return redirect()->to(route("login"))->with("success", "Password resrt successfully." );
+        return redirect()->to(route("login"))->with("success", "Password reset successfully." );
     }
 }

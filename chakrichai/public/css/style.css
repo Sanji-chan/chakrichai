@@ -101,6 +101,13 @@ p {
 .card-header{
     background: #fff !important;
 }
+.card-footer{
+    background: #fff !important; 
+}
+
+.card-footer i{
+    color: #8199e7;
+}
 
 .card-header h4{
     font-size: 18px;

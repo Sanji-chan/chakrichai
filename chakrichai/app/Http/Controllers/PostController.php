@@ -23,7 +23,6 @@ class PostController extends Controller
 
     public function store(Request $request)
     {
-        // return response()->json($request);
         $validatedData = $request->validate([
             'title' => 'required',
             'slug' => 'nullable',
@@ -35,7 +34,6 @@ class PostController extends Controller
             'details' => 'nullable',
             'user_id' => 'nullable'
         ]);
-        // return response()->json($validatedData);
 
         // Handle file upload if necessary
         if ($request->hasFile('photo')) {
@@ -53,19 +51,16 @@ class PostController extends Controller
         $post->status = $validatedData['status'];
         $post->user_id =  str(Auth::id());
         // Set other fields
-        // return response()->json($post);
 
-        // return response()->json(Str::slug($post->title));
-        // Generate the slug from the post title
-        $temp = strval($post->id)."/".strval($post->title);
-        $post->slug = Str::slug($temp);
+        // Generate a random slug and check if it's unique
+        do {
+            $slug = Str::random(10); // You can specify the desired length of the slug here
+        } while (Post::where('slug', $slug)->exists());
 
-        //
-        
+        // Save the slug to the post
+        $post->slug = $slug;
         // Save the post to the database
         $post->save();
-
-        // Post::create($post);
 
         return redirect()->route('posts.index')->with('success', 'Post created successfully.');
     }
@@ -75,7 +70,6 @@ class PostController extends Controller
     {
         // return response()->json(Auth::user()->role );
         $post = Post::where('slug', $slug)->firstOrFail();
-    
         return view('posts.show', compact('post'));
     }
     
@@ -111,7 +105,7 @@ class PostController extends Controller
         return redirect()->route('posts.index')->with('success', 'Post updated successfully.');
     }
 
-    public function destroy(Post $post)
+    public function destroy(Application $post)
     {
         $post->delete();
 

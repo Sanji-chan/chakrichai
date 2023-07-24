@@ -25,7 +25,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container-fluid">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand" href="{{ url("/") }}">
                     {{ config('app.name', 'Chakrichai') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -195,6 +195,7 @@
                     <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
                     <p><i class="fas fa-home me-3 text-secondary"></i> Dhaka, Bangladesh 1216</p>
                     <p>
+                      
                       <i class="fas fa-envelope me-3 text-secondary"></i>
                       chakrichai@gmail.com
                     </p>

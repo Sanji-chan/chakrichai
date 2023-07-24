@@ -3,6 +3,7 @@
 @section('content')
 <div class="dashboard-bg"  style="background-color: #a5a4a423;">
     <div class="container">
+
         <div class="row justify-content-center">
             <div class="col-lg-3 ">
                 <div class="card  mb-4 mb-lg-0">
@@ -17,7 +18,7 @@
                         <div class="welcomeimg m-auto img-fluid"></div>
                         <p>Welcome back {{ Auth::user()->name }},</p>
                         <p>More updates will be visible soon!</p>
-                        <p>Lorem, ipsum dolor.</p>
+                        <p>Hakuna Matata.</p>
                     </div>
                 </div>
             </div>

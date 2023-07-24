@@ -1,9 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\Application;
+use Illuminate\Http\Request;
+
+use App\Providers\RouteServiceProvider;
+
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 class HomeController extends Controller
@@ -23,7 +26,10 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index(){
+
+    // protected $redirectTo = RouteServiceProvider::HOME;
+    
+    public function index(){     
         return view('home');
     }
     
@@ -35,16 +41,28 @@ class HomeController extends Controller
     {   $user_id = Auth::user()->id;
         
         $posts= Post::where('user_id', Auth::id())->latest()->paginate(5);
-        
-        // return response()->json($posts);
-        // return view('posts.index', compact('posts'));
-        return view('dashboard.buyer',["msg"=> "Buyer dashboard"], compact('posts'));
+    
+        $applications = Application::select( 'applications.*')
+        ->join('posts', 'posts.id', '=', 'applications.post_id')
+        ->join('users', 'users.id', '=', 'posts.user_id')
+        ->where('posts.user_id', $user_id)
+        ->get();
+
+        // return response()->json($applications);
+
+        return view('dashboard.buyer',["msg"=> "Buyer dashboard"], compact('posts', 'applications') );
     }
     public function sellerHome()
     {
         $user_id = Auth::user()->id;
         
-        $posts= Post::where('user_id', Auth::id())->latest()->paginate(5);
-        return view('dashboard.seller', ["msg"=> "Seller dashboard"], compact('posts'));
+        $applications = Application::select( 'applications.*', 'posts.title')
+        ->join('posts', 'posts.id', '=', 'applications.post_id')
+        ->join('users', 'users.id', '=', 'posts.user_id')
+        ->where('applications.user_id', $user_id)
+        ->get();
+
+        
+        return view('dashboard.seller', ["msg"=> "Seller dashboard"], compact('applications'));
     }
 }
