@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Session;
 
 class ApplicationController extends Controller
 {
@@ -49,18 +52,25 @@ class ApplicationController extends Controller
 
         // Handle file upload if necessary
         if ($request->hasFile('resume')) {
-            $photo = $request->file('resume');
-            $photoPath = $photo->store('public/resume');
-            $validatedData['resume'] = $photoPath;
+            $resume = $request->file('resume');
+            $resumePath = 'resume';
+            $resumeName = str(Auth::id()). "_" . $validatedData['post_id']. "." . $resume->getClientOriginalExtension();;
+            $resume->move($resumePath, $resumeName);
+            $validatedData['resume'] = $resumeName;
+            
         }
+
 
         $post = new Application();
         $post->name = $validatedData['name'];
         $post->uni_name = $validatedData['uni_name'];
         $post->age = $validatedData['age'];
-        $post->semester = $request['semester'];
+        $post->semester = $validatedData['semester'];
         $post->major = $validatedData['major'];
-     
+        if (isset($validatedData['resume'])){
+            $post->resume = $validatedData['resume'];
+        }
+       
         $post->user_id =  str(Auth::id());
 
         $post->post_id =  $validatedData['post_id'];
@@ -75,9 +85,10 @@ class ApplicationController extends Controller
         $post->slug = $slug;
         $post->save();
 
-        return redirect()->route('posts.index')->with('success', 'Appliaction created successfully.');
+        return redirect()->route('seller.home')->with('success', 'Appliaction created successfully.');
     }
 
+    
     /**
      * Display the specified resource.
      */
@@ -88,12 +99,24 @@ class ApplicationController extends Controller
         return view('applications.show', compact('application', 'post'));
     }
 
+    public function getresume($fileName)
+    { 
+        $filePath = public_path('resume/' . $fileName);
+        
+        if (file_exists($filePath)) {
+            return Response::file($filePath);
+        } else {
+            abort(404, 'File not found');
+        }
+
+    }
+
     /**
      * Show the form for editing the specified resource.
      */
     public function editstatus(string $id)
     {
-        //
+        // No view for editstatus created
     }
 
     /**

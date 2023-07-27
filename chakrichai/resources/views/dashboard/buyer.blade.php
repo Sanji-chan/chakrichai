@@ -133,7 +133,7 @@
                                     <p class="fw-normal mb-1"> {{ $application->post_id }} </p>
                                 </td>
                                 <td>
-                                    <p class="fw-normal mb-1"> {{ $application->resume }} </p>
+                                   <a href="{{route('applications.getresume', $application->resume) }}" target="_blank"  rel="noopener" method="GET">{{ $application->resume }}</a>
                                 </td>
                                 <td>
                                     <form action= "{{ route('applications.updatestatus', $application->id) }}"  method="POST" enctype="multipart/form-data">
@@ -145,7 +145,7 @@
                                             <option value="Accepted">Accepted</option>
                                             <option value="Rejected">Rejected</option>
                                         </select>
-                                        <button type="submit" class="mb-1 ps-2" style="text-decoration:None; background:None; border: None; padding: None;">  Change status </button>
+                                        <button type="submit" class="mb-1 ps-2 text-muted" style="text-decoration:None; background:None; border: None; padding: None;">  Change status </button>
                                     </form>
                                 </td>
                             

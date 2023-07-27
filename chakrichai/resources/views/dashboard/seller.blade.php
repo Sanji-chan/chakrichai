@@ -50,7 +50,7 @@
                                     <p class="fw-normal mb-1"> {{ $application->post_id }} </p>
                                 </td>
                                 <td>
-                                    <p class="fw-normal mb-1"> {{ $application->resume }} </p>
+                                    <a href="{{route('applications.getresume', $application->resume) }}" target="_blank"  rel="noopener" method="GET">{{ $application->resume }}</a>
                                 </td>
                                 <td>
                                     <p class="fw-normal mb-1"> {{ $application->status }} </p>

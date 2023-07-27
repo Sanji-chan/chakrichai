@@ -22,7 +22,8 @@
                     <p>University: {{ $application->Uni_name}}</p>
                     <p>Major: {{ $application->major }}</p>
                     <p>Semester: {{ $application->semester }}</p>
-                    <p>Resume: {{ $application->resume }}</p>
+                    <p>Resume: <a href="{{route('applications.getresume', $application->resume) }}" target="_blank"  rel="noopener" method="GET">{{ $application->resume }}</a></p>
+        
                     
                     <p>Application status: {{ $application->status }}</p>
                     @if (Auth::user()->role == 'buyer')                   
