@@ -31,10 +31,11 @@
                             <label for="tag">Category</label>
                             <select  class="form-control mb-3" id="tag" name="tag" required>
                                 <option value="N/A" {{ old('status') === 'N/A' ? 'selected' : '' }}>N/A</option>
-                                <option value="teaching" {{ old('status') === 'teaching' ? 'selected' : '' }}>Teaching</option>
-                                <option value="software_dev" {{ old('status') === 'software_dev' ? 'selected' : '' }}>Software Development</option>
-                                <option value="graphics" {{ old('status') === 'graphics' ? 'selected' : '' }}>Computer Graphics</option>
-                                <option value="digital_art" {{ old('status') === 'digital_art' ? 'selected' : '' }}>Digital Art</option>
+                                <option value="Teaching" {{ old('status') === 'Teaching' ? 'selected' : '' }}>Teaching</option>
+                                <option value="Software Dev" {{ old('status') === 'Software Dev' ? 'selected' : '' }}>Software Development</option>
+                                <option value="Graphics" {{ old('status') === 'Graphics' ? 'selected' : '' }}>Computer Graphics</option>
+                                <option value="Digital Art" {{ olD('status') === 'Digital Art' ? 'selected' : '' }}>Digital Art</option>
+                                <option value="Mathematics" {{ old('status') === 'Mathematics' ? 'selected' : '' }}>Mathematics</option>              
                             </select>
                         </div>
                 

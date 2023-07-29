@@ -128,6 +128,8 @@ Route::middleware(['auth'])->group(function () {
         ->name('posts.update');
     Route::delete('/posts/{post}', [PostController::class, 'destroy'])
         ->name('posts.destroy');
+    Route::get('/posts/resume/{photo_path}',  [PostController::class, 'getpostimg'])
+       ->name('posts.getpostimg');
      
 });
 

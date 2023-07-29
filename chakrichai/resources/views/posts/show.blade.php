@@ -21,7 +21,10 @@
                     <p>Tag: {{ $post->tag }}</p>
                     <p>Job status: {{ $post->status }}</p>
                     <p>Salary: {{ $post->price }}</p>
-
+                    @if ($post->photo != "")
+                        <p>Post attachment: <a href="{{route('posts.getpostimg', $post->photo) }}" target="_blank"  rel="noopener" method="GET">{{ $post->photo }}</a></p>
+                    @endif
+                    
                     @if (Auth::user()->role == 'seller')                   
                         <form action="{{ route('applications.create') }}" method="GET">
                             @csrf

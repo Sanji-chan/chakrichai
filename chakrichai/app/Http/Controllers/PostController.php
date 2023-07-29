@@ -8,6 +8,8 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -36,13 +38,31 @@ class PostController extends Controller
             'details' => 'nullable',
             'user_id' => 'nullable'
         ]);
+        // return response()->json($request);
+        // Handle file upload if necessary
+        // if ($request->hasFile('photo')) {
+        //     $photo = $request->file('photo');
+        //     $photoPath = $photo->store('public/photos');
+        //     $validatedData['photo'] = $photoPath;
+        // }
 
+
+          // Generate a random slug and check if it's unique
+        do {
+            $slug = Str::random(10); // You can specify the desired length of the slug here
+        } while (Post::where('slug', $slug)->exists());
+
+        // Save the slug to the post
+        $post->slug = $slug;
         // Handle file upload if necessary
         if ($request->hasFile('photo')) {
             $photo = $request->file('photo');
-            $photoPath = $photo->store('public/photos');
-            $validatedData['photo'] = $photoPath;
+            $photoPath = 'post_photo';
+            $photoName = str(Auth::id()). "_" .$slug . "." . $photo->getClientOriginalExtension();;
+            $photo->move($photoPath, $photoName);
+            $validatedData['photo'] = $photoName;
         }
+
 
         $post = new Post();
         $post->title = $validatedData['title'];
@@ -52,15 +72,11 @@ class PostController extends Controller
         $post->price = $validatedData['price'];
         $post->status = $validatedData['status'];
         $post->user_id =  str(Auth::id());
-        // Set other fields
+        if (isset($validatedData['photo'])){
+            $post->photo = $validatedData['photo'];
+        }
 
-        // Generate a random slug and check if it's unique
-        do {
-            $slug = Str::random(10); // You can specify the desired length of the slug here
-        } while (Post::where('slug', $slug)->exists());
-
-        // Save the slug to the post
-        $post->slug = $slug;
+      
         // Save the post to the database
         $post->save();
 
@@ -105,6 +121,18 @@ class PostController extends Controller
         $post->save();
 
         return redirect()->route('posts.index')->with('success', 'Post updated successfully.');
+    }
+
+    public function getpostimg($fileName)
+    { 
+        $filePath = public_path('post_photo/' . $fileName);
+        
+        if (file_exists($filePath)) {
+            return Response::file($filePath);
+        } else {
+            abort(404, 'File not found');
+        }
+
     }
 
     public function destroy(Application $post)
