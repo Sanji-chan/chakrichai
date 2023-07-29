@@ -27,7 +27,7 @@
 
                         <p>Application status: {{ $application->status }}</p>
                         @if (Auth::user()->role == 'buyer')
-                            <form action="#" method="POST">
+                            <form action="{{ route('buyer.home') }}" method="GET">
                                 @csrf
                                 <button type="submit"  class="btn btn-primary secondary-button">Change status</button>
                             </form>

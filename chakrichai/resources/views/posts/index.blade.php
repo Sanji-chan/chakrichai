@@ -84,12 +84,14 @@
                                       <th>End Date</th>
                                       <th>Price</th>
                                       <th>Tags</th>
+                                      <th>Status</th>
                                       <th>Actions</th>
                                     </tr>
                                   </thead>
                             </thead>
                             <tbody>
                                 @foreach ($posts as $post)
+                                    {{-- @if ($post->status != 'completed') --}}
                                     <tr>
                                         <td>
                                             <div class="d-flex align-items-center">
@@ -115,6 +117,9 @@
                                         <td>
                                             <p class="fw-normal mb-1"> {{ $post->tag }} </p>
                                         </td>
+                                        <td>
+                                            <p class="fw-normal mb-1"> {{ $post->status }} </p>
+                                        </td>
                                     
         
                                         <td>
@@ -130,6 +135,7 @@
                                             @endif
                                         </td>
                                     </tr>
+                                    {{-- @endif --}}
                                 @endforeach
                             </tbody>
                         </table>

@@ -16,9 +16,9 @@
               <h5 class="mt-3">{{ $profile->name }}</h5>
               <p class="text-muted mb-1">
                 @if ($profile->role == 1)
-                    {{ __("Buyer") }}
+                    {{ __("Buyer") }} ({{ $profile->avg_rating }}/10)
                 @elseif ($profile->role == 2)
-                    {{ __("Seller") }}
+                    {{ __("Seller") }} ({{ $profile->avg_rating }}/10)
                 @else 
                     {{ __("Admin") }}
                 @endif
