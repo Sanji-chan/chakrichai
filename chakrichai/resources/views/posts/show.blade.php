@@ -24,13 +24,17 @@
                     @if ($post->photo != "")
                         <p>Post attachment: <a href="{{route('posts.getpostimg', $post->photo) }}" target="_blank"  rel="noopener" method="GET">{{ $post->photo }}</a></p>
                     @endif
-                    
-                    @if (Auth::user()->role == 'seller')                   
-                        <form action="{{ route('applications.create') }}" method="GET">
-                            @csrf
-                            <input type="hidden" name="post_id" value={{ $post->id }}>
-                            <button type="submit"  class="btn btn-primary secondary-button">Apply</button>
-                        </form>
+
+                    @if (Auth::user()->role == 'seller')            
+                        @if ($post->status != 'completed')       
+                            <form action="{{ route('applications.create') }}" method="GET">
+                                @csrf
+                                <input type="hidden" name="post_id" value={{ $post->id }}>
+                                <button type="submit"  class="btn btn-primary secondary-button">Apply</button>
+                            </form>
+                        @else
+                            <strong><p class="warning">*** Job is complete no more application will be accepted. ***</p></strong>
+                        @endif
                     @endif
                 </div>
                
