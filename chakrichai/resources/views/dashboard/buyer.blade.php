@@ -1,4 +1,4 @@
-@extends('layouts\app_dashboad')
+@extends('layouts.app_dashboad')
 
 
 @section('dashboard_content1')
@@ -14,9 +14,9 @@
             <p class="m-auto text-center">No posts found.
                 <br>
                 <a class="m-auto text-center" href="{{ route("posts.index") }}">Find jobs</a>
-            </p> 
+            </p>
             @else
-            
+
                 <table  class="table align-middle mb-0">
                     <thead>
                         <thead class="">
@@ -42,7 +42,7 @@
                                             />
                                         <div class="ms-3">
                                             <a href="#"> <p class="fw-bold mb-1">{{ $post->title }}</p></a>
-                                        
+
                                         <p class="text-muted mb-0">{{ $post->created_at }}</p>
                                         </div>
                                     </div>
@@ -56,16 +56,16 @@
                                 <td>
                                     <p class="fw-normal mb-1"> {{ $post->tag }} </p>
                                 </td>
-                            
+
 
                                 <td>
                                     <a href="{{ route('posts.show', $post->slug) }}">View</a>
-                                    
+
                                     @if (Auth::user()->id == $post->user_id)
                                     <a href="{{ route( 'posts.edit', $post->id) }}">Edit</a>
                                     <form action="{{ route('posts.destroy', $post->id) }}" method="POST">
                                         @csrf
-                                        
+
                                         @method('DELETE')
                                         <button type="submit"  class="btn btn-primary secondary-button" style="background: #eeaeca; border: 1px solid #eeaeca; color: #fff;">Delete</button>
                                     </form>
@@ -76,7 +76,7 @@
                     </tbody>
                 </table>
             @endif
-        
+
             {{-- <a href="{{ route('posts.create') }}">Create New Post</a> --}}
             <form action="{{ route('posts.create') }}">
                 <div class="mt-3">
@@ -87,7 +87,7 @@
         </div>
     </div>
 
-    
+
     <div class="card mb-4 mt-3 mb-lg-0">
         <div class="card-header m-2"><h4>Applicants</h4></div>
         <div class="card-body ">
@@ -124,7 +124,7 @@
                                             />
                                         <div class="ms-3">
                                             <a href="#"> <p class="fw-bold mb-1">{{ $application->name }}</p></a>
-                                        
+
                                         <p class="text-muted mb-0">{{ $application->Uni_name }}</p>
                                         </div>
                                     </div>
@@ -133,7 +133,9 @@
                                     <p class="fw-normal mb-1"> {{ $application->post_id }} </p>
                                 </td>
                                 <td>
+                                @if($application->resume)
                                    <a href="{{route('applications.getresume', $application->resume) }}" target="_blank"  rel="noopener" method="GET">{{ $application->resume }}</a>
+                                @endif
                                 </td>
                                 <td>
                                     <form action= "{{ route('applications.updatestatus', $application->id) }}"  method="POST" enctype="multipart/form-data">
@@ -148,10 +150,10 @@
                                         <button type="submit" class="mb-1 ps-2 text-muted" style="text-decoration:None; background:None; border: None; padding: None;">  Change status </button>
                                     </form>
                                 </td>
-                            
+
 
                              <td>
-                                    <a href="{{ route('applications.show', $application->id) }}">View</a>
+                                    <a href="{{ route('applications.show', $application->slug) }}">View</a>
                                     {{-- @if (Auth::user()->id == $post->user_id) --}}
                                     <form action="{{ route('applications.destroy', $application->id) }}" method="POST">
                                         @csrf

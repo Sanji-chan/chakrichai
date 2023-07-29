@@ -61,7 +61,8 @@ Route::middleware(['auth','user-role:seller'])->group(function(){
 // Search user routes
 Route::middleware(['auth'])->group(function(){
     Route::get("/search",[UserController::class, 'searchUsers'])
-    ->name("search")->middleware(['auth', 'verified']); 
+    ->name("search")->middleware(['auth', 'verified']);
+    Route::post('/rating', [UserController::class, 'rating'])->name('rating');
 });
 
 // Profile routes
