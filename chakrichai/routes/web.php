@@ -26,6 +26,8 @@ Auth::routes(['verify'=>true]);
 Route::get('/', function () {return view('home');});
 
 
+// Route::get('/chatify', function (){return view('vendor/Chatify/pages/app');})->name('chatify');
+
 Route::group(['middleware' => ['guest']], function () {
     //only guests can access these routes
     Route::get('/', [HomeController::class, 'index'])->name('home');

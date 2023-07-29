@@ -57,7 +57,6 @@ class ApplicationController extends Controller
             $resumeName = str(Auth::id()). "_" . $validatedData['post_id']. "." . $resume->getClientOriginalExtension();;
             $resume->move($resumePath, $resumeName);
             $validatedData['resume'] = $resumeName;
-            
         }
 
 

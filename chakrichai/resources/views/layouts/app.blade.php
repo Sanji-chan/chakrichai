@@ -65,7 +65,7 @@
                         </li>
                         
                         <li class="nav-item">
-                          <a class="nav-link" href="#">Messages</a>
+                          <a class="nav-link" href="{{ route('chatify') }}">Messages</a>
                         </li>
 
                       </ul>
