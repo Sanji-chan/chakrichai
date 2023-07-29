@@ -150,7 +150,8 @@ class PostController extends Controller
                 ->where("title","like","%$request->searchposts%")
                 ->orWhere("tag","like","%$request->searchposts%")
                 ->orWhere("status","like","%$request->searchposts%")
-                ->get();
+                ->sortable()
+                ->paginate();
             
             return view("posts.searchposts",compact("searchPosts"));
         }
