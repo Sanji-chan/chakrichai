@@ -144,5 +144,7 @@ Route::middleware(['auth'])->group(function () {
         ->name('applications.updatestatus');
     Route::delete('/applications/{post}', [ApplicationController::class, 'destroy'])
         ->name('applications.destroy');
+    Route::get('/applications/resume/{resume}',  [ApplicationController::class, 'getresume'])
+    ->name('applications.getresume');
 });
         

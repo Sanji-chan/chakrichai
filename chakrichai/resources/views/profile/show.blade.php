@@ -85,21 +85,21 @@
                     
                  <div class="text-center">
                     <!-- Facebook -->
-                    <a class="btn btn-link btn-floating btn-lg" href="{{ $profile->facebooklink }}" role="button">
+                    <a class="btn btn-link btn-floating btn-lg" href="{{ $profile->facebooklink }}" target="_blank"  rel="noopener"  role="button">
                         <i class="text-center fab fa-facebook-f"></i>
                     </a>
             
                     <!-- Instagram -->
-                    <a class="btn btn-link btn-floating btn-lg" href="{{ $profile->instagramlink }}" role="button"> 
+                    <a class="btn btn-link btn-floating btn-lg" href="{{ $profile->instagramlink }}" target="_blank"  rel="noopener"  role="button"> 
                         <i class=" text-center fab fa-instagram"></i>
                     </a>
             
                     <!-- Linkedin -->
-                    <a class="btn btn-link btn-floating btn-lg" href="{{ $profile->linkedinlink }}" role="button">
+                    <a class="btn btn-link btn-floating btn-lg" href="{{ $profile->linkedinlink }}" target="_blank"  rel="noopener"  role="button">
                         <i class="text-center fab fa-linkedin"></i>
                     </a>
                     <!-- Github -->
-                    <a class="btn btn-link btn-floating btn-lg" href="{{ $profile->githublink }}" role="button">
+                    <a class="btn btn-link btn-floating btn-lg" href="{{ $profile->githublink }}" target="_blank"  rel="noopener"  role="button">
                         <i class="text-center fab fa-github"></i>
                     </a>
                     
