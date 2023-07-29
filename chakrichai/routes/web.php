@@ -115,6 +115,8 @@ Route::middleware(['auth'])->group(function () {
         ->name('posts.index');
     Route::get('/posts/create', [PostController::class, 'create'])
         ->name('posts.create');
+    Route::get("/posts/searchposts",[PostController::class, 'searchPosts'])
+        ->name("posts.searchposts");
     Route::post('/posts', [PostController::class, 'store'])
         ->name('posts.store');
     Route::get('/posts/{post}', [PostController::class, 'show'])
@@ -125,6 +127,7 @@ Route::middleware(['auth'])->group(function () {
         ->name('posts.update');
     Route::delete('/posts/{post}', [PostController::class, 'destroy'])
         ->name('posts.destroy');
+     
 });
 
 // Job Application routes

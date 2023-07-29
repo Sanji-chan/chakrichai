@@ -10,9 +10,10 @@ use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $posts = Post::all();
+        $posts = Post::sortable()->paginate();
+
         return view('posts.index', compact('posts'));
     }
 
@@ -111,4 +112,30 @@ class PostController extends Controller
 
         return redirect()->route('posts.index')->with('success', 'Post deleted successfully.');
     }
+
+    public function searchPosts(Request $request) 
+    {
+    if ($request->searchposts)
+        {
+            
+            $searchPosts = DB::table('posts')
+                ->join('users', 'posts.user_id', '=', 'users.id')
+                ->selectRaw("*")
+                ->where("users.name","like","%$request->searchposts%")
+                ->orWhere("title","like","%$request->searchposts%")
+                ->orWhere("tag","like","%$request->searchposts%")
+                ->orWhere("status","like","%$request->searchposts%")
+                ->get();
+
+                
+            
+            return view("posts.searchposts",compact("searchPosts"));
+        }
+    else
+        {
+            return redirect()->back();
+
+        }
+    }
+
 }

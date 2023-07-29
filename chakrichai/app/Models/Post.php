@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Kyslik\ColumnSortable\Sortable;
+
 
 class Post extends Model
 {
-    use HasFactory;
+    use HasFactory, Sortable;
     
     protected $fillable = [
         'title', // Add 'title' here
@@ -19,6 +21,13 @@ class Post extends Model
         'photo',
         'details',
         // Add other fillable attributes here
+    ];
+
+    protected $sortable = [
+        'tag',
+        'end_date',
+        'price',
+        'status',
     ];
     
 
