@@ -22,15 +22,8 @@
                               <button type="submit" class="border-0 btn" id="search-addon"><i class="fas fa-search" style="color: #eeaeca;"></i></button>
                             </div>
                     </form>
-                    <div class="col-4 m-auto text-end" style="display:inline-block">
-                        Sort by: 
-                        <a href="#">Date</a>
-                        <a href="#">Price</a>
-                        <a href="#">Tags</a>
-                        <a href="#">Status</a>
-                    </div>
-                
-                
+
+                        
                 </div>
                 <div class="card-body ">
         

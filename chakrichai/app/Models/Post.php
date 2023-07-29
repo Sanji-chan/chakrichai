@@ -24,10 +24,8 @@ class Post extends Model
     ];
 
     protected $sortable = [
-        'tag',
-        'end_date',
         'price',
-        'status',
+        'created_at',
     ];
     
 

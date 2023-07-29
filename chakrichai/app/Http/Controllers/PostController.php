@@ -118,17 +118,11 @@ class PostController extends Controller
     {
     if ($request->searchposts)
         {
-            
-            $searchPosts = DB::table('posts')
-                ->join('users', 'posts.user_id', '=', 'users.id')
-                ->selectRaw("*")
-                ->where("users.name","like","%$request->searchposts%")
-                ->orWhere("title","like","%$request->searchposts%")
+            $searchPosts = Post::select("*")
+                ->where("title","like","%$request->searchposts%")
                 ->orWhere("tag","like","%$request->searchposts%")
                 ->orWhere("status","like","%$request->searchposts%")
                 ->get();
-
-                
             
             return view("posts.searchposts",compact("searchPosts"));
         }
