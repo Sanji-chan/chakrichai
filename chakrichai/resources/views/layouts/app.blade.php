@@ -63,10 +63,10 @@
                         <li class="nav-item">
                           <a class="nav-link" href="{{ route('posts.index') }}">Job posts</a>
                         </li>
-                        
+{{--                         
                         <li class="nav-item">
                           <a class="nav-link" href="{{ route('chatify') }}">Messages</a>
-                        </li>
+                        </li> --}}
 
                       </ul>
                     @endguest
