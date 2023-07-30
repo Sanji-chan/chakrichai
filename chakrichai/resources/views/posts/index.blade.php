@@ -24,7 +24,7 @@
                             </div>
                     </form>
                     <div class="col-4 m-auto text-end" style="display:inline-block">
-                        Sort by: @sortablelink('created_at','Date') @sortablelink('price')                             
+                        Sort by: @sortablelink('created_at','Date') @sortablelink('price') @sortablelink('tag') @sortablelink('status')                             
                     </div>
                 
                 
