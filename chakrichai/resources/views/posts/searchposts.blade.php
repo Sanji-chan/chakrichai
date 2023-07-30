@@ -13,9 +13,8 @@
             <div class="card mb-4 mb-lg-0">
                 <div class="card-header m-2">
                     <div class="col-4" style="display:inline-block">
-                        <h4>All Posts</h4>
+                        <h4>Searched Posts</h4>
                     </div>
-                    
                     <form class="navbar-nav m-auto col-lg-3 " style="display:inline-block" method="GET" action="{{ url('posts/searchposts') }}">
                         @csrf
                             <div class="input-group">
@@ -26,13 +25,13 @@
                     <div class="col-4 m-auto text-end" style="display:inline-block">
                         Sort by: @sortablelink('created_at','Date') @sortablelink('price') @sortablelink('tag') @sortablelink('status')                             
                     </div>
-                
-                
+
+                        
                 </div>
                 <div class="card-body ">
         
-                    @if ($posts->isEmpty())
-                        <p>No posts found.</p>
+                    @if ($searchPosts->isEmpty())
+                        <p>No matches found.</p>
                     @else
                         <table  class="table align-middle mb-0 bg-white">
                             <thead>
@@ -42,14 +41,12 @@
                                       <th>End Date</th>
                                       <th>Price</th>
                                       <th>Tags</th>
-                                      <th>Status</th>
                                       <th>Actions</th>
                                     </tr>
                                   </thead>
                             </thead>
                             <tbody>
-                                @foreach ($posts as $post)
-                                    {{-- @if ($post->status != 'completed') --}}
+                                @foreach ($searchPosts as $post)
                                     <tr>
                                         <td>
                                             <div class="d-flex align-items-center">
@@ -75,9 +72,6 @@
                                         <td>
                                             <p class="fw-normal mb-1"> {{ $post->tag }} </p>
                                         </td>
-                                        <td>
-                                            <p class="fw-normal mb-1"> {{ $post->status }} </p>
-                                        </td>
                                     
         
                                         <td>
@@ -93,15 +87,11 @@
                                             @endif
                                         </td>
                                     </tr>
-                                    {{-- @endif --}}
                                 @endforeach
                             </tbody>
                         </table>
                     @endif
 
-                    @if (Auth::user()->role == 'buyer')
-                         <a href="{{ route('posts.create') }}">Create New Post</a>
-                    @endif
                 
            </div>
     </div>

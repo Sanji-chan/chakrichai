@@ -30,10 +30,11 @@
                             <label for="tag">Category</label>
                             <select  class="form-control mb-3" id="tag" name="tag"  placeholder="{{ $post->tag }}">
                                 <option value="N/A" {{ old('status') === 'N/A' ? 'selected' : '' }}>N/A</option>
-                                <option value="teaching" {{ old('status') === 'teaching' ? 'selected' : '' }}>Teaching</option>
-                                <option value="software_dev" {{ old('status') === 'software_dev' ? 'selected' : '' }}>Software Development</option>
-                                <option value="graphics" {{ old('status') === 'graphics' ? 'selected' : '' }}>Computer Graphics</option>
-                                <option value="digital_art" {{ old('status') === 'digital_art' ? 'selected' : '' }}>Digital Art</option>
+                                <option value="Teaching" {{ old('status') === 'Teaching' ? 'selected' : '' }}>Teaching</option>
+                                <option value="Software Dev" {{ old('status') === 'Software Dev' ? 'selected' : '' }}>Software Development</option>
+                                <option value="Graphics" {{ old('status') === 'Graphics' ? 'selected' : '' }}>Computer Graphics</option>
+                                <option value="Digital Art" {{ olD('status') === 'Digital Art' ? 'selected' : '' }}>Digital Art</option>
+                                <option value="Mathematics" {{ old('status') === 'Mathematics' ? 'selected' : '' }}>Mathematics</option>                            
                             </select>
                         </div>
                 
@@ -51,9 +52,9 @@
                             <label for="status">Status</label>
                             <select  class="form-control mb-3" id="status" name="status" placeholder="{{ $post->status }}">
                                 <option value="{{ $post->status }}" hidden>{{ $post->status }}</option>
-                                <option value="active" {{ old('status') === 'active' ? 'selected' : '' }}>Active</option>
-                                <option value="completed" {{ old('status') === 'complete' ? 'selected' : '' }}>Completed</option>
-                                <option value="pending" {{ old('status') === 'pending' ? 'selected' : '' }}>Pending</option>
+                                <option value="Active" {{ old('status') === 'Active' ? 'selected' : '' }}>Active</option>
+                                <option value="Completed" {{ old('status') === 'Complete' ? 'selected' : '' }}>Completed</option>
+                                <option value="Pending" {{ old('status') === 'Pending' ? 'selected' : '' }}>Pending</option>
                             </select>
                         </div>
                 

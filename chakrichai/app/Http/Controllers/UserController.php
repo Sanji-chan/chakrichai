@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -58,5 +59,34 @@ class UserController extends Controller
             return redirect()->back();
 
         }
+    }
+
+    public function rating(Request $request)
+    {
+        $post = Post::findOrfail($request->post_id);
+        $user = User::findOrfail($request->user_id);
+        $profile = $user->profile;
+        $rating = $request->rating;
+
+        $total_raters = $profile->total_raters;
+        $avg_rating = $profile->avg_rating;
+
+        $new_total_raters = $total_raters + 1;
+        $new_avg_rating = ($avg_rating * $total_raters + $rating) / $new_total_raters;
+
+        $profile->total_raters = $new_total_raters;
+        $profile->avg_rating = $new_avg_rating;
+
+        $profile->save();
+
+        if (auth()->user()->role == 'buyer') {
+            $post->buyer_rating = 1;
+        } else if(auth()->user()->role == 'seller') {
+            $post->seller_rating = 1;
+        }
+
+        $post->save();
+
+        return redirect()->back();
     }
 }

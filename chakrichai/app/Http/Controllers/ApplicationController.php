@@ -35,8 +35,18 @@ class ApplicationController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        // return response()->json($request);
+    {   
+
+        $posts= Application::select( '*')
+        ->where('post_id', $request['post_id'])
+        ->where('user_id', str(Auth::id()))
+        ->get();
+
+        if (sizeof($posts)>0){
+            // return response()->json('Already applied');
+            return redirect()->back()->with("Already Applied. New application is not accepted.");
+        }
+        
         $validatedData = $request->validate([
             'name' => 'required',
             'slug' => 'nullable',

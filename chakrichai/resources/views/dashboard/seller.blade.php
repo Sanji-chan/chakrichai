@@ -1,10 +1,10 @@
-@extends('layouts\app_dashboad')
+@extends('layouts.app_dashboad')
 
 
 @section('dashboard_content1')
 
 <div class="row">
-    
+
     <div class="card mb-4 mb-lg-0">
         <div class="card-header m-2"><h4>Your applications</h4></div>
         <div class="card-body ">
@@ -41,7 +41,7 @@
                                             />
                                         <div class="ms-3">
                                             <a href="#"> <p class="fw-bold mb-1">{{ $application->name }}</p></a>
-                                        
+
                                         <p class="text-muted mb-0">{{ $application->Uni_name }}</p>
                                         </div>
                                     </div>
@@ -50,16 +50,18 @@
                                     <p class="fw-normal mb-1"> {{ $application->post_id }} </p>
                                 </td>
                                 <td>
+                                    @if($application->resume)
                                     <a href="{{route('applications.getresume', $application->resume) }}" target="_blank"  rel="noopener" method="GET">{{ $application->resume }}</a>
+                                    @endif
                                 </td>
                                 <td>
                                     <p class="fw-normal mb-1"> {{ $application->status }} </p>
                                 </td>
-                            
+
 
                              <td>
                                     <a href="{{ route('applications.show', $application->slug) }}">View</a>
-                                    
+
                                     {{-- @if (Auth::user()->id == $post->user_id) --}}
                                     <form action="{{ route('applications.destroy', $application->id) }}" method="POST">
                                         @csrf
