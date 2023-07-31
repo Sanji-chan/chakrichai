@@ -7,6 +7,7 @@
    
         <div class="row mt-4">
             <div class="col-lg-8 m-auto">
+                @include('layouts.flash_messages')
             
             <div class="card mb-lg-0">
                 <div class="card-header m-2">
@@ -20,14 +21,21 @@
                     <p>Deadline: {{ $post->end_date }}</p>
                     <p>Tag: {{ $post->tag }}</p>
                     <p>Job status: {{ $post->status }}</p>
-                    <p>Salary: {{ $post->price }}</p>
+                    <p>Remuneration: {{ $post->price }} BDT</p>
+                    @if ($post->photo != "")
+                        <p>Post attachment: <a href="{{route('posts.getpostimg', $post->photo) }}" target="_blank"  rel="noopener" method="GET">{{ $post->photo }}</a></p>
+                    @endif
 
-                    @if (Auth::user()->role == 'seller')                   
-                        <form action="{{ route('applications.create') }}" method="GET">
-                            @csrf
-                            <input type="hidden" name="post_id" value={{ $post->id }}>
-                            <button type="submit"  class="btn btn-primary secondary-button">Apply</button>
-                        </form>
+                    @if (Auth::user()->role == 'seller')            
+                        @if ($post->status != 'completed')       
+                            <form action="{{ route('applications.create') }}" method="GET">
+                                @csrf
+                                <input type="hidden" name="post_id" value={{ $post->id }}>
+                                <button type="submit"  class="btn btn-primary secondary-button">Apply</button>
+                            </form>
+                        @else
+                            <strong><p class="warning">*** Job is complete no more application will be accepted. ***</p></strong>
+                        @endif
                     @endif
                 </div>
                

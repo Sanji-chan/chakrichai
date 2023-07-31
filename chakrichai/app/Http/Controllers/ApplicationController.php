@@ -27,7 +27,6 @@ class ApplicationController extends Controller
      */
     public function create(Request $request)
     {   
-        // return response()->json($request);
         return view('applications.create', compact('request'));
     }
 
@@ -35,8 +34,18 @@ class ApplicationController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        // return response()->json($request);
+    {   
+
+        $posts= Application::select( '*')
+        ->where('post_id', $request['post_id'])
+        ->where('user_id', str(Auth::id()))
+        ->get();
+
+        if (sizeof($posts)>0){
+            session()->put('warning', 'Already Applied. New application is not accepted.');
+            return redirect()->back();
+        }
+        
         $validatedData = $request->validate([
             'name' => 'required',
             'slug' => 'nullable',
@@ -84,7 +93,8 @@ class ApplicationController extends Controller
         $post->slug = $slug;
         $post->save();
 
-        return redirect()->route('seller.home')->with('success', 'Appliaction created successfully.');
+        session()->put('success', 'Appliaction created successfully.');
+        return redirect()->route('seller.home');
     }
 
     
@@ -107,7 +117,6 @@ class ApplicationController extends Controller
         } else {
             abort(404, 'File not found');
         }
-
     }
 
     /**
@@ -134,7 +143,8 @@ class ApplicationController extends Controller
         // return response()->json($post);
 
         $post->update();
-        return redirect()->route('buyer.home')->with('success', 'Status changed successfully.');      
+        session()->put('success', 'Application status changed successfully.');
+        return redirect()->route('buyer.home');      
        
     }
 
@@ -144,7 +154,7 @@ class ApplicationController extends Controller
     public function destroy(Application $post)
     {
         $post->delete();
-
-        return redirect()->route('posts.index')->with('success', 'Post deleted successfully.');
+        session()->put('success', 'Application deleted successfully.');
+        return redirect()->route('posts.index');
     }
 }

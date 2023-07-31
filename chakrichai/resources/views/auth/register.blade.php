@@ -4,9 +4,14 @@
 {{-- This is the original content do not remove for now--}}
 <section class="register-bg">
     <div class="container">
-
+        <div class="row">
+            <div class="m-auto col col-lg-10">
+                @include('layouts.flash_messages')
+            </div>
+        </div>
         <div class="row justify-content-md-center" >
-            <div class=" login col col-lg-10 d-flex" style="padding: 0">
+            
+            <div class="login col col-lg-10 d-flex" style="padding: 0">
 
                 <div class="col col-lg-5 m-auto">
                     <div>

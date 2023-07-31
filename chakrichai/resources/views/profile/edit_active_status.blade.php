@@ -19,9 +19,12 @@
         <div class="col-lg-8">
             <h4 id="list-item-5" class = "content-header my-4">Deactivate Account</h4>
             <p>Current account status: <<--->></p>
-            <a href="#">Deactivate my account</a>
-            <p class="">Warning: This change may reset in removal of your personal information</p>
-
+            
+            
+            <div class="alert alert-warning">
+              <p> <strong>Warning:</strong>  This change may reset in removal of your personal information</p>
+              <a href="#">Deactivate my account</a>
+            </div>
     
           </div>
         </div>

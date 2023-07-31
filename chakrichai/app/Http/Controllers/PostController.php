@@ -1,20 +1,21 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
     public function index()
-    {  
-        
-        $posts = Post::all();
+    {
+        $posts = Post::sortable()->paginate();
+
         return view('posts.index', compact('posts'));
     }
 
@@ -37,12 +38,21 @@ class PostController extends Controller
             'user_id' => 'nullable'
         ]);
 
+          // Generate a random slug and check if it's unique
+        do {
+            $slug = Str::random(10); // You can specify the desired length of the slug here
+        } while (Post::where('slug', $slug)->exists());
+
+        
         // Handle file upload if necessary
         if ($request->hasFile('photo')) {
             $photo = $request->file('photo');
-            $photoPath = $photo->store('public/photos');
-            $validatedData['photo'] = $photoPath;
+            $photoPath = 'post_photo';
+            $photoName = str(Auth::id()). "_" .$slug . "." . $photo->getClientOriginalExtension();;
+            $photo->move($photoPath, $photoName);
+            $validatedData['photo'] = $photoName;
         }
+
 
         $post = new Post();
         $post->title = $validatedData['title'];
@@ -52,19 +62,17 @@ class PostController extends Controller
         $post->price = $validatedData['price'];
         $post->status = $validatedData['status'];
         $post->user_id =  str(Auth::id());
-        // Set other fields
-
-        // Generate a random slug and check if it's unique
-        do {
-            $slug = Str::random(10); // You can specify the desired length of the slug here
-        } while (Post::where('slug', $slug)->exists());
-
+        // Save the attachment to the post
+        if (isset($validatedData['photo'])){
+            $post->photo = $validatedData['photo'];
+        }
         // Save the slug to the post
         $post->slug = $slug;
+
         // Save the post to the database
         $post->save();
-
-        return redirect()->route('posts.index')->with('success', 'Post created successfully.');
+        session()->put('success', 'Post created successfully.');
+        return redirect()->route('posts.index');
     }
 
 
@@ -103,14 +111,47 @@ class PostController extends Controller
           }
 
         $post->save();
-
-        return redirect()->route('posts.index')->with('success', 'Post updated successfully.');
+        session()->put('success', 'Post updated successfully.');
+        return redirect()->route('posts.index');
     }
 
-    public function destroy(Application $post)
+    public function getpostimg($fileName)
+    { 
+        $filePath = public_path('post_photo/' . $fileName);
+        
+        if (file_exists($filePath)) {
+            return Response::file($filePath);
+        } else {
+            abort(404, 'File not found');
+        }
+
+    }
+
+    public function destroy(Post $post)
     {
         $post->delete();
-
-        return redirect()->route('posts.index')->with('success', 'Post deleted successfully.');
+        session()->put('success', 'Post deleted successfully.');
+        return redirect()->route('posts.index');
     }
+
+    public function searchPosts(Request $request) 
+    {
+    if ($request->searchposts)
+        {
+            $searchPosts = Post::select("*")
+                ->where("title","like","%$request->searchposts%")
+                ->orWhere("tag","like","%$request->searchposts%")
+                ->orWhere("status","like","%$request->searchposts%")
+                ->sortable()
+                ->paginate();
+            
+            return view("posts.searchposts",compact("searchPosts"));
+        }
+    else
+        {
+            return redirect()->back();
+
+        }
+    }
+
 }

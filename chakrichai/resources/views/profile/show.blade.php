@@ -4,8 +4,10 @@
 
 <section class="profile-bg" style="background-color: #a5a4a423;">
     <div class="container">
-      <div class="row">
+      
 
+      <div class="row justify-content-start">
+        @include('layouts.flash_messages')
         {{-- user image card --}}
         <div class="col-lg-4">
           <div class="card mb-4">
@@ -16,9 +18,9 @@
               <h5 class="mt-3">{{ $profile->name }}</h5>
               <p class="text-muted mb-1">
                 @if ($profile->role == 1)
-                    {{ __("Buyer") }}
+                    {{ __("Buyer") }} ({{ $profile->avg_rating }}/10)
                 @elseif ($profile->role == 2)
-                    {{ __("Seller") }}
+                    {{ __("Seller") }} ({{ $profile->avg_rating }}/10)
                 @else 
                     {{ __("Admin") }}
                 @endif

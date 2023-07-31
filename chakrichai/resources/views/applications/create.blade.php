@@ -4,9 +4,11 @@
 @section('content')
 <div class="post-bg" style="background-color: #a5a4a423;">
     <div class="container">
+        
    
         <div class="row mt-4">
             <div class="col-lg-8 m-auto">
+            @include('layouts.flash_messages')
         
             
             <div class="card mb-4 mb-lg-0">

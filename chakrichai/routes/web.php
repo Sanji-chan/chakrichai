@@ -63,7 +63,8 @@ Route::middleware(['auth','user-role:seller'])->group(function(){
 // Search user routes
 Route::middleware(['auth'])->group(function(){
     Route::get("/search",[UserController::class, 'searchUsers'])
-    ->name("search")->middleware(['auth', 'verified']); 
+    ->name("search")->middleware(['auth', 'verified']);
+    Route::post('/rating', [UserController::class, 'rating'])->name('rating');
 });
 
 // Profile routes
@@ -117,6 +118,10 @@ Route::middleware(['auth'])->group(function () {
         ->name('posts.index');
     Route::get('/posts/create', [PostController::class, 'create'])
         ->name('posts.create');
+    Route::get("/posts/searchposts",[PostController::class, 'searchPosts'])
+        ->name("posts.searchposts");
+        Route::get("/posts/filter",[PostController::class, 'filter'])
+        ->name("posts.filter");
     Route::post('/posts', [PostController::class, 'store'])
         ->name('posts.store');
     Route::get('/posts/{post}', [PostController::class, 'show'])
@@ -127,6 +132,9 @@ Route::middleware(['auth'])->group(function () {
         ->name('posts.update');
     Route::delete('/posts/{post}', [PostController::class, 'destroy'])
         ->name('posts.destroy');
+    Route::get('/posts/resume/{photo_path}',  [PostController::class, 'getpostimg'])
+       ->name('posts.getpostimg');
+     
 });
 
 // Job Application routes
@@ -137,8 +145,6 @@ Route::middleware(['auth'])->group(function () {
         ->name('applications.store');
     Route::get('/applications/{application}', [ApplicationController::class, 'show'])
         ->name('applications.show');
-    // Route::get('/applications/{application}/editstatus', [ApplicationController::class, 'editstatus'])
-    //     ->name('applications.editstatus');
     Route::post('/applications/{application}', [ApplicationController::class, 'updatestatus'])
         ->name('applications.updatestatus');
     Route::delete('/applications/{post}', [ApplicationController::class, 'destroy'])
