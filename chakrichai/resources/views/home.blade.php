@@ -71,20 +71,18 @@
                     </div>
                 </div>
             </div>
-            
-             
+
+
          </div>
      </div>
  </section>
  <!--SERVICE PART END-->
 
-
- 
  <!--FEEDBACK PART START-->
  <section id="feedback-bg">
      <div class="container-fluid">
         <div class="row">
-            
+
         </div>
          <div class="row">
             <div class="col-lg-6 m-auto">
@@ -92,32 +90,39 @@
                 <div class=" banner2-bg"></div>
             </div>
             <div class="col-lg-4 m-auto">
+                @if(session()->has('success'))
+                    <div class="alert alert-success">
+                        {{ session()->get('success') }}
+                    </div>
+                    @php
+                    session()->forget('success');
+                    @endphp
+                @endif
                 <div class="row-header">
                     <h3>
                         Leave a message
                     </h3>
                 </div>
-                <form>
+                <form action="{{ route('complain.store') }}" method="POST">
+                    @csrf
                     <!-- Email input -->
                     <div class="form-outline mb-4">
-                      <input type="email" placeholder="Email address" class="form-control" />
+                      <input type="email" name="email" placeholder="Email address" class="form-control" required />
                     </div>
-                  
+
                     <!-- Message input -->
                     <div class="form-outline mb-4">
-                      <textarea class="form-control"  placeholder="Message" rows="2"></textarea>
+                      <textarea name="message" class="form-control"  placeholder="Message" rows="2" required></textarea>
                     </div>
 
                     <!-- Submit button -->
                     <button type="submit" class="btn btn-primary main-button btn-block mb-4 ">Send</button>
                   </form>
             </div>
-             
+
          </div>
      </div>
  </section>
  <!--FEEDBACK PART END-->
-
-
 
 @endsection
