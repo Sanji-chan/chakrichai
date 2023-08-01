@@ -5,17 +5,19 @@
 
 
 <div class="container">
-    <div class="row row justify-content-md-center">
+    <div class="row">
+        <div class="m-auto col col-lg-8">  
+            @include('layouts.flash_messages')
+        </div>
+    </div>
+    <div class="row justify-content-md-center">
+        
         <div class="resetpassword col-md-8">
+            
             <div class="m-auto">
-                {{-- <div class="card-header">{{ __('Reset Password') }}</div> --}}
                 <div class="content-header mb-4"><h4>{{ __('Reset Password') }}</h4></div>
                 <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+                    
 
                     <form method="POST" action="{{ route('forgot.password.post') }}">
                         @csrf

@@ -4,8 +4,10 @@
 
 <section class="profile-bg" style="background-color: #a5a4a423;">
     <div class="container">
-      <div class="row">
+      
 
+      <div class="row justify-content-start">
+        @include('layouts.flash_messages')
         {{-- user image card --}}
         <div class="col-lg-4">
           <div class="card mb-4">

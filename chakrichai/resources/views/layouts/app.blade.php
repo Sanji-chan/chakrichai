@@ -68,12 +68,6 @@
                           <a class="nav-link" href="{{ route('chatify') }}">Messages</a>
                         </li> --}}
 
-                          @if(Auth::user()->role == 'admin')
-                              <li class="nav-item">
-                                  <a class="nav-link" href="{{ route('complain.index') }}">Complains</a>
-                              </li>
-                          @endif
-
                       </ul>
                     @endguest
 

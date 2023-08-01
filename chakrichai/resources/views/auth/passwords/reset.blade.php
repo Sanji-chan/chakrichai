@@ -4,6 +4,11 @@
 
 <section class= "restpassword-bg">
 <div class="container">
+    <div class="row">
+        <div class="m-auto col col-lg-10">
+            @include('layouts.flash_messages')
+        </div>
+    </div>
     <div class="row justify-content-center">
         <div class="resetpassword col-md-8">
             <div class="m-auto">

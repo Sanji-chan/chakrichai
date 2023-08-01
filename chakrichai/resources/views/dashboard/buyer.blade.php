@@ -23,7 +23,7 @@
                             <tr>
                               <th>Title</th>
                               <th>End Date</th>
-                              <th>Price</th>
+                              <th>Remuneration</th>
                               <th>Tags</th>
                               <th>Status</th>
                               <th>Actions</th>

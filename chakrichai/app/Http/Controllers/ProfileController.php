@@ -116,7 +116,8 @@ class ProfileController extends Controller
             ]);
             // Update the profile with the validated data
             $profile->update($validatedData);
-            return redirect()->route('profile.show')->with('success', 'Profile updated successfully.');
+            session()->put('success', 'Profile updated successfully.');
+            return redirect()->route('profile.show');
         }
 
         abort(403, 'Unauthorized');
@@ -137,7 +138,8 @@ class ProfileController extends Controller
             ]);
             // Update the profile with the validated data
             $profile->update($validatedData);
-            return redirect()->route('profile.show')->with('success', 'Profile updated successfully.');
+            session()->put('success', 'Profile updated successfully.');
+            return redirect()->route('profile.show');
         }
         abort(403, 'Unauthorized');
     }
@@ -153,7 +155,8 @@ class ProfileController extends Controller
             ]);
             // Update the profile with the validated data
             $profile->update($validatedData);
-            return redirect()->route('profile.show')->with('success', 'Profile updated successfully.');
+            session()->put('success', 'Profile updated successfully.');
+            return redirect()->route('profile.show');
         }
         abort(403, 'Unauthorized');
     }

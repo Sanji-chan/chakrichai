@@ -6,6 +6,7 @@
    
         <div class="row mt-4">
             <div class="col-lg-10 m-auto">
+                @include('layouts.flash_messages')
         
             
             <div class="card mb-4 mb-lg-0">
@@ -44,7 +45,7 @@
                         </div>
                 
                         <div>
-                            <label for="price">Price</label>
+                            <label for="price">Remuneration</label>
                             <input  class="form-control mb-3" type="number" id="price" name="price" placeholder="{{ $post->price }}" step="0.01" value="{{ old('price') }}">
                         </div>
                 

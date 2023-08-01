@@ -5,6 +5,7 @@
 
     <div class="dashboard-bg"  style="background-color: #a5a4a423;">
         <div class="container">
+            @include('layouts.flash_messages')
             <div class="row justify-content-center">
                 <div class="col-md-12">
                     <div class="card">

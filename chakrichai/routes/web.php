@@ -147,8 +147,6 @@ Route::middleware(['auth'])->group(function () {
         ->name('applications.store');
     Route::get('/applications/{application}', [ApplicationController::class, 'show'])
         ->name('applications.show');
-    // Route::get('/applications/{application}/editstatus', [ApplicationController::class, 'editstatus'])
-    //     ->name('applications.editstatus');
     Route::post('/applications/{application}', [ApplicationController::class, 'updatestatus'])
         ->name('applications.updatestatus');
     Route::delete('/applications/{post}', [ApplicationController::class, 'destroy'])

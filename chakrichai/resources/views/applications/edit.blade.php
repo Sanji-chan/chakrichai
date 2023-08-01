@@ -5,7 +5,8 @@
     <div class="container">
    
         <div class="row mt-4">
-            <div class="col-lg-10 m-auto">
+            <div class="col-lg-8 m-auto">
+            @include('layouts.flash_messages')
         
             
             <div class="card mb-4 mb-lg-0">
