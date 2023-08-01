@@ -95,7 +95,7 @@
                         {{ session()->get('success') }}
                     </div>
                     @php
-                    session()->forget('success');
+                        session()->forget('success');
                     @endphp
                 @endif
                 <div class="row-header">
