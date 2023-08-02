@@ -15,7 +15,7 @@
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
-    
+
     <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css" >
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
 
@@ -54,7 +54,7 @@
                       <ul class="navbar-nav justify-content-end col-lg-6">
                         @php
                               $userRoute = Auth::user()->role.'/home';
-                              
+
                         @endphp
 
                         <li class="nav-item">
@@ -63,10 +63,10 @@
                         <li class="nav-item">
                           <a class="nav-link" href="{{ route('posts.index') }}">Job posts</a>
                         </li>
-                        
+{{--
                         <li class="nav-item">
                           <a class="nav-link" href="{{ route('chatify') }}">Messages</a>
-                        </li>
+                        </li> --}}
 
                       </ul>
                     @endguest
@@ -116,19 +116,34 @@
                     </ul>
                 </div>
             </div>
-            
         </nav>
 
 
-     
-        </div>
+
+
+
+
+
+
+
         <main class="py-4">
-          
             @yield('content')
         </main>
-        <div>
-          
-        
+        <div class="row">
+          <div class="container">
+            @if (session()->has('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
+
+            @if (session()->has('warning'))
+                <div class="alert alert-warning">
+                    {{ session('warning') }}
+                </div>
+            @endif
+          </div>
+        </div>
 
         <footer class="footer-bg text-center   bg-white">
             <!-- Section: Links  -->
@@ -147,7 +162,7 @@
                     </p>
                   </div>
                   <!-- Grid column -->
-          
+
                   <!-- Grid column -->
                   <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
                     <!-- Links -->
@@ -168,7 +183,7 @@
                     </p>
                   </div>
                   <!-- Grid column -->
-          
+
                   <!-- Grid column -->
                   <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
                     <!-- Links -->
@@ -189,14 +204,14 @@
                     </p>
                   </div>
                   <!-- Grid column -->
-          
+
                   <!-- Grid column -->
                   <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
                     <!-- Links -->
                     <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
                     <p><i class="fas fa-home me-3 text-secondary"></i> Dhaka, Bangladesh 1216</p>
                     <p>
-                      
+
                       <i class="fas fa-envelope me-3 text-secondary"></i>
                       chakrichai@gmail.com
                     </p>
@@ -209,11 +224,11 @@
               </div>
           </section>
           <!-- Grid container -->
-        
+
           </div>
-        
+
           <section class="d-flex justify-content-center justify-content-lg-between p-4">
-        
+
               <!-- Right -->
               <div class="container">
                   <div class="row">
@@ -227,22 +242,22 @@
                       <a class="btn btn-link btn-floating btn-lg" href="#!" role="button">
                           <i class="fab fa-facebook-f"></i>
                       </a>
-              
+
                       <!-- Twitter -->
                       <a class="btn btn-link btn-floating btn-lg" href="#!" role="button">
-                      <i class="fab fa-twitter"></i> 
+                      <i class="fab fa-twitter"></i>
                       </a>
-              
+
                       <!-- Google -->
                       <a class="btn btn-link btn-floating btn-lg" href="#!" role="button">
                           <i class="fab fa-google"></i>
                       </a>
-              
+
                       <!-- Instagram -->
-                      <a class="btn btn-link btn-floating btn-lg" href="#!" role="button"> 
+                      <a class="btn btn-link btn-floating btn-lg" href="#!" role="button">
                           <i class="fab fa-instagram"></i>
                       </a>
-              
+
                       <!-- Linkedin -->
                       <a class="btn btn-link btn-floating btn-lg" href="#!" role="button"><i class="fab fa-linkedin"></i>
                       </a>
@@ -252,22 +267,22 @@
                       </a>
                   </div>
                 <!-- Section: Social media -->
-        
+
                   </div>
               <!-- Right -->
             </section>
             <!-- Section: Social media -->
-        
+
           <!-- Copyright -->
           <div class="text-center text-dark pt-3 pb-3 border-top">
               <h6 class="copyright-text">©2023 ChakriChai</h6>
           </div>
           <!-- Copyright -->
         </footer>
-        
+
         <!--FOOTER PART END-->
- 
+
     </div>
- 
+
 </body>
 </html>

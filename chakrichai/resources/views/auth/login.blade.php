@@ -1,9 +1,9 @@
-@extends('layouts\app')
+@extends('layouts.app')
 
 @section('content')
 
 {{-- This is the original content do not remove for now--}}
-<section class = "login-bg"> 
+<section class = "login-bg">
 <div class="container">
     <div class="row">
         <div class="m-auto col col-lg-10">
@@ -23,7 +23,7 @@
 
                 @if (Route::has('register'))
                 <button type="submit" class="mb-2 btn-primary sec-button btn-block">
-                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register Here') }}</a>                
+                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register Here') }}</a>
                 </button>
                 @endif
 
@@ -77,16 +77,16 @@
                     </form>
                     <div class="text-center pb-4">
                     <!-- Forgot Password -->
-            
+
                     @if (Route::has('password.request'))
                         <a href="{{ route('password.request') }}">
                             {{ __('Forgot Your Password?') }}
                         </a>
                     @endif
-                    
+
                     <!-- line -->
                     <div class="line"></div>
-                
+
                     <p>Or, Sign in here</p>
                     <a class="icon-btn mx-1">
                         <i class="fab fa-facebook-f"></i>
