@@ -2,9 +2,10 @@
 
 
 @section('content')
+    
     <div class="post-bg" style="background-color: #a5a4a423;">
         <div class="container">
-
+            @include('layouts.flash_messages')
             <div class="row mt-4">
                 <div class="col-lg-12">
 

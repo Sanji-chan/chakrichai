@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\ComplainController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -14,6 +13,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ApplicationController;
+use App\Http\Controllers\ComplainController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -50,6 +51,14 @@ Route::get('/complete-registration', [RegisterController::class, 'completeRegist
 Route::middleware(['auth','user-role:admin'])->group(function(){
     Route::get("/admin/home",[HomeController::class, 'adminHome'])
         ->name("admin.home")->middleware(['auth', 'verified']);
+    //Complain routes
+    Route::post('/complain', [ComplainController::class, 'store'])
+        ->name('complain.store');
+    Route::get('/complain', [ComplainController::class, 'index'])
+         ->name('complain.index');
+    Route::delete('/complain/{post}', [ComplainController::class, 'destroy'])
+         ->name('complain.destroy');
+
 });
 // Route User
 Route::middleware(['auth','user-role:buyer'])->group(function(){
@@ -155,10 +164,4 @@ Route::middleware(['auth'])->group(function () {
     ->name('applications.getresume');
 });
 
-//Complain routes
-Route::middleware(['auth'])->group(function () {
-   Route::post('/complain', [ComplainController::class, 'store'])
-       ->name('complain.store');
-    Route::get('/complain', [ComplainController::class, 'index'])
-        ->name('complain.index');
-});
+

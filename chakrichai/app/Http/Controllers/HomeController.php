@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Post;
+use App\Models\Complain;
 use App\Models\Application;
 use Illuminate\Http\Request;
 
@@ -9,6 +10,8 @@ use App\Providers\RouteServiceProvider;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+
+
 class HomeController extends Controller
 {
     /**
@@ -35,7 +38,9 @@ class HomeController extends Controller
     
     public function adminHome()
     {
-        return view('dashboard.admin', ["msg"=>"Admin dashboard"]);
+        $complains = Complain::sortable()->simplePaginate();
+
+        return view('dashboard.admin', ["msg"=>"Admin dashboard"], compact('complains'));
     }
     public function buyerHome()
     {   $user_id = Auth::user()->id;

@@ -63,10 +63,10 @@
                         <li class="nav-item">
                           <a class="nav-link" href="{{ route('posts.index') }}">Job posts</a>
                         </li>
-{{--
+
                         <li class="nav-item">
                           <a class="nav-link" href="{{ route('chatify') }}">Messages</a>
-                        </li> --}}
+                        </li>
 
                       </ul>
                     @endguest
@@ -129,21 +129,7 @@
         <main class="py-4">
             @yield('content')
         </main>
-        <div class="row">
-          <div class="container">
-            @if (session()->has('success'))
-                <div class="alert alert-success">
-                    {{ session('success') }}
-                </div>
-            @endif
 
-            @if (session()->has('warning'))
-                <div class="alert alert-warning">
-                    {{ session('warning') }}
-                </div>
-            @endif
-          </div>
-        </div>
 
         <footer class="footer-bg text-center   bg-white">
             <!-- Section: Links  -->

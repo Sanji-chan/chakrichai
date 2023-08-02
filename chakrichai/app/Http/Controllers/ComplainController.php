@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Complain;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+
 
 class ComplainController extends Controller
 {
@@ -30,4 +33,12 @@ class ComplainController extends Controller
         session()->put('success', 'Complain submitted successfully');
         return redirect()->back();
     }
+
+    public function destroy(Complain $post)
+    {
+        $post->delete();
+        session()->put('success', 'Complain deleted successfully.');
+        return redirect()->route('complain.index');
+    }
+
 }
