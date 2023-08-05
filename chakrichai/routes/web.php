@@ -12,6 +12,10 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ApplicationController;
+use App\Http\Controllers\CommentsController;
+use App\Http\Controllers\LikesController;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -153,3 +157,15 @@ Route::middleware(['auth'])->group(function () {
     ->name('applications.getresume');
 });
         
+// Comment routes
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/comments', [CommentsController::class, 'store'])
+        ->name('comments.store');
+});
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/likes', [LikesController::class, 'control'])
+        ->name('likes.controller');
+});
+

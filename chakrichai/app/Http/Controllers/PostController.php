@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Post;
+use App\Models\Comments;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
@@ -80,7 +81,20 @@ class PostController extends Controller
     {
         // return response()->json(Auth::user()->role );
         $post = Post::where('slug', $slug)->firstOrFail();
-        return view('posts.show', compact('post'));
+
+        $comments = DB::table("comments")
+        ->join("users","users.id", "=", "comments.user_id")
+        ->select("*")
+        ->where("post_id",$post->id)
+        ->get();
+
+        $likes = DB::table("likes")
+        ->join("users","users.id", "=", "likes.user_id")
+        ->select("*")
+        ->where("post_id",$post->id)
+        ->get(); 
+
+        return view('posts.show', compact('post',"comments","likes"));
     }
     
 

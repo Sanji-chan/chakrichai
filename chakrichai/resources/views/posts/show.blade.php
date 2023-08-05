@@ -1,3 +1,5 @@
+use App\Models\Comments;
+
 @extends('layouts.app')
 
 
@@ -38,20 +40,79 @@
                         @endif
                     @endif
                 </div>
+
                
                 </div>
                 <div class="card-footer pt-2 m-2">
                     <div class="row m-auto">
+
+                    
                         <div class="col text-center">
-                            <i class="fas fa-solid fa-heart"></i> Like
+                        <div>
+                            Total likes: {{$likes->count()}}
+                            <form method="get" action="{{ route('likes.controller') }}">
+                                <!-- Submit button -->
+                                <input type="hidden" name="post_id" value="{{ $post->id }}" />
+                                <button type="submit" value="like" class="btn btn-primary main-button btn-block mb-4">Like</button>
+                            </form>
                         </div>
-                        <div class="col text-center">
-                            <i class="fas fa-regular fa-comment"></i>  Comment
+                            
+
                         </div>
+
                         <div class="col text-center">
                             <i class="fas fa-solid fa-share"></i>  Share
                         </div>
                     </div>
+
+                <div class="row">
+                <div class="col-lg-4 m-auto">
+                    <div class="row-header">
+                        <h3>
+                            Leave a comment
+                        </h3>
+                    </div>
+                    <form method="get" action="{{ route('comments.store') }}">
+                  
+                        <!-- Message input -->
+                        <div class="form-outline mb-4">
+                        <input type="text" name="content" class="form-control" />
+                        <input type="hidden" name="post_id" value="{{ $post->id }}" />
+                        </div>
+
+                        <!-- Submit button -->
+                        <button type="submit" value="comment" class="btn btn-primary main-button btn-block mb-4">Send</button>
+                    </form>
+                </div>
+                </div>
+
+            <div>
+        
+            @if ($comments->count() > 0)
+            <h3>Comments:</h3>
+            <br>
+            
+                @foreach ($comments as $comment)
+
+                    <p><b>{{ $comment->name }}</b></p>
+
+                    <p>{{ $comment->content }}</p>
+                
+                @endforeach
+            
+            @else
+            
+                <p>No comments yet.</p>
+                
+            @endif
+
+                
+            
+        </div>
+
+
+                
+
                     
                 </div>
             </div>
