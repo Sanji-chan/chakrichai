@@ -18,7 +18,7 @@
 @endif
 
 {{-- -------------------- Contact list -------------------- --}}
-@if($get == 'users' && !!$lastMessage)
+@if($get == 'users' && !! $lastMessage)
 <?php
 $lastMessageBody = mb_convert_encoding($lastMessage->body, 'UTF-8', 'UTF-8');
 $lastMessageBody = strlen($lastMessageBody) > 30 ? mb_substr($lastMessageBody, 0, 30, 'UTF-8').'..' : $lastMessageBody;
@@ -88,3 +88,8 @@ $lastMessageBody = strlen($lastMessageBody) > 30 ? mb_substr($lastMessageBody, 0
 @endif
 
 
+
+@if($get == 'allMessages')
+
+
+@endif

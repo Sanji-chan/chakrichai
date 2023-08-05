@@ -1,4 +1,5 @@
 <?php
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -12,6 +13,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ApplicationController;
+use App\Http\Controllers\ComplainController;
+
 use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\LikesController;
 
@@ -44,7 +47,7 @@ Route::middleware(['2fa'])->group(function () {
         return redirect(route('home'));
     })->name('2fa');
 });
-  
+
 Route::get('/complete-registration', [RegisterController::class, 'completeRegistration'])
     ->name('complete.registration');
 
@@ -52,6 +55,14 @@ Route::get('/complete-registration', [RegisterController::class, 'completeRegist
 Route::middleware(['auth','user-role:admin'])->group(function(){
     Route::get("/admin/home",[HomeController::class, 'adminHome'])
         ->name("admin.home")->middleware(['auth', 'verified']);
+    //Complain routes
+    Route::post('/complain', [ComplainController::class, 'store'])
+        ->name('complain.store');
+    Route::get('/complain', [ComplainController::class, 'index'])
+         ->name('complain.index');
+    Route::delete('/complain/{post}', [ComplainController::class, 'destroy'])
+         ->name('complain.destroy');
+
 });
 // Route User
 Route::middleware(['auth','user-role:buyer'])->group(function(){
@@ -105,7 +116,7 @@ Route::post("/email", [ForgotPasswordManager::class, "forgotPasswordPost"])
     ->name("forgot.password.post");
 Route::get("/reset/{token}", [ForgotPasswordManager::class, "resetPassword"])
     ->name("reset.password");
-Route::post("/reset", [ForgotPasswordManager::class, "resetPasswordPost"]) 
+Route::post("/reset", [ForgotPasswordManager::class, "resetPasswordPost"])
     ->name("reset.password.post");
 
 // Google Auth routes
@@ -138,7 +149,7 @@ Route::middleware(['auth'])->group(function () {
         ->name('posts.destroy');
     Route::get('/posts/resume/{photo_path}',  [PostController::class, 'getpostimg'])
        ->name('posts.getpostimg');
-     
+
 });
 
 // Job Application routes
