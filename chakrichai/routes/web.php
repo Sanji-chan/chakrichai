@@ -68,11 +68,15 @@ Route::middleware(['auth','user-role:admin'])->group(function(){
 Route::middleware(['auth','user-role:buyer'])->group(function(){
     Route::get("/buyer/home",[HomeController::class, 'buyerHome'])
         ->name("buyer.home")->middleware(['auth', 'verified']);
+    Route::post('/complain', [ComplainController::class, 'store'])
+        ->name('complain.store');
 });
-// Route Editor
+// Route Seller
 Route::middleware(['auth','user-role:seller'])->group(function(){
     Route::get("/seller/home",[HomeController::class, 'sellerHome'])
         ->name("seller.home")->middleware(['auth', 'verified']);
+    Route::post('/complain', [ComplainController::class, 'store'])
+        ->name('complain.store');
 });
 
 // Search user routes
