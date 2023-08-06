@@ -14,7 +14,6 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\ComplainController;
-
 use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\LikesController;
 
@@ -79,6 +78,8 @@ Route::middleware(['auth','user-role:seller'])->group(function(){
 Route::middleware(['auth'])->group(function(){
     Route::get("/search",[UserController::class, 'searchUsers'])
     ->name("search")->middleware(['auth', 'verified']);
+    Route::get("/search/{num}",[UserController::class, 'filterUsers'])
+    ->name("search.filter");
     Route::post('/rating', [UserController::class, 'rating'])->name('rating');
 });
 
