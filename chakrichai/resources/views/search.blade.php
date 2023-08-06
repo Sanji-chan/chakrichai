@@ -9,14 +9,37 @@
             <div class="row justify-content-center">
                 <div class="col-md-12">
                     <div class="card">
-                        <div class="card-header m-2"> <h4>{{__('Users found on search: ')}}</h4></div>
-        
+                        <div class="card-header m-2"> 
+                            <h4>{{__('Users found on search: ')}}</h4>
+                            <ul class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{__("Filter by rating")}}
+                                </a>
+                              
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                               
+                                    <a class="dropdown-item" name="filter" value = "1" href="{{ route('search.filter', 1) }}">
+                                        {{ __('Top 5') }}
+                                    </a>
+                                  
+                                    <a class="dropdown-item" name="filter" value = "2" href="{{ route('search.filter', 2) }}">
+                                        {{ __('Top 10') }}
+                                    </a>
+                                 
+                                    <a class="dropdown-item" name="filter" value = "3" href="{{ route('search.filter', 3) }}">
+                                        {{ __('Last 5') }}
+                                    </a>
+                                </div>
+                            </ul>
+                        </div>
+                        
                         <div class="card-body">
                             @if ($searchUsers->isNotEmpty())
                             <table class="table align-middle mb-0">
                                 <thead class="">
                                   <tr>
                                     <th>Name</th>
+                                    <th>Rating</th>
                                     <th>Role</th>
                                     <th>Position</th>
                                     <th>Education</th>
@@ -41,6 +64,9 @@
                                             <p class="text-muted mb-0">{{ $users -> email }}</p>
                                             </div>
                                         </div>
+                                        </td>
+                                        <td>
+                                            {{ $users -> avg_rating}}
                                         </td>
                                         <td>
                                         <p class="fw-normal mb-1">

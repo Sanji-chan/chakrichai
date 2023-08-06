@@ -6,6 +6,7 @@ use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 use App\Models\User;
 use App\Models\UserProfile;
 
@@ -28,21 +29,21 @@ class UserController extends Controller
             if (strtolower($request->search) == "buyer"){
                 $searchUsers = DB::table('users')
                 ->join('user_profiles', 'user_profiles.user_id', '=', 'users.id')
-                ->selectRaw("name,email,role,user_profiles.position,user_profiles.education")
+                ->selectRaw("*")
                 ->where("role","=","1")
                 ->get();
             }
             elseif (strtolower($request->search) == "seller") { 
                 $searchUsers = DB::table('users')
                 ->join('user_profiles', 'user_profiles.user_id', '=', 'users.id')
-                ->selectRaw("name,email,role,user_profiles.position,user_profiles.education")
+                ->selectRaw("*")
                 ->where("role","=","2")
                 ->get();
             }
             else{
                 $searchUsers = DB::table('users')
                 ->join('user_profiles', 'user_profiles.user_id', '=', 'users.id')
-                ->selectRaw("name,email,role,user_profiles.position,user_profiles.education")
+                ->selectRaw("*")
                 ->where("name","like","%$request->search%")
                 ->orWhere("email","like","%$request->search%")
                 ->orWhere("user_profiles.position","like","%$request->search%")
@@ -57,6 +58,43 @@ class UserController extends Controller
         else
         {
             return redirect()->back();
+
+        }
+    }
+
+    public function filterUsers($num) 
+    {   
+        //return response()->json($num);
+        if ($num)
+        {
+            if ($num == 1){
+                $searchUsers = DB::table('users')
+                ->join('user_profiles', 'user_profiles.user_id', '=', 'users.id')
+                ->selectRaw("*")
+                ->orderBy("user_profiles.avg_rating","DESC")
+                ->paginate(5);   
+            }
+
+            else if ($num == 2){
+                $searchUsers = DB::table('users')
+                ->join('user_profiles', 'user_profiles.user_id', '=', 'users.id')
+                ->selectRaw("*")
+                ->orderBy("user_profiles.avg_rating","DESC")
+                ->limit(10)
+                ->get();   
+            }
+
+            else{
+                $searchUsers = DB::table('users')
+                ->join('user_profiles', 'user_profiles.user_id', '=', 'users.id')
+                ->selectRaw("*")
+                ->orderBy("user_profiles.avg_rating")
+                ->limit(5)
+                ->get(); 
+
+            }
+
+            return view("search",compact("searchUsers"));
 
         }
     }
