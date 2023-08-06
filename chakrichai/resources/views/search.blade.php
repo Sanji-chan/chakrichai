@@ -19,7 +19,7 @@
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                
                                     <a class="dropdown-item" name="filter" value = "1" href="{{ route('search.filter', 1) }}">
-                                        {{ __('Top 5') }}
+                                        {{ __('Top 3') }}
                                     </a>
                                   
                                     <a class="dropdown-item" name="filter" value = "2" href="{{ route('search.filter', 2) }}">
@@ -27,7 +27,7 @@
                                     </a>
                                  
                                     <a class="dropdown-item" name="filter" value = "3" href="{{ route('search.filter', 3) }}">
-                                        {{ __('Last 5') }}
+                                        {{ __('Last 3') }}
                                     </a>
                                 </div>
                             </ul>

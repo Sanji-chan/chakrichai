@@ -55,36 +55,38 @@ Route::middleware(['auth','user-role:admin'])->group(function(){
     Route::get("/admin/home",[HomeController::class, 'adminHome'])
         ->name("admin.home")->middleware(['auth', 'verified']);
     //Complain routes
-    Route::post('/complain', [ComplainController::class, 'store'])
-        ->name('complain.store');
     Route::get('/complain', [ComplainController::class, 'index'])
          ->name('complain.index');
     Route::delete('/complain/{post}', [ComplainController::class, 'destroy'])
          ->name('complain.destroy');
 
 });
+
 // Route User
 Route::middleware(['auth','user-role:buyer'])->group(function(){
     Route::get("/buyer/home",[HomeController::class, 'buyerHome'])
         ->name("buyer.home")->middleware(['auth', 'verified']);
-    Route::post('/complain', [ComplainController::class, 'store'])
-        ->name('complain.store');
 });
+
 // Route Seller
 Route::middleware(['auth','user-role:seller'])->group(function(){
     Route::get("/seller/home",[HomeController::class, 'sellerHome'])
         ->name("seller.home")->middleware(['auth', 'verified']);
-    Route::post('/complain', [ComplainController::class, 'store'])
-        ->name('complain.store');
 });
 
-// Search user routes
+
 Route::middleware(['auth'])->group(function(){
+    // Search user routes
     Route::get("/search",[UserController::class, 'searchUsers'])
-    ->name("search")->middleware(['auth', 'verified']);
+        ->name("search")->middleware(['auth', 'verified']);
     Route::get("/search/{num}",[UserController::class, 'filterUsers'])
-    ->name("search.filter");
-    Route::post('/rating', [UserController::class, 'rating'])->name('rating');
+        ->name("search.filter");
+    Route::post('/rating', [UserController::class, 'rating'])
+        ->name('rating');
+
+    // Send complaints
+    Route::post('/complain', [ComplainController::class, 'store'])
+        ->name('complain.store');
 });
 
 // Profile routes
