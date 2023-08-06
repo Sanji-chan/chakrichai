@@ -41,19 +41,29 @@ use App\Models\Comments;
                     @endif
                 </div>
 
-               
+                
+                <span> 
+                    {{-- @if (isset($liked))
+                    You and 
+                    @endif --}}
+                    {{$likes->count()}} people liked this post</span>
+
                 </div>
                 <div class="card-footer pt-2 m-2">
                     <div class="row m-auto">
 
-                    
+                        
                         <div class="col text-center">
                         <div>
-                            Total likes: {{$likes->count()}}
+                           
                             <form method="get" action="{{ route('likes.controller') }}">
                                 <!-- Submit button -->
                                 <input type="hidden" name="post_id" value="{{ $post->id }}" />
-                                <button type="submit" value="like" class="btn btn-primary main-button btn-block mb-4">Like</button>
+                                <button type="submit" value="like" class="btn btn-block mb-4"> <i class="fas fa-solid fa-thumbs-up"></i>
+                                    
+                                    Like
+                                
+                                </button>
                             </form>
                         </div>
                             
@@ -65,51 +75,49 @@ use App\Models\Comments;
                         </div>
                     </div>
 
-                <div class="row">
-                <div class="col-lg-4 m-auto">
-                    <div class="row-header">
-                        <h3>
-                            Leave a comment
-                        </h3>
+
+
+                <div class="">
+                    @if ($comments->count() > 0)
+                    <div class="card-header">
+                        <h4>Comments</h4>
                     </div>
-                    <form method="get" action="{{ route('comments.store') }}">
-                  
-                        <!-- Message input -->
-                        <div class="form-outline mb-4">
-                        <input type="text" name="content" class="form-control" />
-                        <input type="hidden" name="post_id" value="{{ $post->id }}" />
+                   
+                    <br>
+                        @foreach ($comments as $comment)
+
+                            <p><b>{{ $comment->name }}</b></p>
+
+                            <p>{{ $comment->content }}</p>
+                        
+                        @endforeach
+                    
+                    @else
+
+                        <p>No comments yet.</p>
+                        
+                    @endif
+                </div>
+                <div class="row">
+                    <div class="col-lg-4 m-auto">
+                        <div class="row-header">
+                            <h3>
+                                Leave a comment
+                            </h3>
                         </div>
-
-                        <!-- Submit button -->
-                        <button type="submit" value="comment" class="btn btn-primary main-button btn-block mb-4">Send</button>
-                    </form>
-                </div>
-                </div>
-
-            <div>
-        
-            @if ($comments->count() > 0)
-            <h3>Comments:</h3>
-            <br>
-            
-                @foreach ($comments as $comment)
-
-                    <p><b>{{ $comment->name }}</b></p>
-
-                    <p>{{ $comment->content }}</p>
-                
-                @endforeach
-            
-            @else
-            
-                <p>No comments yet.</p>
-                
-            @endif
-
-                
-            
-        </div>
-
+                        <form method="get" action="{{ route('comments.store') }}">
+                      
+                            <!-- Message input -->
+                            <div class="form-outline mb-4">
+                            <input type="text" name="content" class="form-control" />
+                            <input type="hidden" name="post_id" value="{{ $post->id }}" />
+                            </div>
+    
+                            <!-- Submit button -->
+                            <button type="submit" value="comment" class="btn btn-primary main-button btn-block mb-4">Send</button>
+                        </form>
+                    </div>
+                    </div>
 
                 
 

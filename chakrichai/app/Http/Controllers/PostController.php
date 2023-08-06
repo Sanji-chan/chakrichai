@@ -94,7 +94,15 @@ class PostController extends Controller
         ->where("post_id",$post->id)
         ->get(); 
 
-        return view('posts.show', compact('post',"comments","likes"));
+        $liked = DB::table("likes")
+        ->select("*")
+        ->where("post_id",$post->id)
+        ->where("likes.user_id", Auth::id())
+        ->get(); 
+
+        // return response()->json($liked);
+        
+        return view('posts.show', compact('post',"comments","likes", "liked"));
     }
     
 
