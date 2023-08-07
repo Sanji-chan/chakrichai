@@ -29,21 +29,21 @@ class UserController extends Controller
             if (strtolower($request->search) == "buyer"){
                 $searchUsers = DB::table('users')
                 ->join('user_profiles', 'user_profiles.user_id', '=', 'users.id')
-                ->selectRaw("name,email,role,user_profiles.position,user_profiles.education")
+                ->selectRaw("*")
                 ->where("role","=","1")
                 ->get();
             }
             elseif (strtolower($request->search) == "seller") { 
                 $searchUsers = DB::table('users')
                 ->join('user_profiles', 'user_profiles.user_id', '=', 'users.id')
-                ->selectRaw("name,email,role,user_profiles.position,user_profiles.education")
+                ->selectRaw("*")
                 ->where("role","=","2")
                 ->get();
             }
             else{
                 $searchUsers = DB::table('users')
                 ->join('user_profiles', 'user_profiles.user_id', '=', 'users.id')
-                ->selectRaw("name,email,role,user_profiles.position,user_profiles.education")
+                ->selectRaw("*")
                 ->where("name","like","%$request->search%")
                 ->orWhere("email","like","%$request->search%")
                 ->orWhere("user_profiles.position","like","%$request->search%")

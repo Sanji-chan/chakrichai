@@ -22,8 +22,60 @@
                               <button type="submit" class="border-0 btn" id="search-addon"><i class="fas fa-search" style="color: #eeaeca;"></i></button>
                             </div>
                     </form>
-                    <div class="col-4 m-auto text-end" style="display:inline-block;">
-                        Sort by: @sortablelink('created_at','Date') @sortablelink('price') @sortablelink('tag') @sortablelink('status')                             
+                    <div class="col-4 m-auto text-end" style="display:inline-block">
+                        Sort by: @sortablelink('created_at','Date') @sortablelink('price')       
+                        <ul class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{__("Tags")}}
+                                </a>
+                              
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                               
+                                    <a class="dropdown-item" href="{{ route('posts.filter', 'Teaching') }}">
+                                        {{ __('Teaching') }}
+                                    </a>
+                                  
+                                    <a class="dropdown-item" href="{{ route('posts.filter', 'Software Dev') }}">
+                                        {{ __('Software Development') }}
+                                    </a>
+
+                                    <a class="dropdown-item" href="{{ route('posts.filter', 'Graphics') }}">
+                                        {{ __('Graphics') }}
+                                    </a>
+
+                                    <a class="dropdown-item" href="{{ route('posts.filter', 'Digital Art') }}">
+                                        {{ __('Digital Art') }}
+                                    </a>
+
+                                    <a class="dropdown-item" href="{{ route('posts.filter', 'Mathematics') }}">
+                                        {{ __('Mathematics') }}
+                                    </a>
+                                </div>
+                        </ul>
+
+                        <ul class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{__("Status")}}
+                                </a>
+                              
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                               
+                                    <a class="dropdown-item" href="{{ route('posts.filter', 'active') }}">
+                                        {{ __('Active') }}
+                                    </a>
+
+                                    <a class="dropdown-item" href="{{ route('posts.filter', 'completed') }}">
+                                        {{ __('Completed') }}
+                                    </a>
+
+                                    <a class="dropdown-item" href="{{ route('posts.filter', 'pending') }}">
+                                        {{ __('Pending') }}
+                                    </a>
+                                  
+
+                                </div>
+                        </ul>
+                     
                     </div>
 
                         
@@ -41,13 +93,14 @@
                                       <th>End Date</th>
                                       <th>Remuneration</th>
                                       <th>Tags</th>
+                                      <th>Status</th>
                                       <th>Actions</th>
                                     </tr>
                                   </thead>
                             </thead>
                             <tbody>
                                 @foreach ($searchPosts as $post)
-                                    <tr>
+                                <tr>
                                         <td>
                                             <div class="d-flex align-items-center">
                                                 <img
@@ -71,6 +124,9 @@
                                         </td>
                                         <td>
                                             <p class="fw-normal mb-1"> {{ $post->tag }} </p>
+                                        </td>
+                                        <td>
+                                            <p class="fw-normal mb-1"> {{ $post->status }} </p>
                                         </td>
                                     
         

@@ -136,7 +136,7 @@ Route::middleware(['auth'])->group(function () {
         ->name('posts.create');
     Route::get("/posts/searchposts",[PostController::class, 'searchPosts'])
         ->name("posts.searchposts");
-        Route::get("/posts/filter",[PostController::class, 'filter'])
+    Route::get("/posts/{filter}",[PostController::class, 'tagFilter'])
         ->name("posts.filter");
     Route::post('/posts', [PostController::class, 'store'])
         ->name('posts.store');
