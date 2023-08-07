@@ -168,30 +168,4 @@ class PostController extends Controller
         }
     }
 
-    public function tagFilter($filter) 
-    {   
-        //return response()->json($filter);
-
-        if ($filter)
-        {
-            if ($filter == "active" || $filter == "completed" || $filter == "pending"){
-                $searchPosts = Post::select("*")
-                ->where("status","=","$filter")
-                ->sortable()
-                ->paginate();
-            }
-            
-            else
-            {
-                $searchPosts = Post::select("*")
-                ->where("tag","=","$filter")
-                ->sortable()
-                ->paginate();
-            }
-            
-            return view("posts.searchposts",compact("searchPosts"));
-
-        }
-    }
-
 }
