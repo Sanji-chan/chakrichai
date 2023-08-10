@@ -85,7 +85,7 @@ use App\Models\Comments;
 
                         @foreach ($comments as $comment)
                             <div class="row comment_header">
-                                <a href="#" class="col align-self-start">{{ $comment->name }}</a>
+                                <a href="{{ route('profile.show', $comment->user_id) }}" class="col align-self-start">{{ $comment->name }}</a>
                                 <span class="col align-self-end text-end" >{{ $comment->created_at }}</span>
     
                             </div>

@@ -99,43 +99,6 @@ class UserController extends Controller
         }
     }
 
-    // public function filterUsers($num) 
-    // {   
-    //     //return response()->json($num);
-    //     if ($num)
-    //     {
-    //         if ($num == 1){
-    //             $searchUsers = DB::table('users')
-    //             ->join('user_profiles', 'user_profiles.user_id', '=', 'users.id')
-    //             ->selectRaw("*")
-    //             ->orderBy("user_profiles.avg_rating","DESC")
-    //             ->paginate(5);   
-    //         }
-
-    //         else if ($num == 2){
-    //             $searchUsers = DB::table('users')
-    //             ->join('user_profiles', 'user_profiles.user_id', '=', 'users.id')
-    //             ->selectRaw("*")
-    //             ->orderBy("user_profiles.avg_rating","DESC")
-    //             ->limit(10)
-    //             ->get();   
-    //         }
-
-    //         else{
-    //             $searchUsers = DB::table('users')
-    //             ->join('user_profiles', 'user_profiles.user_id', '=', 'users.id')
-    //             ->selectRaw("*")
-    //             ->orderBy("user_profiles.avg_rating")
-    //             ->limit(5)
-    //             ->get(); 
-
-    //         }
-
-    //         return view("search",compact("searchUsers"));
-
-    //     }
-    // }
-
     public function rating(Request $request)
     {
         $post = Post::findOrfail($request->post_id);

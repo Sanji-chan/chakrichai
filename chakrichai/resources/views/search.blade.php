@@ -46,7 +46,6 @@
                                     <th>Role</th>
                                     <th>Position</th>
                                     <th>Education</th>
-                                    {{-- <th>Actions</th> --}}
                                   </tr>
                                 </thead>
 
@@ -63,7 +62,7 @@
                                                 class="rounded-circle"
                                                 />
                                             <div class="ms-3">
-                                            <p class="fw-bold mb-1">{{$users -> name}}</p>
+                                            <p class="fw-bold mb-1"><a href="{{ route('profile.show', $users->user_id ) }}">{{$users -> name}}</a></p>
                                             <p class="text-muted mb-0">{{ $users -> email }}</p>
                                             </div>
                                         </div>

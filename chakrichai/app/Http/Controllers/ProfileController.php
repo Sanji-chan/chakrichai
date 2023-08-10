@@ -10,7 +10,7 @@ use App\Models\UserProfile;
 
 class ProfileController extends Controller
 {
-    public function show()
+    public function show($slug)
     {
         $profiles = DB::table('users')
             ->join('user_profiles', 'user_profiles.user_id', '=', 'users.id')
@@ -18,14 +18,20 @@ class ProfileController extends Controller
             ->get();
 
         foreach ($profiles as $profile) {
-            if ($profile->user_id == Auth::user()->id){
+            if ($profile->user_id == $slug){
                 return view('profile.show', compact('profile'));
             }
         }
+        
+        // foreach ($profiles as $profile) {
+        //     if ($profile->user_id == Auth::user()->id){
+        //         return view('profile.show', compact('profile'));
+        //     }
+        // }
     }
     
     // all edit view functions starts here
-    public function edit()
+    public function edit($slug)
     {
         $profiles = DB::table('users')
             ->join('user_profiles', 'user_profiles.user_id', '=', 'users.id')
@@ -47,7 +53,7 @@ class ProfileController extends Controller
         abort(403, 'Unauthorized');
     }
 
-    public function edit_bio()
+    public function edit_bio($slug)
     {
         $profiles = DB::table('users')
             ->join('user_profiles', 'user_profiles.user_id', '=', 'users.id')
@@ -64,7 +70,7 @@ class ProfileController extends Controller
         abort(403, 'Unauthorized');
     }
 
-    public function edit_social()
+    public function edit_social($slug)
     {
         $profiles = DB::table('users')
             ->join('user_profiles', 'user_profiles.user_id', '=', 'users.id')
@@ -81,7 +87,7 @@ class ProfileController extends Controller
         abort(403, 'Unauthorized');
     }
 
-    public function edit_active_status()
+    public function edit_active_status($slug)
     {
         $profiles = DB::table('users')
             ->join('user_profiles', 'user_profiles.user_id', '=', 'users.id')
@@ -117,7 +123,7 @@ class ProfileController extends Controller
             // Update the profile with the validated data
             $profile->update($validatedData);
             session()->put('success', 'Profile updated successfully.');
-            return redirect()->route('profile.show');
+            return redirect()->route('profile.show', Auth::user()->id);
         }
 
         abort(403, 'Unauthorized');
@@ -139,7 +145,7 @@ class ProfileController extends Controller
             // Update the profile with the validated data
             $profile->update($validatedData);
             session()->put('success', 'Profile updated successfully.');
-            return redirect()->route('profile.show');
+            return redirect()->route('profile.show', Auth::user()->id);
         }
         abort(403, 'Unauthorized');
     }
@@ -156,7 +162,7 @@ class ProfileController extends Controller
             // Update the profile with the validated data
             $profile->update($validatedData);
             session()->put('success', 'Profile updated successfully.');
-            return redirect()->route('profile.show');
+            return redirect()->route('profile.show', Auth::user()->id);
         }
         abort(403, 'Unauthorized');
     }

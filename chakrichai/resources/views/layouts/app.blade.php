@@ -99,10 +99,10 @@
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
-                                    <a class="dropdown-item" href="{{ route('profile.show') }}">
+                                    <a class="dropdown-item" href="{{ route('profile.show', Auth::user()->id) }}">
                                         {{ __('Profile') }}
                                     </a>
-                                    <a class="dropdown-item" href="{{ route('profile.edit') }}">
+                                    <a class="dropdown-item" href="{{ route('profile.edit', Auth::user()->id) }}">
                                         {{ __('Settings') }}
                                     </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"

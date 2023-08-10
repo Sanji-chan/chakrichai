@@ -27,12 +27,19 @@
               
               </p>
               <div class="d-flex justify-content-center mb-2">
-                <a href="{{ route('profile.edit') }}">
-                    <button type="button" class="btn btn-primary" style="background: #eeaeca; border: 1px solid #eeaeca;">Edit Profile</button>
-                </a>
+
                 <a href="#">
-                    <button type="button" class="btn secondary-button ms-1">Message</button>
+                  @php
+                    $chat_link = "http://127.0.0.1:8000/chatify/".$profile->user_id;   
+                  @endphp
+                    <button type="button" class="btn btn-primary" style="background: #eeaeca; border: 1px solid #eeaeca;"> <a href="{{ url($chat_link) }}" style="color: #fff !important; font-weight:400 !important;">Message</a></button>
                 </a>
+
+                @if(Auth::user()->id == $profile->user_id)
+                <a href="{{ route('profile.edit', Auth::user()->id) }}">
+                    <button type="button" class="ms-1 btn secondary-button" >Edit Profile</button>
+                </a>
+              @endif
               </div>
             </div>
           </div>
@@ -120,9 +127,8 @@
                         </div>
                         @auth
                             @if ($profile->user_id === Auth::id())
-                                {{-- <a href="{{ route('profile.edit') }}">Edit Profile</a> --}}
                                 <div style="display:inline-block">
-                                    <a href="{{ route('profile.edit_bio') }}"><i class="fas fa-edit"></i></a>
+                                    <a href="{{ route('profile.edit_bio', Auth::user()->id) }}"><i class="fas fa-edit"></i></a>
                                 </div>  
                             @endif
                         @endauth
@@ -134,21 +140,8 @@
                     </div>
                 </div>
               </div>
-              
-          {{-- <div class="row">
-            <div class="card mb-4 mb-lg-0">
-                <div class="card-header m-2 bg-light"><h4>Post/Find a job section</h4></div>
-                <div class="card-body col justify-content-end ">
-                    <form action="#">
-                        <div class="">
-                            <textarea class="form-control mb-2 rounded "  placeholder="Post a job request..." rows="3"></textarea>
-                            <a href="#"><button  class="btn btn-primary secondary-button" >Post</button></a>
-                        </div>
-                    </form>
-                </div>
-            </div>
-          </div> --}}
 
+              {{-- Add new content here if needed --}}
         </div>
 
 

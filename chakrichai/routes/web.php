@@ -94,25 +94,26 @@ Route::middleware(['auth'])->group(function(){
 // Profile routes
 Route::middleware(['auth'])->group(function () {
 
-    Route::get('/profile', [ProfileController::class, 'show'])
+    Route::get('/profile/{slug}', [ProfileController::class, 'show'])
         ->name('profile.show');
 
-    Route::get('/profile/edit', [ProfileController::class, 'edit'])
+    Route::get('/profile/edit/{slug}', [ProfileController::class, 'edit'])
         ->name('profile.edit');
+
     Route::post('/profile/update', [ProfileController::class, 'update'])
         ->name('profile.update');
 
-    Route::get('/profile/edit_bio', [ProfileController::class, 'edit_bio'])
+    Route::get('/profile/edit_bio/{slug}', [ProfileController::class, 'edit_bio'])
         ->name('profile.edit_bio');
     Route::post('/profile/update_bio', [ProfileController::class, 'update_bio'])
         ->name('profile.update_bio');
 
-    Route::get('/profile/edit_social', [ProfileController::class, 'edit_social'])
+    Route::get('/profile/edit_social/{slug}', [ProfileController::class, 'edit_social'])
         ->name('profile.edit_social');
     Route::post('/profile/update_social', [ProfileController::class, 'update_social'])
         ->name('profile.update_social');
 
-    Route::get('/profile/edit_active_status', [ProfileController::class, 'edit_active_status'])
+    Route::get('/profile/edit_active_status/{slug}', [ProfileController::class, 'edit_active_status'])
         ->name('profile.edit_active_status');
     Route::post('/profile/update_active_status', [ProfileController::class, 'update_active_status'])
         ->name('profile.update_active_status');
