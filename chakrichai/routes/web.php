@@ -81,6 +81,8 @@ Route::middleware(['auth'])->group(function(){
         ->name("search")->middleware(['auth', 'verified']);
     Route::get("/search/{num}",[UserController::class, 'filterUsers'])
         ->name("search.filter");
+    Route::get("/search/{num}",[UserController::class, 'filterUsers'])
+    ->name("search.filter");
     Route::post('/rating', [UserController::class, 'rating'])
         ->name('rating');
 
