@@ -9,9 +9,9 @@
             <div class="row justify-content-center">
                 <div class="col-md-12">
                     <div class="card">
-                        <div class="card-header m-2"> 
-                            <h4>{{__('Users found on search: ')}}</h4>
-                            <ul class="nav-item dropdown">
+                        <div class="row card-header m-2"> 
+                            <h4 class="mt-1 col align-self-start">{{__('Users found on search: ')}}</h4>
+                            <ul class="mt-2 col align-self-end text-end nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{__("Filter by rating")}}
                                 </a>

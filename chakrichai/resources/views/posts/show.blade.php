@@ -7,9 +7,10 @@ use App\Models\Comments;
 <div class="post-bg" style="background-color: #a5a4a423;">
     <div class="container">
    
-        <div class="row mt-4">
+        <div class="row">
+            @include('layouts.flash_messages')
             <div class="col-lg-8 m-auto">
-                @include('layouts.flash_messages')
+               
             
             <div class="card mb-lg-0">
                 <div class="card-header m-2">
@@ -43,53 +44,54 @@ use App\Models\Comments;
 
                 
                 <span> 
-                    {{-- @if (isset($liked))
-                    You and 
-                    @endif --}}
                     {{$likes->count()}} people liked this post</span>
-
                 </div>
                 <div class="card-footer pt-2 m-2">
                     <div class="row m-auto">
 
                         
                         <div class="col text-center">
-                        <div>
-                           
-                            <form method="get" action="{{ route('likes.controller') }}">
-                                <!-- Submit button -->
-                                <input type="hidden" name="post_id" value="{{ $post->id }}" />
-                                <button type="submit" value="like" class="btn btn-block mb-4"> <i class="fas fa-solid fa-thumbs-up"></i>
-                                    
-                                    Like
-                                
-                                </button>
-                            </form>
-                        </div>
-                            
-
+                            <div>
+                                <form method="get" action="{{ route('likes.controller') }}">
+                                    <!-- Submit button -->
+                                    <input type="hidden" name="post_id" value="{{ $post->id }}" />
+                                    <button type="submit" value="like" class="btn btn-block"> <i class="fas fa-solid fa-thumbs-up"></i>
+                                        Like
+                                    </button>
+                                </form>
+                            </div>
                         </div>
 
-                        <div class="col text-center">
+                        <div class="col text-center mt-2">
                             <i class="fas fa-solid fa-share"></i>  Share
                         </div>
                     </div>
 
 
+       
+                </div>
 
-                <div class="">
+            </div>
+
+        </div>
+        <div class="col-md-4">
+            <div class="card mb-lg-0">
+                <div class="card-header m-2">
+                    <h5>Comments</h5>
+                </div>
+                <div class="row m-2">
+                    
                     @if ($comments->count() > 0)
-                    <div class="card-header">
-                        <h4>Comments</h4>
-                    </div>
-                   
-                    <br>
+
                         @foreach ($comments as $comment)
-
-                            <p><b>{{ $comment->name }}</b></p>
-
+                            <div class="row comment_header">
+                                <a href="#" class="col align-self-start">{{ $comment->name }}</a>
+                                <span class="col align-self-end text-end" >{{ $comment->created_at }}</span>
+    
+                            </div>
+                            
                             <p>{{ $comment->content }}</p>
-                        
+
                         @endforeach
                     
                     @else
@@ -98,14 +100,14 @@ use App\Models\Comments;
                         
                     @endif
                 </div>
-                <div class="row">
-                    <div class="col-lg-4 m-auto">
-                        <div class="row-header">
-                            <h3>
+                <div class="row m-2">
+                    <div class="col-lg-12 m-auto">
+                        <div class="card-footer pt-3"  style="border-top: 1px solid var(--bs-card-border-color)">
+                            <h5>
                                 Leave a comment
-                            </h3>
+                            </h5>
                         </div>
-                        <form method="get" action="{{ route('comments.store') }}">
+                        <form id="comment" method="get" action="{{ route('comments.store') }}">
                       
                             <!-- Message input -->
                             <div class="form-outline mb-4">
@@ -114,15 +116,14 @@ use App\Models\Comments;
                             </div>
     
                             <!-- Submit button -->
-                            <button type="submit" value="comment" class="btn btn-primary main-button btn-block mb-4">Send</button>
+                            <button type="submit" value="comment" class="btn btn-primary main-button btn-block mb-4" style="padding: 1% 2%">Comment</button>
                         </form>
                     </div>
-                    </div>
+                    </div>   
 
-                
-
-                    
-                </div>
             </div>
+        </div>
+     </div>
+    </div>
 </div>
 @endsection
