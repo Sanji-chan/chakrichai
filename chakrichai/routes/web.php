@@ -81,8 +81,6 @@ Route::middleware(['auth'])->group(function(){
         ->name("search")->middleware(['auth', 'verified']);
     Route::get("/search/{num}",[UserController::class, 'filterUsers'])
         ->name("search.filter");
-    Route::get("/search/{num}",[UserController::class, 'filterUsers'])
-    ->name("search.filter");
     Route::post('/rating', [UserController::class, 'rating'])
         ->name('rating');
 
@@ -145,7 +143,7 @@ Route::middleware(['auth'])->group(function () {
         ->name('posts.create');
     Route::get("/posts/searchposts",[PostController::class, 'searchPosts'])
         ->name("posts.searchposts");
-        Route::get("/posts/filter",[PostController::class, 'filter'])
+        Route::get("/posts/{filter}",[PostController::class, 'tagFilter'])
         ->name("posts.filter");
     Route::post('/posts', [PostController::class, 'store'])
         ->name('posts.store');
