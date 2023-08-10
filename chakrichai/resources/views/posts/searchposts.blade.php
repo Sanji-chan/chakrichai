@@ -11,10 +11,11 @@
 
 
             <div class="card mb-4 mb-lg-0">
-                <div class="card-header m-2">
-                    <div class="col-4" style="display:inline-block">
-                        <h4>Searched Posts</h4>
+                <div class="row card-header m-2">
+                    <div class="col-4 mt-1" style="display:inline-block">
+                        <h4>Search Posts</h4>
                     </div>
+                    
                     <form class="navbar-nav m-auto col-lg-3 " style="display:inline-block" method="GET" action="{{ url('posts/searchposts') }}">
                         @csrf
                             <div class="input-group">
@@ -22,10 +23,21 @@
                               <button type="submit" class="border-0 btn" id="search-addon"><i class="fas fa-search" style="color: #eeaeca;"></i></button>
                             </div>
                     </form>
-                    <div class="col-4 m-auto text-end" style="display:inline-block;">
-                    Sort by: @sortablelink('created_at','Date') @sortablelink('price')       
-                        <ul class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                    <div class="col-4 mt-2 m-auto " style="display: flex !important;">
+                        <div class="sort  m-auto text-center me-2">
+                            {{-- Sort by:  --}}
+                             <span class="me-4">@sortablelink('created_at','Date')</span>
+
+                             <span class="ms-4"> @sortablelink('price') </span>
+                            
+                        </div>
+                             
+                        {{-- <div class="sort  m-auto">
+                           Filter by: 
+                        </div> --}}
+                        <ul class="nav-item dropdown  text-center m-auto ">
+                          
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle text-center" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{__("Tags")}}
                                 </a>
 
@@ -53,8 +65,8 @@
                                 </div>
                         </ul>
 
-                        <ul class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        <ul class="nav-item dropdown  m-auto ">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle text-center" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{__("Status")}}
                                 </a>
 
@@ -71,14 +83,11 @@
                                     <a class="dropdown-item" href="{{ route('posts.filter', 'pending') }}">
                                         {{ __('Pending') }}
                                     </a>
-
-
                                 </div>
                         </ul>                             
                     </div>
-
-                        
                 </div>
+
                 <div class="card-body ">
         
                     @if ($searchPosts->isEmpty())
