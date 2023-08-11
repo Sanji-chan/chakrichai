@@ -6,8 +6,8 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>{{ config('app.name', 'Chakrichai') }}</title>
+    <title> {{ config('app.name', 'Chakrichai') }}</title>
+    <link rel="icon" type="image/x-icon" href="{{ asset('images/favicon.svg') }}">
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
@@ -25,8 +25,10 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container-fluid">
-                <a class="navbar-brand" href="{{ url("/") }}">
-                    {{ config('app.name', 'Chakrichai') }}
+                <a class="navbar-brand m-auto text-center" href="{{ url("/") }}">
+                  <i class="fas fa-gem me-1 text-secondary"></i>
+                  {{-- <i class="fas fa-gem" style="color: #eeafca;"></i> --}}
+                  {{ config('app.name', 'Chakrichai') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>

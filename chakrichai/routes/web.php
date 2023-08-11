@@ -141,22 +141,27 @@ Route::middleware(['auth'])->group(function () {
         ->name('posts.index');
     Route::get('/posts/create', [PostController::class, 'create'])
         ->name('posts.create');
-    Route::get("/posts/searchposts",[PostController::class, 'searchPosts'])
-        ->name("posts.searchposts");
-        Route::get("/posts/{filter}",[PostController::class, 'tagFilter'])
-        ->name("posts.filter");
+
+    Route::get("/posts/searchposts", [PostController::class, 'searchPosts'])
+       ->name("posts.searchposts");
+
     Route::post('/posts', [PostController::class, 'store'])
         ->name('posts.store');
     Route::get('/posts/{post}', [PostController::class, 'show'])
         ->name('posts.show');
+
     Route::get('/posts/{post}/edit', [PostController::class, 'edit'])
         ->name('posts.edit');
     Route::post('/posts/{post}', [PostController::class, 'update'])
         ->name('posts.update');
+    
     Route::delete('/posts/{post}', [PostController::class, 'destroy'])
         ->name('posts.destroy');
     Route::get('/posts/resume/{photo_path}',  [PostController::class, 'getpostimg'])
        ->name('posts.getpostimg');
+
+    Route::get("/posts/filter/{filter}", [PostController::class, 'tagFilter'])
+       ->name("posts.filter");
 
 });
 
