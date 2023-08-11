@@ -15,9 +15,9 @@
                     <p>You must set up your Google Authenticator app before continuing. You will be unable to login otherwise</p>
                     <div>
                         @if ($google == true)
-                            <a href="{{ route('googlecreate') }}" class="btn btn-primary">Complete Registration</a>
+                            <a href="{{ route('googlecreate') }}"  class="btn btn-primary secondary-button" style="background: #eeaeca; border: 1px solid #eeaeca; color: #fff;">Complete Registration</a>
                         @else
-                            <a href="{{ route('complete.registration') }}" class="btn btn-primary">Complete Registration</a>
+                            <a href="{{ route('complete.registration') }}"  class="btn btn-primary secondary-button" style="background: #eeaeca; border: 1px solid #eeaeca; color: #fff !important;">Complete Registration</a>
                         @endif
                     </div>
                 </div>

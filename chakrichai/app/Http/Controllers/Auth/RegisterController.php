@@ -124,7 +124,6 @@ class RegisterController extends Controller
     public function completeRegistration(Request $request)
     {       
         $request->merge(session('registration_data'));
-        return response()->json($request);
         return $this->registration($request);
     }
 

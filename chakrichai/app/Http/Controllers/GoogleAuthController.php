@@ -91,7 +91,8 @@ class GoogleAuthController extends Controller
             }
         }
         catch(\Throwable $th){
-            echo "This email exists, login in with password";
+            session()->put('warning', 'This email exists, login in with password');
+            return redirect()->back();
         }
     }
 

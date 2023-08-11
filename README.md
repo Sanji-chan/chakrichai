@@ -14,6 +14,20 @@ Open a new folder, and pull the file from git. Then, open terminal and run the f
 npm install
 ```
 
+Install sorting plugin
+```bash
+composer require kyslik/column-sortable
+```
+
+Install chatify for messaging
+
+```bash
+composer require munafio/chatify
+php artisan chatify:install
+```
+
+Please note that you will need to set up the .env file with appropriate PUSHER credentials.
+
 Migrate database and seed the tables, using the following commands:
 
 ```bash

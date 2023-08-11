@@ -6,8 +6,8 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>{{ config('app.name', 'Chakrichai') }}</title>
+    <title> {{ config('app.name', 'Chakrichai') }}</title>
+    <link rel="icon" type="image/x-icon" href="{{ asset('images/favicon.svg') }}">
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
@@ -15,7 +15,7 @@
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
-    
+
     <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css" >
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
 
@@ -25,8 +25,10 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container-fluid">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Chakrichai') }}
+                <a class="navbar-brand m-auto text-center" href="{{ url("/") }}">
+                  <i class="fas fa-gem me-1 text-secondary"></i>
+                  {{-- <i class="fas fa-gem" style="color: #eeafca;"></i> --}}
+                  {{ config('app.name', 'Chakrichai') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -47,22 +49,25 @@
                       <form class="navbar-nav ms-auto col-lg-4 " method="GET" action="{{ url('search') }}">
                           @csrf
                               <div class="input-group">
-                                <input type="text" name="search" value= "{{ Request::get('search') }}" class="form-control" style="border: None;" placeholder="Search" aria-label="Search" aria-describedby="search-addon"/>
+                                <input type="text" name="search" value= "{{ Request::get('search') }}" class="form-control" style="border: None;" placeholder="Search User" aria-label="Search" aria-describedby="search-addon"/>
                                 <button type="submit" class="border-0 btn" id="search-addon"><i class="fas fa-search" style="color: #eeaeca;"></i></button>
                               </div>
                       </form>
                       <ul class="navbar-nav justify-content-end col-lg-6">
                         @php
                               $userRoute = Auth::user()->role.'/home';
-                              
+
                         @endphp
 
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url($userRoute) }}">Home</a>
                         </li>
-                        
                         <li class="nav-item">
-                          <a class="nav-link" href="#">Messages</a>
+                          <a class="nav-link" href="{{ route('posts.index') }}">Job posts</a>
+                        </li>
+
+                        <li class="nav-item">
+                          <a class="nav-link" href="{{ route('chatify') }}">Messages</a>
                         </li>
 
                       </ul>
@@ -96,10 +101,10 @@
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
-                                    <a class="dropdown-item" href="{{ route('profile.show') }}">
+                                    <a class="dropdown-item" href="{{ route('profile.show', Auth::user()->id) }}">
                                         {{ __('Profile') }}
                                     </a>
-                                    <a class="dropdown-item" href="{{ route('profile.edit') }}">
+                                    <a class="dropdown-item" href="{{ route('profile.edit', Auth::user()->id) }}">
                                         {{ __('Settings') }}
                                     </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
@@ -114,6 +119,8 @@
                 </div>
             </div>
         </nav>
+
+
 
 
 
@@ -143,7 +150,7 @@
                     </p>
                   </div>
                   <!-- Grid column -->
-          
+
                   <!-- Grid column -->
                   <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
                     <!-- Links -->
@@ -164,7 +171,7 @@
                     </p>
                   </div>
                   <!-- Grid column -->
-          
+
                   <!-- Grid column -->
                   <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
                     <!-- Links -->
@@ -185,13 +192,14 @@
                     </p>
                   </div>
                   <!-- Grid column -->
-          
+
                   <!-- Grid column -->
                   <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
                     <!-- Links -->
                     <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
                     <p><i class="fas fa-home me-3 text-secondary"></i> Dhaka, Bangladesh 1216</p>
                     <p>
+
                       <i class="fas fa-envelope me-3 text-secondary"></i>
                       chakrichai@gmail.com
                     </p>
@@ -204,11 +212,11 @@
               </div>
           </section>
           <!-- Grid container -->
-        
+
           </div>
-        
+
           <section class="d-flex justify-content-center justify-content-lg-between p-4">
-        
+
               <!-- Right -->
               <div class="container">
                   <div class="row">
@@ -222,22 +230,22 @@
                       <a class="btn btn-link btn-floating btn-lg" href="#!" role="button">
                           <i class="fab fa-facebook-f"></i>
                       </a>
-              
+
                       <!-- Twitter -->
                       <a class="btn btn-link btn-floating btn-lg" href="#!" role="button">
-                      <i class="fab fa-twitter"></i> 
+                      <i class="fab fa-twitter"></i>
                       </a>
-              
+
                       <!-- Google -->
                       <a class="btn btn-link btn-floating btn-lg" href="#!" role="button">
                           <i class="fab fa-google"></i>
                       </a>
-              
+
                       <!-- Instagram -->
-                      <a class="btn btn-link btn-floating btn-lg" href="#!" role="button"> 
+                      <a class="btn btn-link btn-floating btn-lg" href="#!" role="button">
                           <i class="fab fa-instagram"></i>
                       </a>
-              
+
                       <!-- Linkedin -->
                       <a class="btn btn-link btn-floating btn-lg" href="#!" role="button"><i class="fab fa-linkedin"></i>
                       </a>
@@ -247,22 +255,22 @@
                       </a>
                   </div>
                 <!-- Section: Social media -->
-        
+
                   </div>
               <!-- Right -->
             </section>
             <!-- Section: Social media -->
-        
+
           <!-- Copyright -->
           <div class="text-center text-dark pt-3 pb-3 border-top">
               <h6 class="copyright-text">©2023 ChakriChai</h6>
           </div>
           <!-- Copyright -->
         </footer>
-        
+
         <!--FOOTER PART END-->
- 
+
     </div>
- 
+
 </body>
 </html>

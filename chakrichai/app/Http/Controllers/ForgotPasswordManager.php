@@ -1,6 +1,5 @@
 <?php
 namespace app\Http\Controllers;
-// use App\Http\Controllers\Controller;
 use App\Models\User; 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -36,8 +35,9 @@ class ForgotPasswordManager extends Controller
                         $message -> subject("Reset Account Password Chakrichai");
                     }
                 );
-        return redirect()->to(route(name: "forgot.password"))
-            -> with('success', "We have sent an email to rest you password.");
+
+        session()->put('success', "We have sent an email to rest you password.");
+        return redirect()->to(route(name: "forgot.password"));
     }
 
     function resetPassword($token){
@@ -59,8 +59,8 @@ class ForgotPasswordManager extends Controller
             ])->first();
 
         if(!$updatePassword){ 
-            return redirect()->to(route("reset.password"))
-                ->with("error", "Invalid input.");
+            session()->put('error', "Invalid input.");
+            return redirect()->to(route("reset.password"));
         }
         
         // update user table
@@ -70,6 +70,8 @@ class ForgotPasswordManager extends Controller
         // remove generated token from password_rest table
         DB::table('password_resets')
             ->where(["email"=>$request->email])->delete();
-        return redirect()->to(route("login"))->with("success", "Password resrt successfully." );
+
+        session()->put('success', "Password reset successfully.");
+        return redirect()->to(route("login"));
     }
 }

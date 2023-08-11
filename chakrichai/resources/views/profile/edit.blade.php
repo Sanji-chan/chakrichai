@@ -8,11 +8,11 @@
         <div class="col-lg-3 mt-5">
           {{-- profile navigation --}}
           <div id="list-example" class="list-group">
-            <a class="list-group-item list-group-item-action " href="{{ route('profile.show') }}">User Details</a>
-            <a class="list-group-item list-group-item-action active" href="{{ route('profile.edit') }}">Edit Profile</a>
-            <a class="list-group-item list-group-item-action" href="{{ route('profile.edit_social') }}">Edit Social links</a>
-            <a class="list-group-item list-group-item-action" href="{{ route('profile.edit_bio') }}">Add bio</a>
-            <a class="list-group-item list-group-item-action" href="{{ route('profile.edit_active_status') }}">Deactivate Account</a>
+            <a class="list-group-item list-group-item-action " href="{{ route('profile.show', Auth::user()->id) }}">User Details</a>
+            <a class="list-group-item list-group-item-action active" href="{{ route('profile.edit', Auth::user()->id) }}">Edit Profile</a>
+            <a class="list-group-item list-group-item-action" href="{{ route('profile.edit_social', Auth::user()->id) }}">Edit Social links</a>
+            <a class="list-group-item list-group-item-action" href="{{ route('profile.edit_bio', Auth::user()->id) }}">Add bio</a>
+            <a class="list-group-item list-group-item-action" href="{{ route('profile.edit_active_status', Auth::user()->id) }}">Deactivate Account</a>
           </div>
         </div>
         <div class="col-lg-1"> </div>
@@ -21,8 +21,10 @@
             <div class="row">
              
                 <div class="col-sm-3">
-                  <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
+                  {{-- <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
                   class="rounded-circle img-fluid mt-3" style="width: 150px; border: 2px solid #a5a4a423;">
+                 --}}
+                 <div class="user_img m-auto img-fluid"></div>
                 </div>
                 <div class="col-sm-4">
                   <h5 class="mt-4" style="color: #eeaeca;">{{ $profile->name }}</h5>

@@ -4,32 +4,42 @@
 
 <section class="profile-bg" style="background-color: #a5a4a423;">
     <div class="container">
-      <div class="row">
+      
 
+      <div class="row justify-content-start">
+        @include('layouts.flash_messages')
         {{-- user image card --}}
         <div class="col-lg-4">
           <div class="card mb-4">
-            <div class="card-body text-center">
-              <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
-                class="rounded-circle img-fluid mt-3" style="width: 150px; border: 5px solid #a5a4a423;">
+            <div class="card-body m-auto text-center">
+              {{-- <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
+                class="rounded-circle img-fluid mt-3" style="width: 150px; border: 5px solid #a5a4a423;"> --}}
+              <div class="user_img m-auto img-fluid"></div>
               <h5 class="mt-3">{{ $profile->name }}</h5>
               <p class="text-muted mb-1">
                 @if ($profile->role == 1)
-                    {{ __("Buyer") }}
+                    {{ __("Buyer") }} ({{ $profile->avg_rating }}/10)
                 @elseif ($profile->role == 2)
-                    {{ __("Seller") }}
+                    {{ __("Seller") }} ({{ $profile->avg_rating }}/10)
                 @else 
                     {{ __("Admin") }}
                 @endif
               
               </p>
               <div class="d-flex justify-content-center mb-2">
-                <a href="{{ route('profile.edit') }}">
-                    <button type="button" class="btn btn-primary" style="background: #eeaeca; border: 1px solid #eeaeca;">Edit Profile</button>
-                </a>
+
                 <a href="#">
-                    <button type="button" class="btn secondary-button ms-1">Message</button>
+                  @php
+                    $chat_link = "http://127.0.0.1:8000/chatify/".$profile->user_id;   
+                  @endphp
+                    <button type="button" class="btn btn-primary" style="background: #eeaeca; border: 1px solid #eeaeca;"> <a href="{{ url($chat_link) }}" style="color: #fff !important; font-weight:400 !important;">Message</a></button>
                 </a>
+
+                @if(Auth::user()->id == $profile->user_id)
+                <a href="{{ route('profile.edit', Auth::user()->id) }}">
+                    <button type="button" class="ms-1 btn secondary-button" >Edit Profile</button>
+                </a>
+              @endif
               </div>
             </div>
           </div>
@@ -84,21 +94,21 @@
                     
                  <div class="text-center">
                     <!-- Facebook -->
-                    <a class="btn btn-link btn-floating btn-lg" href="{{ $profile->facebooklink }}" role="button">
+                    <a class="btn btn-link btn-floating btn-lg" href="{{ $profile->facebooklink }}" target="_blank"  rel="noopener"  role="button">
                         <i class="text-center fab fa-facebook-f"></i>
                     </a>
             
                     <!-- Instagram -->
-                    <a class="btn btn-link btn-floating btn-lg" href="{{ $profile->instagramlink }}" role="button"> 
+                    <a class="btn btn-link btn-floating btn-lg" href="{{ $profile->instagramlink }}" target="_blank"  rel="noopener"  role="button"> 
                         <i class=" text-center fab fa-instagram"></i>
                     </a>
             
                     <!-- Linkedin -->
-                    <a class="btn btn-link btn-floating btn-lg" href="{{ $profile->linkedinlink }}" role="button">
+                    <a class="btn btn-link btn-floating btn-lg" href="{{ $profile->linkedinlink }}" target="_blank"  rel="noopener"  role="button">
                         <i class="text-center fab fa-linkedin"></i>
                     </a>
                     <!-- Github -->
-                    <a class="btn btn-link btn-floating btn-lg" href="{{ $profile->githublink }}" role="button">
+                    <a class="btn btn-link btn-floating btn-lg" href="{{ $profile->githublink }}" target="_blank"  rel="noopener"  role="button">
                         <i class="text-center fab fa-github"></i>
                     </a>
                     
@@ -117,9 +127,8 @@
                         </div>
                         @auth
                             @if ($profile->user_id === Auth::id())
-                                {{-- <a href="{{ route('profile.edit') }}">Edit Profile</a> --}}
                                 <div style="display:inline-block">
-                                    <a href="{{ route('profile.edit_bio') }}"><i class="fas fa-edit"></i></a>
+                                    <a href="{{ route('profile.edit_bio', Auth::user()->id) }}"><i class="fas fa-edit"></i></a>
                                 </div>  
                             @endif
                         @endauth
@@ -131,21 +140,8 @@
                     </div>
                 </div>
               </div>
-              
-          {{-- <div class="row">
-            <div class="card mb-4 mb-lg-0">
-                <div class="card-header m-2 bg-light"><h4>Post/Find a job section</h4></div>
-                <div class="card-body col justify-content-end ">
-                    <form action="#">
-                        <div class="">
-                            <textarea class="form-control mb-2 rounded "  placeholder="Post a job request..." rows="3"></textarea>
-                            <a href="#"><button  class="btn btn-primary secondary-button" >Post</button></a>
-                        </div>
-                    </form>
-                </div>
-            </div>
-          </div> --}}
 
+              {{-- Add new content here if needed --}}
         </div>
 
 

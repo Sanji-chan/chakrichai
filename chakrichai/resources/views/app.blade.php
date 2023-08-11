@@ -60,6 +60,10 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url($userRoute) }}">Home</a>
                         </li>
+                       
+                        <li class="nav-item">
+                          <a class="nav-link" href="route{{ 'posts.index' }}">Job posts</a>
+                        </li>
                         
                         <li class="nav-item">
                           <a class="nav-link" href="#">Messages</a>
@@ -114,7 +118,21 @@
                 </div>
             </div>
         </nav>
+        <div class="row">
+          <div class="container">
+            @if (session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
 
+            @if (session('warning'))
+                <div class="alert alert-warning">
+                    {{ session('warning') }}
+                </div>
+            @endif
+          </div>
+        </div>
 
 
 

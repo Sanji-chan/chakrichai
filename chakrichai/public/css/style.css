@@ -101,6 +101,17 @@ p {
 .card-header{
     background: #fff !important;
 }
+.card-footer{
+    background: #fff !important; 
+}
+
+.card-footer i{
+    color: #8199e7;
+}
+
+.card-header h4{
+    font-size: 18px;
+}
 .list-group-item{
     position: static !important;  
     background: #fff !important;  
@@ -121,6 +132,10 @@ p {
 /*font-family: 'Roboto', sans-serif;*/
 /* font-family: 'Open Sans', sans-serif;*/
 
+
+table{
+    --bs-table-bg: None !important;
+}
 /*COMMON CSS END*/
 
 
@@ -364,4 +379,35 @@ padding: 7% 0%;
 .profile-bg{
     justify-content: center;
     padding: 7% 0%;
+}
+
+.post-bg{
+    justify-content: center;
+    padding: 7% 0%;
+}
+
+.welcomeimg{
+    background-image: url(../images/dashboard_welcome.png);
+    height: 195px;
+    width: 195px;
+    background-position: center;
+    background-repeat:no-repeat;
+    background-size: contain;
+
+}
+.empty_img{
+    background-image: url(../images/emptylist.png);
+    height: 200px;
+    width: 200px;
+    background-position: center;
+    background-repeat:no-repeat;
+    background-size: contain;
+}
+.user_img{
+    background-image: url(../images/user_profileimg_placeholder.png);
+    height: 150px;
+    width: 150px;
+    background-position: center;
+    background-repeat:no-repeat;
+    background-size: contain;
 }
