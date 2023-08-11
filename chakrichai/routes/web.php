@@ -24,19 +24,15 @@ use App\Http\Controllers\LikesController;
 |--------------------------------------------------------------------------
 */
 
-// Home route
-
-
 // Verification route
 Auth::routes(['verify'=>true]);
 Route::get('/', function () {return view('home');});
 
 
-// Route::get('/chatify', function (){return view('vendor/Chatify/pages/app');})->name('chatify');
 
+// Home route
 Route::group(['middleware' => ['guest']], function () {
-    //only guests can access these routes
-    Route::get('/', [HomeController::class, 'index'])->name('home');
+    Route::get('/', [HomeController::class, 'index'])->name('home'); 
 });
 
 // 2FA
@@ -53,13 +49,13 @@ Route::get('/complete-registration', [RegisterController::class, 'completeRegist
 // Route Admin
 Route::middleware(['auth','user-role:admin'])->group(function(){
     Route::get("/admin/home",[HomeController::class, 'adminHome'])
-        ->name("admin.home")->middleware(['auth', 'verified']);
-    //Complain routes
+        ->name("admin.home")->middleware(['auth', 'verified']); 
+    
+    //Complain routes (visible to admins only)
     Route::get('/complain', [ComplainController::class, 'index'])
          ->name('complain.index');
     Route::delete('/complain/{post}', [ComplainController::class, 'destroy'])
          ->name('complain.destroy');
-
 });
 
 // Route User
@@ -74,7 +70,7 @@ Route::middleware(['auth','user-role:seller'])->group(function(){
         ->name("seller.home")->middleware(['auth', 'verified']);
 });
 
-
+// Routes available for all auth users
 Route::middleware(['auth'])->group(function(){
     // Search user routes
     Route::get("/search",[UserController::class, 'searchUsers'])
@@ -91,13 +87,11 @@ Route::middleware(['auth'])->group(function(){
 
 // Profile routes
 Route::middleware(['auth'])->group(function () {
-
     Route::get('/profile/{slug}', [ProfileController::class, 'show'])
         ->name('profile.show');
 
     Route::get('/profile/edit/{slug}', [ProfileController::class, 'edit'])
         ->name('profile.edit');
-
     Route::post('/profile/update', [ProfileController::class, 'update'])
         ->name('profile.update');
 
@@ -142,6 +136,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/posts/create', [PostController::class, 'create'])
         ->name('posts.create');
 
+    // Post search
     Route::get("/posts/searchposts", [PostController::class, 'searchPosts'])
        ->name("posts.searchposts");
 
@@ -160,6 +155,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/posts/resume/{photo_path}',  [PostController::class, 'getpostimg'])
        ->name('posts.getpostimg');
 
+    // Post filter
     Route::get("/posts/filter/{filter}", [PostController::class, 'tagFilter'])
        ->name("posts.filter");
 

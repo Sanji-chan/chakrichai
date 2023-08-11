@@ -33,6 +33,7 @@ class ApplicationController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+    
     public function store(Request $request)
     {   
 
@@ -57,7 +58,6 @@ class ApplicationController extends Controller
             'user_id' => 'nullable',
             'post_id' => 'nullable',
         ]);
-        // return response()->json($validatedData);
 
         // Handle file upload if necessary
         if ($request->hasFile('resume')) {

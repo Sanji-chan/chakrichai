@@ -33,8 +33,6 @@ class CommentsController extends Controller
             'user_id' => 'nullable',
             'post_id' => 'nullable',
         ]);
-        // return response()->json($validatedData);
-
 
         $comment = new Comments();
         $comment->content = $validatedData['content'];

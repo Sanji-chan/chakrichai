@@ -19,7 +19,7 @@
   @endif
 
   @if (request()->session()->get('error'))
-    <div class="alert alert-error">
+    <div class="alert alert-danger">
         {{ session('error') }}
     </div>
     @php

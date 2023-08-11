@@ -22,12 +22,7 @@ class ProfileController extends Controller
                 return view('profile.show', compact('profile'));
             }
         }
-        
-        // foreach ($profiles as $profile) {
-        //     if ($profile->user_id == Auth::user()->id){
-        //         return view('profile.show', compact('profile'));
-        //     }
-        // }
+    
     }
     
     // all edit view functions starts here

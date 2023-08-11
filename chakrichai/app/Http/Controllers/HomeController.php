@@ -42,6 +42,7 @@ class HomeController extends Controller
 
         return view('dashboard.admin', ["msg"=>"Admin dashboard"], compact('complains'));
     }
+
     public function buyerHome()
     {   $user_id = Auth::user()->id;
         
@@ -57,6 +58,7 @@ class HomeController extends Controller
 
         return view('dashboard.buyer',["msg"=> "Buyer dashboard"], compact('posts', 'applications') );
     }
+    
     public function sellerHome()
     {
         $user_id = Auth::user()->id;

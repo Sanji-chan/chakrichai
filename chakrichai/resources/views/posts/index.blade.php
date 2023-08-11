@@ -1,6 +1,5 @@
 @extends('layouts.app')
 
-
 @section('content')
 
 <div class="post-bg" style="background-color: #a5a4a423;">
@@ -9,8 +8,6 @@
         @include('layouts.flash_messages')
         <div class="row mt-4">
             <div class="col-lg-12">
-        
-
 
             <div class="card mb-4 mb-lg-0">
                 <div class="row card-header m-2">
@@ -27,16 +24,12 @@
                     </form>
                     <div class="col-4 mt-2 m-auto " style="display: flex !important;">
                         <div class="sort  m-auto text-center me-2">
-                            {{-- Sort by:  --}}
                              <span class="me-4">@sortablelink('created_at','Date')</span>
 
                              <span class="ms-4"> @sortablelink('price') </span>
                             
                         </div>
                              
-                        {{-- <div class="sort  m-auto">
-                           Filter by: 
-                        </div> --}}
                         <ul class="nav-item dropdown  text-center m-auto ">
                           
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle text-center" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -110,7 +103,6 @@
                             </thead>
                             <tbody>
                                 @foreach ($posts as $post)
-                                    {{-- @if ($post->status != 'completed') --}}
                                     <tr>
                                         <td>
                                             <div class="d-flex align-items-center">
@@ -154,10 +146,10 @@
                                             @endif
                                         </td>
                                     </tr>
-                                    {{-- @endif --}}
                                 @endforeach
                             </tbody>
                         </table>
+                     
                     @endif
 
                     @if (Auth::user()->role == 'buyer')

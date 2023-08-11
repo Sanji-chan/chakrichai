@@ -15,7 +15,7 @@ class PostController extends Controller
 {
     public function index()
     {
-        $posts = Post::sortable()->paginate();
+        $posts = Post::sortable()->simplePaginate();
 
         return view('posts.index', compact('posts'));
     }
@@ -79,7 +79,6 @@ class PostController extends Controller
 
     public function show($slug)
     {
-        // return response()->json(Auth::user()->role );
         $post = Post::where('slug', $slug)->firstOrFail();
 
         $comments = DB::table("comments")
@@ -100,7 +99,7 @@ class PostController extends Controller
         ->where("likes.user_id", Auth::id())
         ->get(); 
 
-        // return response()->json($liked);
+
         
         return view('posts.show', compact('post',"comments","likes", "liked"));
     }
@@ -113,7 +112,7 @@ class PostController extends Controller
 
     public function update(Request $request, Post $post)
     {   
-        // return response()->json($request);
+        
         $validatedData = $request->validate([
             'title' => 'nullable',
             'slug' => 'nullable',
@@ -158,7 +157,6 @@ class PostController extends Controller
 
     public function searchPosts(Request $request) 
     {
-         return response()->json($request);
     if ($request->searchposts)
         {
             $searchPosts = Post::select("*")
@@ -173,13 +171,11 @@ class PostController extends Controller
     else
         {
             return redirect()->back();
-
         }
     }
 
     public function tagFilter($filter) 
     {   
-        // return response()->json($filter);
 
         if ($filter)
         {
