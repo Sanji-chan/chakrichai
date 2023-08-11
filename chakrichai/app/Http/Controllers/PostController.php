@@ -158,7 +158,7 @@ class PostController extends Controller
 
     public function searchPosts(Request $request) 
     {
-         return response()->json($request);
+    // return response()->json($request);
     if ($request->searchposts)
         {
             $searchPosts = Post::select("*")
