@@ -79,15 +79,21 @@
                         @endforeach
                     </tbody>
                 </table>
+                <div class="row">
+                
+                    <form class="col mt-3"  action="{{ route('posts.create') }}">
+                        <div class="">
+                            <a href="#"><button  class="btn btn-primary secondary-button" >Create New Post</button></a>
+                        </div>
+                    </form>
+                    
+                    {{-- <div class="col text-end mt-4">
+                        {!! $posts->links() !!}
+                    </div> --}}
+                </div>
             @endif
 
-            {{-- <a href="{{ route('posts.create') }}">Create New Post</a> --}}
-            <form action="{{ route('posts.create') }}">
-                <div class="mt-3">
-                    {{-- <textarea class="form-control mb-2 rounded "  placeholder="Post a job request..." rows="2"></textarea> --}}
-                    <a href="#"><button  class="btn btn-primary secondary-button" >Create New Post</button></a>
-                </div>
-            </form>
+           
         </div>
     </div>
 
@@ -98,10 +104,7 @@
 
             @if ($applications->isEmpty())
             <div class="empty_img img-fluid m-auto"></div>
-            <p class="m-auto text-center">No applications found
-                <br>
-                <a class="m-auto text-center" href="{{ route("posts.index") }}">Find jobs</a>
-            </p>
+            <p class="m-auto text-center">No applications found</p>
             @else
                 <table  class="table align-middle mb-0">
                     <thead>
@@ -170,6 +173,14 @@
                         @endforeach
                     </tbody>
                 </table>
+                <div class="row">
+                    <div class="col mt-3">
+                        <form action="{{ route('applications.index')  }}" method="GET">
+                            @csrf
+                            <button type="submit"  class="btn btn-primary secondary-button" >View All</button>
+                        </form>
+                    </div>
+                </div>
             @endif
         </div>
     </div>

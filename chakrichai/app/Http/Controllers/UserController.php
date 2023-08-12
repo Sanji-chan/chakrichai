@@ -72,7 +72,8 @@ class UserController extends Controller
                 ->join('user_profiles', 'user_profiles.user_id', '=', 'users.id')
                 ->selectRaw("*")
                 ->orderBy("user_profiles.avg_rating","DESC")
-                ->paginate(3);   
+                ->limit(3)
+                ->get();   
             }
 
             else if ($num == 2){

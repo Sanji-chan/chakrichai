@@ -163,6 +163,8 @@ Route::middleware(['auth'])->group(function () {
 
 // Job Application routes
 Route::middleware(['auth'])->group(function () {
+    Route::get('/applications', [ApplicationController::class, 'index'])
+        ->name('applications.index');
     Route::get('/applications/create', [ApplicationController::class, 'create'])
         ->name('applications.create');
     Route::post('/applications', [ApplicationController::class, 'store'])

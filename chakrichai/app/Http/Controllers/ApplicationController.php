@@ -18,8 +18,15 @@ class ApplicationController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        //
+    {   
+       
+        $applications = Application::select( 'applications.*')
+            ->join('posts', 'posts.id', '=', 'applications.post_id')
+            ->join('users', 'users.id', '=', 'posts.user_id')
+            ->where('posts.user_id', Auth::user()->id)
+            ->simplePaginate(10);
+
+        return view('applications.index', compact('applications'));
     }
 
     /**

@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="post-bg" style="background-color: #a5a4a423;">
-    
+
     <div class="container">
         @include('layouts.flash_messages')
         <div class="row mt-4">
@@ -14,7 +14,7 @@
                     <div class="col-4 mt-1" style="display:inline-block">
                         <h4>All Posts</h4>
                     </div>
-                    
+
                     <form class="navbar-nav m-auto col-lg-3 " style="display:inline-block" method="GET" action="{{ url('posts/searchposts') }}">
                         @csrf
                             <div class="input-group">
@@ -27,11 +27,11 @@
                              <span class="me-4">@sortablelink('created_at','Date')</span>
 
                              <span class="ms-4"> @sortablelink('price') </span>
-                            
+
                         </div>
-                             
+
                         <ul class="nav-item dropdown  text-center m-auto ">
-                          
+
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle text-center" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{__("Tags")}}
                                 </a>
@@ -79,12 +79,12 @@
                                         {{ __('Pending') }}
                                     </a>
                                 </div>
-                        </ul>                             
+                        </ul>
                     </div>
                 </div>
 
                 <div class="card-body ">
-        
+
                     @if ($posts->isEmpty())
                         <p>No posts found.</p>
                     @else
@@ -114,7 +114,7 @@
                                                     />
                                                 <div class="ms-3">
                                                     <a href="{{ route('posts.show', $post->slug) }}"> {{ $post->title }}</a>
-                                                
+
                                                 <p class="text-muted mb-0" style="font-size: 14px">Posted at: {{ $post->created_at }}</p>
                                                 </div>
                                             </div>
@@ -131,11 +131,11 @@
                                         <td>
                                             <p class="fw-normal mb-1"> {{ $post->status }} </p>
                                         </td>
-                                    
-        
+
+
                                         <td>
                                             <a href="{{ route('posts.show', $post->slug) }}">View</a>
-                                            
+
                                             @if (Auth::user()->id == $post->user_id)
                                             <a href="{{ route('posts.edit', $post->id) }}">Edit</a>
                                             <form action="{{ route('posts.destroy', $post->id) }}" method="POST">
@@ -149,14 +149,21 @@
                                 @endforeach
                             </tbody>
                         </table>
-                     
+
+                        <div class="row text-end mt-3">
+                            {!! $posts->links() !!}
+                        </div>
+
                     @endif
 
                     @if (Auth::user()->role == 'buyer')
                          <a href="{{ route('posts.create') }}">Create New Post</a>
                     @endif
-                
+
            </div>
     </div>
+</div>
+</div>
+</div>
 </div>
 @endsection

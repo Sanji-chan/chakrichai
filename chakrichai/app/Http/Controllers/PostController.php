@@ -15,7 +15,7 @@ class PostController extends Controller
 {
     public function index()
     {
-        $posts = Post::sortable()->simplePaginate();
+        $posts = Post::sortable()->simplePaginate(10);
 
         return view('posts.index', compact('posts'));
     }
@@ -164,7 +164,7 @@ class PostController extends Controller
                 ->orWhere("tag","like","%$request->searchposts%")
                 ->orWhere("status","like","%$request->searchposts%")
                 ->sortable()
-                ->paginate();
+                ->simplepaginate(10);
             
             return view("posts.searchposts",compact("searchPosts"));
         }
@@ -183,7 +183,7 @@ class PostController extends Controller
                 $searchPosts = Post::select("*")
                 ->where("status","=","$filter")
                 ->sortable()
-                ->paginate();
+                ->simplepaginate(10);
             }
 
             else
@@ -191,7 +191,7 @@ class PostController extends Controller
                 $searchPosts = Post::select("*")
                 ->where("tag","=","$filter")
                 ->sortable()
-                ->paginate();
+                ->simplepaginate(10);
             }
 
             return view("posts.searchposts",compact("searchPosts"));

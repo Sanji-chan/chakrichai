@@ -38,7 +38,7 @@ class HomeController extends Controller
     
     public function adminHome()
     {
-        $complains = Complain::sortable()->simplePaginate();
+        $complains = Complain::sortable()->simplePaginate(5);
 
         return view('dashboard.admin', ["msg"=>"Admin dashboard"], compact('complains'));
     }
@@ -46,13 +46,13 @@ class HomeController extends Controller
     public function buyerHome()
     {   $user_id = Auth::user()->id;
         
-        $posts= Post::where('user_id', Auth::id())->latest()->paginate(5);
+        $posts= Post::where('user_id', Auth::id())->latest()->simplePaginate(5);
     
         $applications = Application::select( 'applications.*')
         ->join('posts', 'posts.id', '=', 'applications.post_id')
         ->join('users', 'users.id', '=', 'posts.user_id')
         ->where('posts.user_id', $user_id)
-        ->get();
+        ->simplePaginate(5);
 
         // return response()->json($applications);
 
@@ -67,7 +67,7 @@ class HomeController extends Controller
         ->join('posts', 'posts.id', '=', 'applications.post_id')
         ->join('users', 'users.id', '=', 'posts.user_id')
         ->where('applications.user_id', $user_id)
-        ->get();
+        ->simplePaginate(5);
 
         
         return view('dashboard.seller', ["msg"=> "Seller dashboard"], compact('applications'));

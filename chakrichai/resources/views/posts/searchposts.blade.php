@@ -149,7 +149,11 @@
                                     </tr>
                                 @endforeach
                             </tbody>
+                            
                         </table>
+                        <div class="row text-end mt-3">
+                            {!! $searchPosts->links() !!}
+                        </div>
                     @endif
 
                 

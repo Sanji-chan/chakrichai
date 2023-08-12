@@ -74,7 +74,19 @@
                         @endforeach
                     </tbody>
                 </table>
-                <a class="m-auto text-center" href="{{ route("posts.index") }}">Find jobs</a>
+                <div class="row">
+                    {{-- <a class="m-auto text-center" href="{{ route("posts.index") }}">Find jobs</a> --}}
+                    <form class="col mt-3" action="{{ route("posts.index")  }}">
+                        <div class="">
+                            <a href="#"><button  class="btn btn-primary secondary-button" >Find jobs</button></a>
+                        </div>
+                    </form>
+                    
+                    <div class="col text-end mt-4">
+                        {!! $applications->links() !!}
+                    </div>
+                </div>
+               
             @endif
         </div>
     </div>
