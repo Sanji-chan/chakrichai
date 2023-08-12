@@ -101,6 +101,7 @@
                                       <th>End Date</th>
                                       <th>Remuneration</th>
                                       <th>Tags</th>
+                                      <th>Status</th>
                                       <th>Actions</th>
                                     </tr>
                                   </thead>
@@ -131,6 +132,9 @@
                                         </td>
                                         <td>
                                             <p class="fw-normal mb-1"> {{ $post->tag }} </p>
+                                        </td>
+                                        <td>
+                                            <p class="fw-normal mb-1"> {{ $post->status }} </p>
                                         </td>
                                     
         

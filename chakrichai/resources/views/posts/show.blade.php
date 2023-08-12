@@ -15,7 +15,8 @@ use App\Models\Comments;
             <div class="card mb-lg-0">
                 <div class="card-header m-2">
                     <h4>{{ $post->title }}</h4>
-                    <p class="text-muted mb-0" style="font-size: 14px">Created at: {{ $post->created_at }}</p>
+                    <p class="text-muted mb-0" style="font-size: 14px">Created at: {{ $post->created_at }} by <a href="{{ route('profile.show', $user->id ) }}">  {{ $user->name  }}</a></p>
+                   
                 </div>
                 
                 <div class="card-body form-group col justify-content-center ">
@@ -43,8 +44,7 @@ use App\Models\Comments;
                 </div>
 
                 
-                <span> 
-                    {{$likes->count()}} people liked this post</span>
+                <span> {{$likes->count()}} people liked this post</span>
                 </div>
                 <div class="card-footer pt-2 m-2">
                     <div class="row m-auto">

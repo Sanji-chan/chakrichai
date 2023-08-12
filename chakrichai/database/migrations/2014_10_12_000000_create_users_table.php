@@ -18,7 +18,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
              // 0 = admin, 1 = buyer, 2 = seller 
-             $table->tinyInteger('role')->default(1);
+            $table->tinyInteger('role');
             $table->string('google_id')->nullable();
             $table->rememberToken();
             $table->timestamps();

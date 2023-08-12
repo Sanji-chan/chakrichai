@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Models\Comments;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
@@ -99,9 +100,11 @@ class PostController extends Controller
         ->where("likes.user_id", Auth::id())
         ->get(); 
 
+        $user = User::where('id', $post->user_id)->firstOrFail();
 
+        // return response()->json($user);
         
-        return view('posts.show', compact('post',"comments","likes", "liked"));
+        return view('posts.show', compact('post',"comments","likes", "liked", "user"));
     }
     
 

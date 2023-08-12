@@ -13,7 +13,7 @@
             <div class="empty_img img-fluid m-auto"></div>
             <p class="m-auto text-center">No posts found.
                 <br>
-                <a class="m-auto text-center" href="{{ route("posts.index") }}">Find jobs</a>
+                <a class="m-auto text-center" href="{{ route('posts.create')  }}">Create a job</a>
             </p>
             @else
 

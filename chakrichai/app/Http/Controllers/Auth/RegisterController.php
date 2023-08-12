@@ -52,12 +52,12 @@ class RegisterController extends Controller
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
-    {   
+    {    
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'role' => [1]  // defalut role buyer
+            'role' => []  // defalut role buyer
         ]);
     
     }
@@ -70,24 +70,27 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $role = 1;
-        if (strpos($data['email'], "g.bracu.ac.bd") != false){
-            $role = 2;
-        }
-        // return response()->json($data);
+        $data['role'] = 1;
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'role' => $role,
+            'role' => $data['role'],
             'google2fa_secret' => $data['google2fa_secret'],
         ]);
+
+        if (strpos($data['email'], "g.bracu.ac.bd") == True){
+           $user['role']= 2;
+        }
+
+        $user->save();
         
         $profile = UserProfile::create([
             'user_id' => $user->id,
             'bio' => 'No bio added for User ' . $user->id,
             // Add other attributes and their values here
         ]);
+
         return $user;
     }
     /**
@@ -122,7 +125,7 @@ class RegisterController extends Controller
      * @return response()
      */
     public function completeRegistration(Request $request)
-    {       
+    {  
         $request->merge(session('registration_data'));
         return $this->registration($request);
     }

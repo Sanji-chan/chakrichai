@@ -155,9 +155,10 @@
                         </div>
 
                     @endif
-
-                    @if (Auth::user()->role == 'buyer')
-                         <a href="{{ route('posts.create') }}">Create New Post</a>
+                    @if (Auth::user()->email_verified_at)
+                        @if (Auth::user()->role == 'buyer')
+                            <a href="{{ route('posts.create') }}">Create New Post</a>
+                        @endif
                     @endif
 
            </div>

@@ -53,7 +53,7 @@ class LoginController extends Controller
             return redirect()->route('home');
         }
         else
-        {   session()->put('error', 'Incorrect email or password!.');
+        {   session()->put('error', 'Incorrect email or password!');
             return redirect()->route('login');
         }
     }
